@@ -1,0 +1,54 @@
+{
+    "skills": [
+        {
+            "name": "攻撃",
+            "levels": [
+                {
+                    "level": 1,
+                    "addAttack": 10
+                },
+                {
+                    "level": 2,
+                    "addAttack": 15
+                },
+                {
+                    "level": 3,
+                    "addAttack": 20
+                },
+                {
+                    "level": 4,
+                    "addAttack": 25
+                },
+                {
+                    "level": 5,
+                    "addAttack": 30
+                }
+            ]
+        },
+        {
+            "name": "見切り",
+            "levels": [
+                {
+                    "level": 1,
+                    "addAffinity": 10
+                },
+                {
+                    "level": 2,
+                    "addAffinity": 20
+                },
+                {
+                    "level": 3,
+                    "addAffinity": 30
+                },
+                {
+                    "level": 4,
+                    "addAffinity": 40
+                },
+                {
+                    "level": 5,
+                    "addAffinity": 50
+                }
+            ]
+        }
+    ]
+}
