@@ -1,6 +1,20 @@
 'use client'
 import { useState } from 'react'
 import { WeaponStats, WeaponType } from '@/models/types/weapon'
+import { WEAPON_LABELS } from '@/models/types/labels'
+
+// ラベル部分のコンポーネント化
+const FormLabel = ({ name, required = false }: { name: keyof typeof WEAPON_LABELS, required?: boolean }) => (
+  <div className="flex items-center w-32">
+    <span>{WEAPON_LABELS[name].label}</span>
+    <span 
+      className="ml-1 text-red-500 cursor-help"
+      title={WEAPON_LABELS[name].note}
+    >
+      *
+    </span>
+  </div>
+)
 
 export function WeaponForm() {
   const [stats, setStats] = useState<WeaponStats>({
@@ -13,7 +27,7 @@ export function WeaponForm() {
   return (
     <form className="space-y-4">
       <div className="flex items-center gap-4">
-        <label className="w-32">Attack</label>
+        <FormLabel name="attack" />
         <input
           type="number"
           value={stats.attack}
@@ -22,7 +36,7 @@ export function WeaponForm() {
         />
       </div>
       <div className="flex items-center gap-4">
-        <label className="w-32">Affinity</label>
+        <FormLabel name="affinity" />
         <input
           type="number"
           value={stats.affinity}
@@ -31,7 +45,7 @@ export function WeaponForm() {
         />
       </div>
       <div className="flex items-center gap-4">
-        <label className="w-32">Element Type</label>
+        <FormLabel name="elementType" />
         <select
           value={stats.elementType}
           onChange={(e) => setStats({ ...stats, elementType: e.target.value as WeaponStats['elementType'] })}
@@ -46,7 +60,7 @@ export function WeaponForm() {
         </select>
       </div>
       <div className="flex items-center gap-4">
-        <label className="w-32">Element Value</label>
+        <FormLabel name="elementValue" />
         <input
           type="number"
           value={stats.elementValue}

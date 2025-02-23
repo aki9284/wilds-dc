@@ -4,12 +4,11 @@ import { useState } from 'react'
 
 const tabs = [
   { id: 'overview', name: 'Overview' },
-  { id: 'weapon', name: '武器' },
-  { id: 'skills', name: 'スキル' },
-  { id: 'buffs', name: 'その他補正' },
-  { id: 'monster', name: 'モンスター' },
+  { id: 'equipment', name: '装備・スキル等' },
+  { id: 'target', name: '攻撃対象' },
+  { id: 'motion', name: 'モーション' },
+  { id: 'expectation', name: '期待値計算' },
 ]
-
 export function TabNavigation({ activeTab, onTabChange }: {
   activeTab: string
   onTabChange: (tabId: string) => void
