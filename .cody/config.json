@@ -1,0 +1,17 @@
+{
+  "chatLanguage": "日本語",
+  "projectType": "static-site",
+  "routingType": "app-router",
+  "directory": {
+    "data": "public/data",
+    "components": "components",
+    "utils": "utils",
+    "models": "models"
+  },
+  "conventions": {
+    "dataLoading": "fetch from public/data",
+    "dataFormat": "json",
+    "stateManagement": "jotai",
+    "styling": "tailwindcss"
+  }
+}
