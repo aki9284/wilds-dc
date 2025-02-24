@@ -3,11 +3,11 @@
 import { useState } from 'react'
 
 const tabs = [
-  { id: 'overview', name: '計算' },
-  { id: 'equipment', name: '装備セット' },
+  { id: 'equipment', name: '装備' },
   { id: 'target', name: '攻撃対象' },
   { id: 'motion', name: 'モーション' },
-  { id: 'expectation', name: '期待値計算設定' },
+  { id: 'condition', name: '計算条件' },
+  { id: 'compare', name: '複数比較' },
 ]
 export function TabNavigation({ activeTab, onTabChange }: {
   activeTab: string

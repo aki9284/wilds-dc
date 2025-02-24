@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { Combobox } from '@headlessui/react'
 import { useAtom } from 'jotai'
-import { selectedSkillsAtom, SelectedSkill } from '../../atoms/skillAtoms'
+import { selectedSkillsAtom } from '../../atoms/skillAtoms'
 
 interface SkillLevel {
   level: number

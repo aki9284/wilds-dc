@@ -3,7 +3,8 @@
 import { useAtom } from 'jotai'
 import { nanoid } from 'nanoid'
 import { useEffect, useState } from 'react'
-import { Target, targetsAtom, selectedMonsterAtom, isEnragedAtom } from '@/atoms/targetAtoms'
+import { targetsAtom, selectedMonsterAtom, isEnragedAtom } from '@/atoms/targetAtoms'
+import { Target } from '@/models/types/target'
 import { SaveLoadPanel } from '../common/SaveLoadPanel'
 
 interface Hitzone {
@@ -211,7 +212,7 @@ export function TargetSelector() {
         </div>
 
         <SaveLoadPanel
-          storageKey="wilds-dc-targets"
+          storageKey="target-settings"
           onSave={(name) => ({
             name,
             monster: selectedMonster,

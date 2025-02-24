@@ -4,5 +4,5 @@ export type WeaponStats = {
   affinity: number;
   elementType: '無' | '火' | '水' | '雷' | '氷' | '龍';
   elementValue: number;
-  // その他の武器ステータス
+  sharpness: '赤' | '橙' | '黄' | '緑' | '青' | '白' | '紫';
 };

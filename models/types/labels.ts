@@ -14,5 +14,9 @@ export const WEAPON_LABELS = {
   elementValue: {
     label: '属性値',
     note: '属性攻撃のダメージ値です'
+  },
+  sharpness: {
+    label: '斬れ味',
+    note: '武器の斬れ味レベルです'
   }
 } as const

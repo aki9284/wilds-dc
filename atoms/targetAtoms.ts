@@ -1,10 +1,5 @@
 import { atom } from 'jotai'
-
-export interface Target {
-  id: string
-  partName: string
-  percentage: number
-}
+import { Target } from '@/models/types/target'
 
 export const selectedMonsterAtom = atom<string>('')
 

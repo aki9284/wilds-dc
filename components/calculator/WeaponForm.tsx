@@ -1,9 +1,9 @@
 'use client'
-import { useState } from 'react'
-import { WeaponStats, WeaponType } from '@/models/types/weapon'
+import { useAtom } from 'jotai'
+import { weaponStatsAtom } from '@/atoms/weaponAtom'
+import { WeaponStats } from '@/models/types/weapon'
 import { WEAPON_LABELS } from '@/models/types/labels'
 
-// ラベル部分のコンポーネント化
 const FormLabel = ({ name, required = false }: { name: keyof typeof WEAPON_LABELS, required?: boolean }) => (
   <div className="flex items-center w-32">
     <span>{WEAPON_LABELS[name].label}</span>
@@ -17,12 +17,7 @@ const FormLabel = ({ name, required = false }: { name: keyof typeof WEAPON_LABEL
 )
 
 export function WeaponForm() {
-  const [stats, setStats] = useState<WeaponStats>({
-    attack: 0,
-    affinity: 0,
-    elementType: '無',
-    elementValue: 0
-  })
+  const [stats, setStats] = useAtom(weaponStatsAtom)
 
   return (
     <form className="space-y-4">
@@ -67,6 +62,22 @@ export function WeaponForm() {
           onChange={(e) => setStats({ ...stats, elementValue: Number(e.target.value) })}
           className="border rounded px-2 py-1"
         />
+      </div>
+      <div className="flex items-center gap-4">
+        <FormLabel name="sharpness" />
+        <select
+          value={stats.sharpness}
+          onChange={(e) => setStats({ ...stats, sharpness: e.target.value as WeaponStats['sharpness'] })}
+          className="border rounded px-2 py-1"
+        >
+          <option value="赤">赤</option>
+          <option value="橙">橙</option>
+          <option value="黄">黄</option>
+          <option value="緑">緑</option>
+          <option value="青">青</option>
+          <option value="白">白</option>
+          <option value="紫">紫</option>
+        </select>
       </div>
     </form>
   )
