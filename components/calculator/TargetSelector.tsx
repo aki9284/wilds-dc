@@ -6,27 +6,8 @@ import { useEffect, useState } from 'react'
 import { targetsAtom, selectedMonsterAtom, isEnragedAtom } from '@/atoms/targetAtoms'
 import { Target } from '@/models/types/target'
 import { SaveLoadPanel } from '../common/SaveLoadPanel'
+import { Monster } from '@/models/types/monster'
 
-interface Hitzone {
-    slash: number
-    impact: number
-    shot: number
-    fire: number
-    water: number
-    thunder: number
-    ice: number
-    dragon: number
-}
-  
-interface MonsterPart {
-    name: string
-    hitzone: Hitzone
-}
-  
-interface Monster {
-    name: string
-    parts: MonsterPart[]
-}
 
 export function TargetSelector() {
     const [monsters, setMonsters] = useState<Monster[]>([])

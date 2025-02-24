@@ -2,7 +2,8 @@
 import { useAtom } from 'jotai'
 import { weaponStatsAtom } from '@/atoms/weaponAtom'
 import { WeaponStats } from '@/models/types/weapon'
-import { WEAPON_LABELS } from '@/models/types/labels'
+import { WEAPON_LABELS } from '@/models/constants/weaponLabels'
+import { SHARPNESS_DATA } from '@/models/constants/sharpness';
 
 const FormLabel = ({ name, required = false }: { name: keyof typeof WEAPON_LABELS, required?: boolean }) => (
   <div className="flex items-center w-32">
@@ -70,13 +71,11 @@ export function WeaponForm() {
           onChange={(e) => setStats({ ...stats, sharpness: e.target.value as WeaponStats['sharpness'] })}
           className="border rounded px-2 py-1"
         >
-          <option value="赤">赤</option>
-          <option value="橙">橙</option>
-          <option value="黄">黄</option>
-          <option value="緑">緑</option>
-          <option value="青">青</option>
-          <option value="白">白</option>
-          <option value="紫">紫</option>
+          {Object.values(SHARPNESS_DATA.sharpness).map((sharp) => (
+            <option key={sharp.label} value={sharp.label}>
+              {sharp.label}
+            </option>
+          ))}
         </select>
       </div>
     </form>

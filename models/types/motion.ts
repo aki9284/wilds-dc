@@ -3,6 +3,7 @@ export interface Motion {
   name: string;
   value: string;
   damageType: string;
+  multiplyElement: number;
   duration: string;
 }
 

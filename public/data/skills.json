@@ -49,6 +49,43 @@
                     "addAffinity": 50
                 }
             ]
+        },
+        {
+            "name": "超会心",
+            "levels": [
+                {
+                    "level": 1,
+                    "setCritFactor": 1.3
+                },
+                {
+                    "level": 2,
+                    "setCritFactor": 1.35
+                },
+                {
+                    "level": 3,
+                    "setCritFactor": 1.4
+                }
+            ]
+        },
+        {
+            "name": "弱点特効",
+            "levels": [
+                {
+                    "level": 1,
+                    "addAffinity": 10,
+                    "addAffinity2": 15
+                },
+                {
+                    "level": 2,
+                    "addAffinity": 15,
+                    "addAffinity2": 20
+                },
+                {
+                    "level": 3,
+                    "addAffinity": 20,
+                    "addAffinity2": 30
+                }
+            ]
         }
     ]
 }

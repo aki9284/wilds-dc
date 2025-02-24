@@ -1,4 +1,4 @@
-import { Skill } from '@/models/types/skill'
+import { SelectedSkill } from '@/models/types/skill'
 import { atom } from 'jotai'
 
-export const selectedSkillsAtom = atom<Skill[]>([])
+export const selectedSkillsAtom = atom<SelectedSkill[]>([])

@@ -1,5 +1,5 @@
 import { WeaponStats } from "./weapon";
-import { Skill } from "./skill";
+import { SelectedSkill } from "./skill";
 import { Target } from "./target";
 import { MotionSelection } from "./motion";
 import { CalculationResults } from "@/lib/calculations/damageCalculator";
@@ -9,7 +9,7 @@ export interface CalculationHistory {
   weaponStats: WeaponStats;
   result: CalculationResults;
   savedState: {
-    selectedSkills: Skill[];
+    selectedSkills: SelectedSkill[];
     selectedBuffs: string[];
     targets: Target[];
     selectedMotions: MotionSelection[];
