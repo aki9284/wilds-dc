@@ -2,10 +2,10 @@
 
 import { useAtom } from 'jotai'
 import { useState } from 'react'
-import { weaponStatsAtom } from '@/atoms/weaponAtom'
+import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
 import { selectedSkillsAtom } from '@/atoms/skillAtoms'
 import { selectedBuffsAtom } from '@/atoms/buffAtoms'
-import { targetsAtom, isEnragedAtom } from '@/atoms/targetAtoms'
+import { selectedTargetsAtom, isEnragedAtom } from '@/atoms/targetAtoms'
 import { selectedMotionsAtom } from '@/atoms/motionAtom'
 import { calculateDamage, CalculationResults } from '@/lib/calculations/damageCalculator'
 import { historyStorage } from '@/utils/historyStorage'
@@ -14,10 +14,10 @@ import { nanoid } from 'nanoid'
 
 export function ResultPanel() {
   const [results, setResults] = useState<CalculationResults | null>(null)
-  const [weaponStats] = useAtom(weaponStatsAtom)
+  const [weaponStats] = useAtom(currentWeaponStatsAtom)
   const [selectedSkills] = useAtom(selectedSkillsAtom)
   const [selectedBuffs] = useAtom(selectedBuffsAtom)
-  const [targets] = useAtom(targetsAtom)
+  const [targets] = useAtom(selectedTargetsAtom)
   const [selectedMotions] = useAtom(selectedMotionsAtom)
   const [isEnraged] = useAtom(isEnragedAtom)
   const [, setUpdateTrigger] = useAtom(updateTriggerAtom)

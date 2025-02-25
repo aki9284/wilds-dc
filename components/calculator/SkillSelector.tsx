@@ -1,51 +1,36 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Combobox } from '@headlessui/react'
 import { useAtom } from 'jotai'
-import { selectedSkillsAtom } from '../../atoms/skillAtoms'
-
-interface SkillLevel {
-  level: number
-  addAttack?: number
-  addAffinity?: number
-}
-
-interface Skill {
-  name: string
-  levels: SkillLevel[]
-}
+import { selectedSkillsAtom } from '@/atoms/skillAtoms'
+import { SKILL_DATA, SkillKey } from '@/models/constants/skill'
 
 export function SkillSelector() {
-  const [skills, setSkills] = useState<Skill[]>([])
   const [selectedSkills, setSelectedSkills] = useAtom(selectedSkillsAtom)
   const [query, setQuery] = useState('')
   const [isInputFocused, setIsInputFocused] = useState(false)
 
-  useEffect(() => {
-    fetch('/data/skills.json')
-      .then(res => res.json())
-      .then(data => setSkills(data.skills))
-  }, [])
-
   const filteredSkills = (index: number) => {
+    const skillEntries = Object.entries(SKILL_DATA)
     if (isInputFocused && query === '') {
-      return skills.filter(skill =>
-        !selectedSkills.some((selected, idx) => selected.name === skill.name && idx !== index)
+      return skillEntries.filter(([key]) => 
+        !selectedSkills.some((selected, idx) => selected.skillKey === key && idx !== index)
       )
     }
-    return skills.filter(skill =>
-      skill.name.toLowerCase().includes(query.toLowerCase()) &&
-      !selectedSkills.some((selected, idx) => selected.name === skill.name && idx !== index)
+    return skillEntries.filter(([key, skill]) => 
+      skill.label.toLowerCase().includes(query.toLowerCase()) &&
+      !selectedSkills.some((selected, idx) => selected.skillKey === key && idx !== index)
     )
   }
   
   const addSkillSelection = () => {
-    setSelectedSkills([...selectedSkills, { name: '', level: 1 }])
+    const firstAvailableSkill = Object.keys(SKILL_DATA)[0] as SkillKey
+    setSelectedSkills([...selectedSkills, { skillKey: firstAvailableSkill, level: 1 }])
   }
 
-  const updateSkillSelection = (index: number, name: string, level: number) => {
+  const updateSkillSelection = (index: number, skillKey: SkillKey, level: number) => {
     const newSelectedSkills = [...selectedSkills]
-    newSelectedSkills[index] = { name, level }
+    newSelectedSkills[index] = { skillKey, level }
     setSelectedSkills(newSelectedSkills)
   }
 
@@ -58,8 +43,8 @@ export function SkillSelector() {
       {selectedSkills.map((selected, index) => (
         <div key={index} className="flex items-center gap-4">
           <Combobox
-            value={selected.name}
-            onChange={(name) => updateSkillSelection(index, name || '', selected.level)}
+            value={selected.skillKey}
+            onChange={(key: SkillKey) => updateSkillSelection(index, key, selected.level)}
             as="div"
             className="relative"
           >
@@ -69,15 +54,15 @@ export function SkillSelector() {
                 onChange={(event) => setQuery(event.target.value)}
                 onFocus={() => setIsInputFocused(true)}
                 onBlur={() => setIsInputFocused(false)}
-                displayValue={(name: string) => name}
+                displayValue={(key: SkillKey) => SKILL_DATA[key].label}
               />
             </Combobox.Button>
 
             <Combobox.Options className="absolute mt-1 bg-white border rounded shadow-lg max-h-60 overflow-auto w-full z-10">
-              {filteredSkills(index).map((skill) => (
+              {filteredSkills(index).map(([key, skill]) => (
                 <Combobox.Option
-                  key={skill.name}
-                  value={skill.name}
+                  key={key}
+                  value={key}
                   className={({ active }) =>
                     `relative cursor-pointer select-none py-2 px-4 ${
                       active ? 'bg-blue-500 text-white' : 'text-gray-900'
@@ -86,7 +71,7 @@ export function SkillSelector() {
                 >
                   {({ selected, active }) => (
                     <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
-                      {skill.name}
+                      {skill.label}
                     </span>
                   )}
                 </Combobox.Option>
@@ -96,10 +81,10 @@ export function SkillSelector() {
 
           <select
             value={selected.level}
-            onChange={(e) => updateSkillSelection(index, selected.name, Number(e.target.value))}
+            onChange={(e) => updateSkillSelection(index, selected.skillKey, Number(e.target.value))}
             className="border rounded px-2 py-1"
           >
-            {skills.find(s => s.name === selected.name)?.levels.map(level => (
+            {SKILL_DATA[selected.skillKey].levels.map(level => (
               <option key={level.level} value={level.level}>
                 Lv.{level.level}
               </option>

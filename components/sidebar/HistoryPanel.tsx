@@ -2,21 +2,22 @@
 import { useEffect } from 'react'
 import { useAtom } from 'jotai'
 import { historiesAtom, updateTriggerAtom } from '@/atoms/historyAtom'
-import { selectedSkillsAtom } from '@/atoms/skillAtoms'
-import { targetsAtom, isEnragedAtom } from '@/atoms/targetAtoms'
+import { selectedSkillsAtom, SelectedSkill } from '@/atoms/skillAtoms'
+import { selectedTargetsAtom, isEnragedAtom } from '@/atoms/targetAtoms'
 import { selectedMotionsAtom } from '@/atoms/motionAtom'
 import { selectedBuffsAtom } from '@/atoms/buffAtoms'
-import { weaponStatsAtom } from '@/atoms/weaponAtom'
+import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
 import { historyStorage } from '@/utils/historyStorage'
 import { CalculationHistory } from '@/models/types/history'
+import { BuffKey } from '@/models/constants/buff'
 
 export function HistoryPanel() {
   const [histories, setHistories] = useAtom(historiesAtom)
   const [updateTrigger] = useAtom(updateTriggerAtom)
-  const [, setWeaponStats] = useAtom(weaponStatsAtom)
+  const [, setWeaponStats] = useAtom(currentWeaponStatsAtom)
   const [, setSelectedSkills] = useAtom(selectedSkillsAtom)
   const [, setSelectedBuffs] = useAtom(selectedBuffsAtom)
-  const [, setTargets] = useAtom(targetsAtom)
+  const [, setTargets] = useAtom(selectedTargetsAtom)
   const [, setSelectedMotions] = useAtom(selectedMotionsAtom)
   const [, setIsEnraged] = useAtom(isEnragedAtom)
 
@@ -26,8 +27,8 @@ export function HistoryPanel() {
 
   const restoreState = (history: CalculationHistory) => {
     setWeaponStats(history.weaponStats)
-    setSelectedSkills(history.savedState.selectedSkills)
-    setSelectedBuffs(history.savedState.selectedBuffs || []) // デフォルト値を設定
+    setSelectedSkills(history.savedState.selectedSkills as SelectedSkill[])
+    setSelectedBuffs(history.savedState.selectedBuffs as BuffKey[] || [])
     setTargets(history.savedState.targets)
     setSelectedMotions(history.savedState.selectedMotions)
     setIsEnraged(history.savedState.isEnraged)

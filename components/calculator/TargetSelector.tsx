@@ -3,7 +3,7 @@
 import { useAtom } from 'jotai'
 import { nanoid } from 'nanoid'
 import { useEffect, useState } from 'react'
-import { targetsAtom, selectedMonsterAtom, isEnragedAtom } from '@/atoms/targetAtoms'
+import { selectedTargetsAtom, selectedMonsterAtom, isEnragedAtom } from '@/atoms/targetAtoms'
 import { Target } from '@/models/types/target'
 import { SaveLoadPanel } from '../common/SaveLoadPanel'
 import { Monster } from '@/models/types/monster'
@@ -13,7 +13,7 @@ export function TargetSelector() {
     const [monsters, setMonsters] = useState<Monster[]>([])
     const [selectedMonster, setSelectedMonster] = useAtom(selectedMonsterAtom)
     const [isEnraged, setIsEnraged] = useAtom(isEnragedAtom)
-    const [targets, setTargets] = useAtom(targetsAtom)
+    const [targets, setTargets] = useAtom(selectedTargetsAtom)
 
     useEffect(() => {
       fetch('/data/monsters.json')

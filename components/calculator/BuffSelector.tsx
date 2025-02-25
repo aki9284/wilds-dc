@@ -1,46 +1,38 @@
 'use client'
 
 import { useAtom } from 'jotai'
-import { useEffect, useState } from "react"
 import { selectedBuffsAtom } from '@/atoms/buffAtoms'
-
-interface Buff {
-  name: string
-  multiplyAttack?: number
-  addAttack?: number
-}
+import { BUFF_DATA } from '@/models/constants/buff'
 
 export function BuffSelector() {
-  const [buffs, setBuffs] = useState<Buff[]>([])
   const [selectedBuffs, setSelectedBuffs] = useAtom(selectedBuffsAtom)
 
-  useEffect(() => {
-    fetch('/data/buffs.json')
-      .then(res => res.json())
-      .then(data => setBuffs(data.buffs))
-  }, [])
-
-  const toggleBuff = (buffName: string) => {
-    if (selectedBuffs.includes(buffName)) {
-      setSelectedBuffs(selectedBuffs.filter(b => b !== buffName))
+  const toggleBuff = (buffKey: keyof typeof BUFF_DATA) => {
+    if (selectedBuffs.includes(buffKey)) {
+      setSelectedBuffs(selectedBuffs.filter(b => b !== buffKey))
     } else {
-      setSelectedBuffs([...selectedBuffs, buffName])
+      setSelectedBuffs([...selectedBuffs, buffKey])
     }
   }
 
   return (
     <div className="space-y-4">
-      {buffs.map((buff) => (
-        <label key={buff.name} className="flex items-center space-x-2">
+      {Object.entries(BUFF_DATA).map(([key, buff]) => (
+        <label key={key} className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded">
           <input
             type="checkbox"
-            checked={selectedBuffs.includes(buff.name)}
-            onChange={() => toggleBuff(buff.name)}
-            className="rounded"
+            checked={selectedBuffs.includes(key as keyof typeof BUFF_DATA)}
+            onChange={() => toggleBuff(key as keyof typeof BUFF_DATA)}
+            className="rounded text-blue-600 focus:ring-blue-500"
           />
-          <span>{buff.name}</span>
+          <span className="text-sm">
+            {buff.label}
+            <span className="text-gray-500 text-xs ml-2">
+              {'multiplyAttack' in buff && `(攻撃力×${buff.multiplyAttack})`}
+              {'addAttack' in buff && `(攻撃力+${buff.addAttack})`}
+            </span>
+          </span>
         </label>
       ))}
-    </div>
-  )
+    </div>  )
 }

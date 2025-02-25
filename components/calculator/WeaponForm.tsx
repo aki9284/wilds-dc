@@ -1,6 +1,6 @@
 'use client'
 import { useAtom } from 'jotai'
-import { weaponStatsAtom } from '@/atoms/weaponAtom'
+import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
 import { WeaponStats } from '@/models/types/weapon'
 import { WEAPON_LABELS } from '@/models/constants/weaponLabels'
 import { SHARPNESS_DATA } from '@/models/constants/sharpness';
@@ -18,7 +18,7 @@ const FormLabel = ({ name, required = false }: { name: keyof typeof WEAPON_LABEL
 )
 
 export function WeaponForm() {
-  const [stats, setStats] = useAtom(weaponStatsAtom)
+  const [stats, setStats] = useAtom(currentWeaponStatsAtom)
 
   return (
     <form className="space-y-4">
@@ -71,7 +71,7 @@ export function WeaponForm() {
           onChange={(e) => setStats({ ...stats, sharpness: e.target.value as WeaponStats['sharpness'] })}
           className="border rounded px-2 py-1"
         >
-          {Object.values(SHARPNESS_DATA.sharpness).map((sharp) => (
+          {Object.values(SHARPNESS_DATA).map((sharp) => (
             <option key={sharp.label} value={sharp.label}>
               {sharp.label}
             </option>

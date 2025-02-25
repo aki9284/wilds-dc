@@ -4,6 +4,8 @@ import { TabNavigation } from '@/components/navigation/TabNavigation'
 import { EquipmentForm } from '@/components/calculator/EquipmentForm'
 import { TargetSelector } from '@/components/calculator/TargetSelector'
 import { MotionSelector } from '@/components/calculator/MotionSelector'
+import { ConditionSelector } from '@/components/calculator/ConditionSelector'
+
 export default function CalculatorPage() {
   const [activeTab, setActiveTab] = useState('overview')
 
@@ -15,6 +17,8 @@ export default function CalculatorPage() {
         return <TargetSelector />
       case 'motion':
         return <MotionSelector />
+      case 'condition':
+        return <ConditionSelector />
       case 'overview':
       default:
         return (

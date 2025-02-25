@@ -5,12 +5,12 @@ import { WeaponForm } from "./WeaponForm"
 import { BuffSelector } from "./BuffSelector"
 import { SaveLoadPanel } from "../common/SaveLoadPanel"
 import { useAtom } from 'jotai'
-import { weaponStatsAtom } from '@/atoms/weaponAtom'
+import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
 import { selectedSkillsAtom } from '@/atoms/skillAtoms'
 import { selectedBuffsAtom } from '@/atoms/buffAtoms'
 
 export function EquipmentForm() {
-  const [weaponStats, setWeaponStats] = useAtom(weaponStatsAtom)
+  const [weaponStats, setWeaponStats] = useAtom(currentWeaponStatsAtom)
   const [selectedSkills, setSelectedSkills] = useAtom(selectedSkillsAtom)
   const [selectedBuffs, setSelectedBuffs] = useAtom(selectedBuffsAtom)
     const handleSave = (name: string) => {

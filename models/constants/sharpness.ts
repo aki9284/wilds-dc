@@ -1,5 +1,10 @@
+export type Sharpness = {
+    label: string;
+    phisical: number;
+    elemental: number;
+};
+
 export const SHARPNESS_DATA = {
-  sharpness: {
     red: {
       label: "赤",
       phisical: 0.5,
@@ -35,8 +40,7 @@ export const SHARPNESS_DATA = {
       phisical: 1.45,
       elemental: 1.2
     }
-  }
 } as const;
 
-export type SharpnessKey = keyof typeof SHARPNESS_DATA.sharpness;
-export type SharpnessLabel = typeof SHARPNESS_DATA.sharpness[SharpnessKey]['label'];
+export type SharpnessKey = keyof typeof SHARPNESS_DATA;
+export type SharpnessLabel = typeof SHARPNESS_DATA[SharpnessKey]['label'];
