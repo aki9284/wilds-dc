@@ -1,10 +1,12 @@
-import { WeaponType } from "./weapon";
+import { PhysicalTypeKey } from "../constants/damageTypes";
+import { WeaponTypeKey } from "./weapon";
 
 export interface Motion {
-  weaponType: WeaponType;
+  weaponType: WeaponTypeKey;
   name: string;
   value: number;
-  damageType: string;
+  damageType: PhysicalTypeKey;
+  ignoreEffectiveness: boolean;
   multiplyElement: number;
   duration: number;
 }

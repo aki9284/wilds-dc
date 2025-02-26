@@ -1,20 +1,20 @@
-{ 
-    "motions": [ 
-        { 
-            "weaponType": "huntingHorn",
-            "name": "叩きつけ1段目", 
-            "value": 15,
-            "damageType": "impact",
-            "mutiplyElement": 1.0,
-            "duration": 0.5
-        },
-        { 
-            "weaponType": "huntingHorn",
-            "name": "叩きつけ2段目", 
-            "value": 37,
-            "damageType": "impact",
-            "mutiplyElement": 1.0,
-            "duration": 1.1
-        }
-    ]
-}
+[ 
+    { 
+        "weaponType": "huntingHorn",
+        "name": "叩きつけ1段目", 
+        "value": 15,
+        "damageType": "impact",
+        "ignoreEffectiveness": false,
+        "mutiplyElement": 1.0,
+        "duration": 0.5
+    },
+    { 
+        "weaponType": "huntingHorn",
+        "name": "叩きつけ2段目", 
+        "value": 37,
+        "damageType": "impact",
+        "ignoreEffectiveness": false,
+        "mutiplyElement": 1.0,
+        "duration": 1.1
+    }
+]

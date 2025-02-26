@@ -1,13 +1,28 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { TabNavigation } from '@/components/navigation/TabNavigation'
 import { EquipmentForm } from '@/components/calculator/EquipmentForm'
 import { TargetSelector } from '@/components/calculator/TargetSelector'
 import { MotionSelector } from '@/components/calculator/MotionSelector'
 import { ConditionSelector } from '@/components/calculator/ConditionSelector'
+import { fetchMonsterData, fetchMotionData } from '@/utils/dataFetch'
 
 export default function CalculatorPage() {
   const [activeTab, setActiveTab] = useState('overview')
+
+  // モンスターデータの事前ロード
+  useEffect(() => {
+    fetchMonsterData()
+        .then()
+        .catch(error => console.error(error));
+  }, []);
+
+  // モーションデータの事前ロード
+  useEffect(() => {
+    fetchMotionData()
+        .then()
+        .catch(error => console.error(error));
+  }, []);
 
   const renderTabContent = () => {
     switch (activeTab) {

@@ -1,4 +1,4 @@
-export const WEAPON_LABELS = {
+export const WEAPON_STATS_LABELS = {
   attack: {
     label: '攻撃力',
     note: '武器の基礎攻撃力です'

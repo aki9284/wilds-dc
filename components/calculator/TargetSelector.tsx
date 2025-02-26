@@ -7,22 +7,14 @@ import { selectedTargetsAtom, selectedMonsterAtom } from '@/atoms/targetAtoms'
 import { SelectedTarget } from '@/models/types/target'
 import { SaveLoadPanel } from '../common/SaveLoadPanel'
 import { Monster } from '@/models/types/monster'
+import { getCachedMonsterData } from '@/utils/dataFetch'
 
 export function TargetSelector() {
-    const [monsters, setMonsters] = useState<Monster[]>([])
+    const monsters = getCachedMonsterData();
     const [selectedMonster, setSelectedMonster] = useAtom(selectedMonsterAtom)
+    setSelectedMonster(monsters[0].name)
+    
     const [targets, setTargets] = useAtom(selectedTargetsAtom)
-
-    useEffect(() => {
-      fetch('/data/monsters.json')
-        .then(res => res.json())
-        .then(data => {
-          setMonsters(data.monsters)
-          if (data.monsters.length > 0 && selectedMonster === '') {
-            setSelectedMonster(data.monsters[0].name)
-          }
-        })
-    }, [])
 
     const addTarget = () => {
       const monster = monsters.find(m => m.name === selectedMonster)

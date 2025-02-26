@@ -3,22 +3,14 @@
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { selectedMotionsAtom } from '@/atoms/motionAtom';
-import { Motion, SelectedMotion } from '@/models/types/motion';
+import { Motion } from '@/models/types/motion';
 import { nanoid } from 'nanoid';
 import { SaveLoadPanel } from '../common/SaveLoadPanel';
+import { getCachedMotionData } from '@/utils/dataFetch';
 
 export function MotionSelector() {
-  const [motions, setMotions] = useState<Motion[]>([]);
+  const motions = getCachedMotionData();
   const [selectedMotions, setSelectedMotions] = useAtom(selectedMotionsAtom);
-
-  useEffect(() => {
-    const loadMotions = async () => {
-      const response = await fetch('/data/motions.json');
-      const data = await response.json();
-      setMotions(data.motions);
-    };
-    loadMotions();
-  }, []);
 
   const handleSave = (name: string) => {
     const totalMV = selectedMotions.reduce((sum, s) => sum + (Number(s.motion?.value) || 0), 0);

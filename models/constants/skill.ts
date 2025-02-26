@@ -3,6 +3,7 @@ export type SkillEffect = {
   addAffinity?: number;
   addAffinity2?: number;  // 弱点特効の第2条件時などに使用
   setCritFactor?: number;
+  multiplyAttack?: number;
 }
 
 export type SkillLevel = {
@@ -27,8 +28,8 @@ export const SKILL_DATA = {
       { level: 1, effects: { addAttack: 10 } },
       { level: 2, effects: { addAttack: 15 } },
       { level: 3, effects: { addAttack: 20 } },
-      { level: 4, effects: { addAttack: 25 } },
-      { level: 5, effects: { addAttack: 30 } }
+      { level: 4, effects: { addAttack: 25 , multiplyAttack: 1.05 } },
+      { level: 5, effects: { addAttack: 30 , multiplyAttack: 1.1 } },
     ]
   },
   criticalEye: {

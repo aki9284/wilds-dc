@@ -3,6 +3,8 @@ import { SelectedTarget } from '@/models/types/target';
 import { Motion, SelectedMotion } from '@/models/types/motion';
 import { SelectedSkill } from '@/models/constants/skill';
 import { ConditionValues } from '@/atoms/conditionAtoms';
+import { calculatePhysicalDamages } from './physicalDamageCalculator';
+import { calculateElementalDamages } from './elementalDamageCalculator';
 
 interface DamageBreakdown {
   total: number;
@@ -17,7 +19,7 @@ export interface CalculationResults {
   dps: number;
 }
 
-interface CalculationParams {
+export interface CalculationParams {
   weaponStats: WeaponStats;
   selectedSkills: SelectedSkill[];
   selectedBuffs: string[];
@@ -26,7 +28,7 @@ interface CalculationParams {
   conditionValues: ConditionValues;
 }
 
-interface SingleMotionAndTargetParams {
+export interface SingleMotionAndTargetParams {
   weaponStats: WeaponStats;
   selectedSkills: SelectedSkill[];
   selectedBuffs: string[];
@@ -106,82 +108,6 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
       elemental: damages.elemental.expected
     },
     dps: calculateDPS(damages.physical.expected + damages.elemental.expected, params.selectedMotions)
-  };
-}
-
-// 物理ダメージ
-function calculatePhysicalDamages(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
-  const attack = calculatePhysicalAttacks(params);
-  const effectiveness = calculatePhysicalEffectiveness(params);
-  const modifier = calculatePhysicalDamageModifier(params);
-
-  return {
-    min: attack.min * effectiveness.min * modifier.min,
-    max: attack.max * effectiveness.max * modifier.max,
-    expected: attack.expected * effectiveness.expected * modifier.expected
-  };
-}
-
-// 属性ダメージ
-function calculateElementalDamages(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number }{
-  return {
-    min: calculateElementalValue(params).min * calculateElementalEffectiveness(params).min * calculateElementalDamageModifier(params).min,
-    max: calculateElementalValue(params).max * calculateElementalEffectiveness(params).max * calculateElementalDamageModifier(params).max,
-    expected: calculateElementalValue(params).expected * calculateElementalEffectiveness(params).expected * calculateElementalDamageModifier(params).expected
-  };
-}
-
-// 物理攻撃力
-function calculatePhysicalAttacks(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
-  return {
-    min: params.weaponStats.attack,
-    max: params.weaponStats.attack,
-    expected: params.weaponStats.attack
-  };
-}
-
-// 物理肉質
-function calculatePhysicalEffectiveness(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
-  return {
-    min: 0,
-    max: 50,
-    expected: 25
-  };
-}
-
-// 物理ダメージ補正
-function calculatePhysicalDamageModifier(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
-  return {
-    min: 1,
-    max: 1,
-    expected: 1
-  };
-}
-
-// 属性値
-function calculateElementalValue(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
-  return {
-    min: params.weaponStats.elementValue,
-    max: params.weaponStats.elementValue,
-    expected: params.weaponStats.elementValue
-  };
-}
-
-// 属性肉質
-function calculateElementalEffectiveness(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
-  return {
-    min: 10,
-    max: 50,
-    expected: 30
-  };
-}
-
-// 属性ダメージ補正
-function calculateElementalDamageModifier(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
-  return {
-    min: 1,
-    max: 1,
-    expected: 1
   };
 }
 

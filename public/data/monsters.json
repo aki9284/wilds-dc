@@ -1,11 +1,10 @@
-{
-  "monsters": [
+[
     {
       "name": "リオレウス",
       "parts": [
         {
           "name": "頭",
-          "resistance": {
+          "effectiveness": {
             "slash": 65,
             "impact": 70,
             "shot": 55,
@@ -18,7 +17,7 @@
         },
         {
           "name": "胴体",
-          "resistance": {
+          "effectiveness": {
             "slash": 35,
             "impact": 35,
             "shot": 25,
@@ -36,7 +35,7 @@
         "parts": [
           {
             "name": "脚",
-            "resistance": {
+            "effectiveness": {
               "slash": 65,
               "impact": 70,
               "shot": 55,
@@ -49,7 +48,7 @@
           },
           {
             "name": "尻尾",
-            "resistance": {
+            "effectiveness": {
               "slash": 35,
               "impact": 35,
               "shot": 25,
@@ -62,5 +61,5 @@
           }
         ]
       }
-  ]
-}
+]
+

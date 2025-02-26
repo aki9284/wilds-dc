@@ -2,16 +2,16 @@
 import { useAtom } from 'jotai'
 import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
 import { WeaponStats } from '@/models/types/weapon'
-import { WEAPON_LABELS } from '@/models/constants/weaponLabels'
+import { WEAPON_STATS_LABELS } from '@/models/constants/weaponLabels'
 import { SHARPNESS_DATA } from '@/models/constants/sharpness';
-import { ELEMENT_TYPES } from '@/models/constants/elementTypes';
+import { ELEMENT_TYPES } from '@/models/constants/damageTypes';
 
-const FormLabel = ({ name, required = false }: { name: keyof typeof WEAPON_LABELS, required?: boolean }) => (
+const FormLabel = ({ name, required = false }: { name: keyof typeof WEAPON_STATS_LABELS, required?: boolean }) => (
   <div className="flex items-center w-32">
-    <span>{WEAPON_LABELS[name].label}</span>
+    <span>{WEAPON_STATS_LABELS[name].label}</span>
     <span 
       className="ml-1 text-red-500 cursor-help"
-      title={WEAPON_LABELS[name].note}
+      title={WEAPON_STATS_LABELS[name].note}
     >
       *
     </span>

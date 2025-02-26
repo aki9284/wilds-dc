@@ -11,7 +11,7 @@ export interface Effectiveness {
   
 export interface MonsterPart {
     name: string
-    resistance: Effectiveness
+    effectiveness: Effectiveness
 }
   
 export interface Monster {
