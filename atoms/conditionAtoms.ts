@@ -1,11 +1,11 @@
 import { atom } from 'jotai'
-import { CONDITION_DATA } from '@/models/constants/condition'
+import { CONDITION_LABELS } from '@/models/constants/conditionLabels'
 
-type ConditionValues = {
-  [K in keyof typeof CONDITION_DATA]: number
+export type ConditionValues = {
+  [K in keyof typeof CONDITION_LABELS]: number
 }
 
-const initialConditions: ConditionValues = Object.keys(CONDITION_DATA).reduce((acc, key) => ({
+const initialConditions: ConditionValues = Object.keys(CONDITION_LABELS).reduce((acc, key) => ({
   ...acc,
   [key]: 100
 }), {} as ConditionValues)

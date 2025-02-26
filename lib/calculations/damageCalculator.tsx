@@ -1,6 +1,8 @@
 import { WeaponStats } from '@/models/types/weapon';
-import { Target } from '@/models/types/target';
-import { Motion } from '@/models/types/motion';
+import { SelectedTarget } from '@/models/types/target';
+import { SelectedMotion } from '@/models/types/motion';
+import { SelectedSkill } from '@/models/constants/skill';
+import { ConditionValues } from '@/atoms/conditionAtoms';
 
 interface DamageBreakdown {
   total: number;
@@ -17,11 +19,11 @@ export interface CalculationResults {
 
 interface CalculationParams {
   weaponStats: WeaponStats;
-  selectedSkills: any[];
+  selectedSkills: SelectedSkill[];
   selectedBuffs: string[];
-  targets: Target[];
-  selectedMotions: { id: string; motion: Motion | null }[];
-  isEnraged: boolean;
+  selectedTargets: SelectedTarget[];
+  selectedMotions: SelectedMotion[];
+  conditionValues: ConditionValues;
 }
 
 export function calculateDamage(params: CalculationParams): CalculationResults {
@@ -29,9 +31,8 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
     weaponStats,
     selectedSkills,
     selectedBuffs,
-    targets,
+    selectedTargets: targets,
     selectedMotions,
-    isEnraged
   } = params;
 
   // ここに実際のダメージ計算ロジックを実装

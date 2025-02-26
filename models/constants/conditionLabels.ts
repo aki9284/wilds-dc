@@ -1,4 +1,4 @@
-export const CONDITION_DATA = {
+export const CONDITION_LABELS = {
     damageCut: {
         label: '全体防御率',
         type: 'percentage',

@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
-import { MotionSelection } from '@/models/types/motion';
+import { SelectedMotion } from '@/models/types/motion';
 
-export const selectedMotionsAtom = atom<MotionSelection[]>([
+export const selectedMotionsAtom = atom<SelectedMotion[]>([
   { id: '1', motion: null }
 ]);

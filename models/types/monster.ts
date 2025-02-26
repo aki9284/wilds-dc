@@ -1,4 +1,4 @@
-export interface Resistance {
+export interface Effectiveness {
     slash: number
     impact: number
     shot: number
@@ -11,7 +11,7 @@ export interface Resistance {
   
 export interface MonsterPart {
     name: string
-    resistance: Resistance
+    resistance: Effectiveness
 }
   
 export interface Monster {

@@ -1,13 +1,15 @@
+import { WeaponType } from "./weapon";
+
 export interface Motion {
-  weaponType: string;
+  weaponType: WeaponType;
   name: string;
-  value: string;
+  value: number;
   damageType: string;
   multiplyElement: number;
-  duration: string;
+  duration: number;
 }
 
-export interface MotionSelection {
+export interface SelectedMotion {
   id: string;
   motion: Motion | null;
 }

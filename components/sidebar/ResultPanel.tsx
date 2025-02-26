@@ -5,8 +5,9 @@ import { useState } from 'react'
 import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
 import { selectedSkillsAtom } from '@/atoms/skillAtoms'
 import { selectedBuffsAtom } from '@/atoms/buffAtoms'
-import { selectedTargetsAtom, isEnragedAtom } from '@/atoms/targetAtoms'
+import { selectedTargetsAtom } from '@/atoms/targetAtoms'
 import { selectedMotionsAtom } from '@/atoms/motionAtom'
+import { conditionsAtom } from '@/atoms/conditionAtoms'
 import { calculateDamage, CalculationResults } from '@/lib/calculations/damageCalculator'
 import { historyStorage } from '@/utils/historyStorage'
 import { updateTriggerAtom } from '@/atoms/historyAtom'
@@ -17,9 +18,9 @@ export function ResultPanel() {
   const [weaponStats] = useAtom(currentWeaponStatsAtom)
   const [selectedSkills] = useAtom(selectedSkillsAtom)
   const [selectedBuffs] = useAtom(selectedBuffsAtom)
-  const [targets] = useAtom(selectedTargetsAtom)
+  const [selectedTargets] = useAtom(selectedTargetsAtom)
   const [selectedMotions] = useAtom(selectedMotionsAtom)
-  const [isEnraged] = useAtom(isEnragedAtom)
+  const [conditionValues] = useAtom(conditionsAtom);
   const [, setUpdateTrigger] = useAtom(updateTriggerAtom)
 
   const handleCalculate = () => {
@@ -27,9 +28,9 @@ export function ResultPanel() {
       weaponStats,
       selectedSkills,
       selectedBuffs,
-      targets,
+      selectedTargets: selectedTargets,
       selectedMotions,
-      isEnraged
+      conditionValues: conditionValues
     })
     setResults(calculationResults)
 
@@ -42,9 +43,9 @@ export function ResultPanel() {
         savedState: {
           selectedSkills,
           selectedBuffs,
-          targets,
+          selectedTargets: selectedTargets,
           selectedMotions,
-          isEnraged
+          conditionValues
         }
       }
       historyStorage.save(history)

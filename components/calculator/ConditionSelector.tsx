@@ -1,7 +1,7 @@
 'use client'
 
 import { useAtom } from 'jotai'
-import { CONDITION_DATA } from '@/models/constants/condition'
+import { CONDITION_LABELS } from '@/models/constants/conditionLabels'
 import { conditionsAtom } from '@/atoms/conditionAtoms'
 
 export function ConditionSelector() {
@@ -18,7 +18,7 @@ export function ConditionSelector() {
     <div className="space-y-6">
       <h2 className="text-xl font-semibold">計算条件設定</h2>
       <div className="space-y-4">
-        {Object.entries(CONDITION_DATA).map(([key, condition]) => (
+        {Object.entries(CONDITION_LABELS).map(([key, condition]) => (
           <div key={key} className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">
               {condition.label}

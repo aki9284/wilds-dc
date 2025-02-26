@@ -15,6 +15,11 @@ export type Skill = {
   levels: SkillLevel[];
 }
 
+export interface SelectedSkill {
+  skillKey: SkillKey
+  level: number
+}
+
 export const SKILL_DATA = {
   attackBoost: {
     label: "攻撃",

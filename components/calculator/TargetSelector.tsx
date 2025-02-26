@@ -3,16 +3,14 @@
 import { useAtom } from 'jotai'
 import { nanoid } from 'nanoid'
 import { useEffect, useState } from 'react'
-import { selectedTargetsAtom, selectedMonsterAtom, isEnragedAtom } from '@/atoms/targetAtoms'
-import { Target } from '@/models/types/target'
+import { selectedTargetsAtom, selectedMonsterAtom } from '@/atoms/targetAtoms'
+import { SelectedTarget } from '@/models/types/target'
 import { SaveLoadPanel } from '../common/SaveLoadPanel'
 import { Monster } from '@/models/types/monster'
-
 
 export function TargetSelector() {
     const [monsters, setMonsters] = useState<Monster[]>([])
     const [selectedMonster, setSelectedMonster] = useAtom(selectedMonsterAtom)
-    const [isEnraged, setIsEnraged] = useAtom(isEnragedAtom)
     const [targets, setTargets] = useAtom(selectedTargetsAtom)
 
     useEffect(() => {
@@ -20,7 +18,6 @@ export function TargetSelector() {
         .then(res => res.json())
         .then(data => {
           setMonsters(data.monsters)
-          // 初期モンスターは selectedMonster が空の場合のみ設定
           if (data.monsters.length > 0 && selectedMonster === '') {
             setSelectedMonster(data.monsters[0].name)
           }
@@ -31,16 +28,17 @@ export function TargetSelector() {
       const monster = monsters.find(m => m.name === selectedMonster)
       if (!monster) return
 
-      // 未選択の部位を探す
       const availablePart = monster.parts.find(part => 
         !targets.some(t => t.partName === part.name)
       )
 
       if (!availablePart) return
 
-      const newTarget: Target = {
+      const newTarget: SelectedTarget = {
         id: nanoid(),
+        monsterName: selectedMonster,
         partName: availablePart.name,
+        scarred: false,
         percentage: 0
       }
       setTargets([...targets, newTarget])
@@ -53,7 +51,7 @@ export function TargetSelector() {
       adjustPercentages(newTargets)
     }
 
-    const updateTarget = (id: string, updates: Partial<Target>) => {
+    const updateTarget = (id: string, updates: Partial<SelectedTarget>) => {
       const newTargets = targets.map(target => 
         target.id === id ? { ...target, ...updates } : target
       )
@@ -63,12 +61,10 @@ export function TargetSelector() {
       }
     }
 
-    const adjustPercentages = (targetList: Target[], excludeId?: string) => {
-      // 100を超える値を持つターゲットを探す
+    const adjustPercentages = (targetList: SelectedTarget[], excludeId?: string) => {
       const overflowTarget = targetList.find(t => t.percentage > 100);
     
       if (overflowTarget) {
-        // 100を超える値が見つかった場合の処理
         targetList.forEach(target => {
           if (target.id === overflowTarget.id) {
             target.percentage = 100;
@@ -77,7 +73,6 @@ export function TargetSelector() {
           }
         });
       } else {
-        // 通常の調整処理（100以下の場合）
         for (let i = targetList.length - 1; i >= 0; i--) {
           const currentTarget = targetList[i];
           if (currentTarget.id === excludeId) continue;
@@ -108,13 +103,12 @@ export function TargetSelector() {
     return (
       <div className="flex gap-8">
         <div className="space-y-4 p-4">
-          {/* モンスター選択（全体設定） */}
           <div className="flex items-center gap-4">
             <select
               value={selectedMonster}
               onChange={(e) => {
                 setSelectedMonster(e.target.value)
-                setTargets([]) // モンスター変更時にターゲットをリセット
+                setTargets([])
               }}
               className="border rounded p-2"
             >
@@ -124,17 +118,6 @@ export function TargetSelector() {
                 </option>
               ))}
             </select>
-
-            {/* 怒り状態チェックボックス */}
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={isEnraged}
-                onChange={(e) => setIsEnraged(e.target.checked)}
-                className="form-checkbox"
-              />
-              怒り状態
-            </label>
           </div>
 
           <button
@@ -181,6 +164,14 @@ export function TargetSelector() {
                 />
                 <span>%</span>
 
+                <input
+                  type="checkbox"
+                  checked={target.scarred}
+                  onChange={(e) => updateTarget(target.id, { scarred: e.target.checked })}
+                  className="border rounded"
+                />
+                <span>傷</span>
+
                 <button
                   onClick={() => removeTarget(target.id)}
                   className="text-red-500 hover:text-red-700"
@@ -197,13 +188,11 @@ export function TargetSelector() {
           onSave={(name) => ({
             name,
             monster: selectedMonster,
-            isEnraged,
             targets,
-            description: selectedMonster // 表示用の説明
+            description: selectedMonster
           })}
           onLoad={(saved) => {
             setSelectedMonster(saved.monster)
-            setIsEnraged(saved.isEnraged)
             setTargets(saved.targets)
           }}
         />

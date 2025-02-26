@@ -2,14 +2,16 @@
 import { useEffect } from 'react'
 import { useAtom } from 'jotai'
 import { historiesAtom, updateTriggerAtom } from '@/atoms/historyAtom'
-import { selectedSkillsAtom, SelectedSkill } from '@/atoms/skillAtoms'
-import { selectedTargetsAtom, isEnragedAtom } from '@/atoms/targetAtoms'
+import { selectedSkillsAtom } from '@/atoms/skillAtoms'
+import { selectedTargetsAtom } from '@/atoms/targetAtoms'
 import { selectedMotionsAtom } from '@/atoms/motionAtom'
 import { selectedBuffsAtom } from '@/atoms/buffAtoms'
 import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
+import { conditionsAtom } from '@/atoms/conditionAtoms'
 import { historyStorage } from '@/utils/historyStorage'
 import { CalculationHistory } from '@/models/types/history'
 import { BuffKey } from '@/models/constants/buff'
+import { SelectedSkill } from '@/models/constants/skill'
 
 export function HistoryPanel() {
   const [histories, setHistories] = useAtom(historiesAtom)
@@ -17,9 +19,9 @@ export function HistoryPanel() {
   const [, setWeaponStats] = useAtom(currentWeaponStatsAtom)
   const [, setSelectedSkills] = useAtom(selectedSkillsAtom)
   const [, setSelectedBuffs] = useAtom(selectedBuffsAtom)
-  const [, setTargets] = useAtom(selectedTargetsAtom)
+  const [, setSelectedTargets] = useAtom(selectedTargetsAtom)
   const [, setSelectedMotions] = useAtom(selectedMotionsAtom)
-  const [, setIsEnraged] = useAtom(isEnragedAtom)
+  const [, setConditionValues] = useAtom(conditionsAtom)
 
   useEffect(() => {
     setHistories(historyStorage.getAll())
@@ -29,9 +31,9 @@ export function HistoryPanel() {
     setWeaponStats(history.weaponStats)
     setSelectedSkills(history.savedState.selectedSkills as SelectedSkill[])
     setSelectedBuffs(history.savedState.selectedBuffs as BuffKey[] || [])
-    setTargets(history.savedState.targets)
+    setSelectedTargets(history.savedState.selectedTargets)
     setSelectedMotions(history.savedState.selectedMotions)
-    setIsEnraged(history.savedState.isEnraged)
+    setConditionValues(history.savedState.conditionValues)
   }
 
   return (

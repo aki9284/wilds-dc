@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { selectedMotionsAtom } from '@/atoms/motionAtom';
-import { Motion, MotionSelection } from '@/models/types/motion';
+import { Motion, SelectedMotion } from '@/models/types/motion';
 import { nanoid } from 'nanoid';
 import { SaveLoadPanel } from '../common/SaveLoadPanel';
 

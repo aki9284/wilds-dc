@@ -4,6 +4,7 @@ import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
 import { WeaponStats } from '@/models/types/weapon'
 import { WEAPON_LABELS } from '@/models/constants/weaponLabels'
 import { SHARPNESS_DATA } from '@/models/constants/sharpness';
+import { ELEMENT_TYPES } from '@/models/constants/elementTypes';
 
 const FormLabel = ({ name, required = false }: { name: keyof typeof WEAPON_LABELS, required?: boolean }) => (
   <div className="flex items-center w-32">
@@ -47,12 +48,11 @@ export function WeaponForm() {
           onChange={(e) => setStats({ ...stats, elementType: e.target.value as WeaponStats['elementType'] })}
           className="border rounded px-2 py-1"
         >
-          <option value="無">無</option>
-          <option value="火">火</option>
-          <option value="水">水</option>
-          <option value="雷">雷</option>
-          <option value="氷">氷</option>
-          <option value="龍">龍</option>
+          {Object.entries(ELEMENT_TYPES).map(([key, element]) => (
+            <option key={key} value={key}>
+              {element.label}
+            </option>
+          ))}
         </select>
       </div>
       <div className="flex items-center gap-4">
@@ -71,8 +71,8 @@ export function WeaponForm() {
           onChange={(e) => setStats({ ...stats, sharpness: e.target.value as WeaponStats['sharpness'] })}
           className="border rounded px-2 py-1"
         >
-          {Object.values(SHARPNESS_DATA).map((sharp) => (
-            <option key={sharp.label} value={sharp.label}>
+          {Object.entries(SHARPNESS_DATA).map(([key, sharp]) => (
+            <option key={key} value={key}>
               {sharp.label}
             </option>
           ))}

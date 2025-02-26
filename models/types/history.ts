@@ -1,8 +1,9 @@
 import { WeaponStats } from "./weapon";
-import { SelectedSkill } from "@/atoms/skillAtoms";
-import { Target } from "./target";
-import { MotionSelection } from "./motion";
+import { SelectedSkill } from "@/models/constants/skill";
+import { SelectedTarget } from "./target";
+import { SelectedMotion } from "./motion";
 import { CalculationResults } from "@/lib/calculations/damageCalculator";
+import { ConditionValues } from "@/atoms/conditionAtoms";
 
 export interface CalculationHistory {
   id: string;
@@ -11,8 +12,8 @@ export interface CalculationHistory {
   savedState: {
     selectedSkills: SelectedSkill[];
     selectedBuffs: string[];
-    targets: Target[];
-    selectedMotions: MotionSelection[];
-    isEnraged: boolean;
+    selectedTargets: SelectedTarget[];
+    selectedMotions: SelectedMotion[];
+    conditionValues: ConditionValues;
   };
 }
