@@ -1,0 +1,26 @@
+[
+    {
+        "name": "リオレウス5050",
+        "description": "プリセット",
+        "data": {
+            "name": "リオレウス5050",
+            "monster": "リオレウス",
+            "targets": [
+                {
+                    "id": "WnsH5UYinjvS2uAc3TVg4",
+                    "monsterName": "リオレウス",
+                    "partName": "頭",
+                    "scarred": false,
+                    "percentage": 50
+                },
+                {
+                    "id": "G8M25HOMB5Afza0CwjPU_",
+                    "monsterName": "リオレウス",
+                    "partName": "胴体",
+                    "scarred": false,
+                    "percentage": 50
+                }
+            ]
+        }
+    }
+]

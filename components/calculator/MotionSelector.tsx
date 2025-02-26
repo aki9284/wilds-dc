@@ -24,16 +24,23 @@ export function MotionSelector() {
     const totalMV = selectedMotions.reduce((sum, s) => sum + (Number(s.motion?.value) || 0), 0);
     const totalDuration = selectedMotions.reduce((sum, s) => sum + (Number(s.motion?.duration) || 0), 0);
     
+    // モーションjsonやpresetの変更時に最新データが表示されるようにするためモーション名のみで保存/読み込み
+    const savedMotions = selectedMotions.map(s => s.motion?.name);
+
     return {
-      selectedMotions,
-      description: `MV合計:${totalMV} 時間:${totalDuration}秒`
+      selectedMotions: savedMotions,
     }
   }
 
   const handleLoad = (data: any) => {
-    setSelectedMotions(data.selectedMotions);
-  }
+    // Map saved motion names back to Motion objects
+    const loadedMotions = data.selectedMotions.map((name: string) => {
+      const motion = motions.find(m => m.name === name) || null;
+      return { id: nanoid(), motion };
+    });
 
+    setSelectedMotions(loadedMotions);
+  }
   const addMotionSelector = () => {
     setSelectedMotions([...selectedMotions, { id: nanoid(), motion: null }]);
   };
@@ -107,6 +114,7 @@ export function MotionSelector() {
       <div className="w-80">
         <SaveLoadPanel 
           storageKey="motion-settings"
+          presetFilePath='/data/motionPresets.json'
           onSave={handleSave}
           onLoad={handleLoad}
         />

@@ -15,12 +15,6 @@ interface Data {
 export default function Home() {
   const [data, setData] = useState<Data | null>(null)
 
-  useEffect(() => {
-    fetch('/data/content.json')
-      .then(res => res.json())
-      .then(json => setData(json))
-  }, [])
-
   if (!data) return <div>Loading...</div>
 
   return (

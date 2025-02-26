@@ -1,0 +1,24 @@
+[
+    {
+        "name": "テスト武器A",
+        "description": "プリセット",
+        "data": {
+            "weaponStats": {
+                "attack": 150,
+                "affinity": 10,
+                "elementType": "water",
+                "elementValue": 10,
+                "sharpness": "blue"
+            },
+            "selectedSkills": [
+                {
+                    "skillKey": "attackBoost",
+                    "level": 3
+                }
+            ],
+            "selectedBuffs": [
+                "melodyAttackLarge"
+            ]
+        }
+    }
+]

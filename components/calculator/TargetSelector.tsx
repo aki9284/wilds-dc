@@ -185,11 +185,11 @@ export function TargetSelector() {
 
         <SaveLoadPanel
           storageKey="target-settings"
+          presetFilePath="/data/targetPresets.json"
           onSave={(name) => ({
             name,
             monster: selectedMonster,
             targets,
-            description: selectedMonster
           })}
           onLoad={(saved) => {
             setSelectedMonster(saved.monster)

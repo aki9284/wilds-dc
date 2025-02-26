@@ -11,10 +11,10 @@
         { 
             "weaponType": "huntingHorn",
             "name": "叩きつけ2段目", 
-            "value": 40,
+            "value": 37,
             "damageType": "impact",
             "mutiplyElement": 1.0,
-            "duration": 0.5
+            "duration": 1.1
         }
     ]
 }
