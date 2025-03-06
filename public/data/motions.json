@@ -2,19 +2,148 @@
     { 
         "weaponType": "huntingHorn",
         "name": "叩きつけ1段目", 
-        "value": 15,
+        "value": 14,
         "damageType": "impact",
-        "ignoreEffectiveness": false,
-        "mutiplyElement": 1.0,
         "duration": 0.5
     },
     { 
         "weaponType": "huntingHorn",
         "name": "叩きつけ2段目", 
-        "value": 37,
+        "value": 42,
         "damageType": "impact",
-        "ignoreEffectiveness": false,
-        "mutiplyElement": 1.0,
-        "duration": 1.1
+        "duration": 1
+    },
+    { 
+        "weaponType": "huntingHorn",
+        "name": "演奏", 
+        "value": 29,
+        "damageType": "impact",
+        "duration": 1
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "奏撃1_タイミングOK",
+        "value": 35,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "奏撃2_タイミングOK",
+        "value": 45,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "重ね掛け1段目",
+        "value": 20,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "重ね掛け2段目_タイミングOK",
+        "value": 50,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "重ね掛け2段目_タイミングNG",
+        "value": 35,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "演奏衝撃波",
+        "value": 27,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreEffectiveness": true,
+        "ignoreSharpness": true,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "旋律発動時衝撃波",
+        "value": 10,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreEffectiveness": true,
+        "ignoreSharpness": true,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "重ね掛け特殊衝撃波",
+        "value": 0,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "duration":0,
+        "fixedDamage": 10
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【打】",
+        "value": 50,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "mutiplyElement":0,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【斬】",
+        "value": 50,
+        "damageType": "slash",
+        "ignoreSharpness": true,
+        "mutiplyElement":0,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【属性】",
+        "value": 45,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "elementValueOverride": 600,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響玉設置",
+        "value": 30,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreEffectiveness": true,
+        "ignoreSharpness": true,
+        "multiplyElement": 0.3,
+        "duration": 1
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響玉追撃_音符",
+        "value": 5,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreEffectiveness": true,
+        "ignoreSharpness": true,
+        "multiplyElement": 0.3,
+        "duration": 0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響玉追撃_旋律",
+        "value": 12,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreEffectiveness": true,
+        "ignoreSharpness": true,
+        "multiplyElement": 0.3,
+        "duration": 0
     }
 ]

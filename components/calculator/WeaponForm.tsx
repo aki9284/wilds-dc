@@ -1,6 +1,6 @@
 'use client'
 import { useAtom } from 'jotai'
-import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
+import { currentWeaponStatsAtom } from '@/models/atoms/weaponAtom'
 import { WeaponStats } from '@/models/types/weapon'
 import { WEAPON_STATS_LABELS } from '@/models/constants/weaponLabels'
 import { SHARPNESS_DATA } from '@/models/constants/sharpness';

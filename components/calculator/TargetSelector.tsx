@@ -3,7 +3,7 @@
 import { useAtom } from 'jotai'
 import { nanoid } from 'nanoid'
 import { useEffect, useState } from 'react'
-import { selectedTargetsAtom, selectedMonsterAtom } from '@/atoms/targetAtoms'
+import { selectedTargetsAtom, selectedMonsterAtom } from '@/models/atoms/targetAtoms'
 import { SelectedTarget } from '@/models/types/target'
 import { SaveLoadPanel } from '../common/SaveLoadPanel'
 import { Monster } from '@/models/types/monster'
@@ -12,7 +12,6 @@ import { getCachedMonsterData } from '@/utils/dataFetch'
 export function TargetSelector() {
     const monsters = getCachedMonsterData();
     const [selectedMonster, setSelectedMonster] = useAtom(selectedMonsterAtom)
-    setSelectedMonster(monsters[0].name)
     
     const [targets, setTargets] = useAtom(selectedTargetsAtom)
 

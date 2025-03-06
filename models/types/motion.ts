@@ -1,4 +1,5 @@
 import { PhysicalTypeKey } from "../constants/damageTypes";
+import { SharpnessKey } from "../constants/sharpness";
 import { WeaponTypeKey } from "./weapon";
 
 export interface Motion {
@@ -6,9 +7,13 @@ export interface Motion {
   name: string;
   value: number;
   damageType: PhysicalTypeKey;
-  ignoreEffectiveness: boolean;
-  multiplyElement: number;
   duration: number;
+  multiplyElement?: number;
+  cannotCrit?: boolean;
+  ignoreEffectiveness?: boolean;
+  ignoreSharpness?: boolean;
+  elementValueOverride?: number;
+  fixedDamage?: number;
 }
 
 export interface SelectedMotion {

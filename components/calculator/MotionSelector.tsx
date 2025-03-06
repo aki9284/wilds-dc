@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { selectedMotionsAtom } from '@/atoms/motionAtom';
+import { selectedMotionsAtom } from '@/models/atoms/motionAtom';
 import { Motion } from '@/models/types/motion';
 import { nanoid } from 'nanoid';
 import { SaveLoadPanel } from '../common/SaveLoadPanel';

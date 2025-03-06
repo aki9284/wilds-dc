@@ -2,7 +2,7 @@
 
 import { useAtom } from 'jotai'
 import { CONDITION_LABELS } from '@/models/constants/conditionLabels'
-import { conditionsAtom } from '@/atoms/conditionAtoms'
+import { conditionsAtom } from '@/models/atoms/conditionAtoms'
 
 export function ConditionSelector() {
   const [conditionValues, setConditionValues] = useAtom(conditionsAtom)

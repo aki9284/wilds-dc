@@ -4,6 +4,8 @@ export type SkillEffect = {
   addAffinity2?: number;  // 弱点特効の第2条件時などに使用
   setCritFactor?: number;
   multiplyAttack?: number;
+  addElement?: number;
+  multiplyElement?: number;
 }
 
 export type SkillLevel = {
@@ -56,6 +58,43 @@ export const SKILL_DATA = {
       { level: 1, effects: { addAffinity: 10, addAffinity2: 15 } },
       { level: 2, effects: { addAffinity: 15, addAffinity2: 20 } },
       { level: 3, effects: { addAffinity: 20, addAffinity2: 30 } }
+    ]
+  },
+  peakPerformance: {
+    label: "フルチャージ",
+    levels: [
+      { level: 1, effects: { addAttack: 3 } },
+      { level: 2, effects: { addAttack: 6 } },
+      { level: 3, effects: { addAttack: 10 } },
+      { level: 4, effects: { addAttack: 15 } },
+      { level: 5, effects: { addAttack: 20 } }
+    ]
+  },
+  agitator: {
+    label: "挑戦者",
+    levels: [
+      { level: 1, effects: { addAttack: 4 , addAffinity: 3 } },
+      { level: 2, effects: { addAttack: 8 , addAffinity: 5 } },
+      { level: 3, effects: { addAttack: 12, addAffinity: 7 } },
+      { level: 4, effects: { addAttack: 16, addAffinity: 10 } },
+      { level: 5, effects: { addAttack: 20, addAffinity: 15 } }
+    ]
+  },
+  burstHH: {
+    label: "連撃(笛)",
+    levels: [
+      { level: 1, effects: { addAttack: 10, addElement: 80} },
+      { level: 2, effects: { addAttack: 12, addElement: 100 } },
+      { level: 3, effects: { addAttack: 14, addElement: 120 } },
+      { level: 4, effects: { addAttack: 16, addElement: 160 } },
+      { level: 5, effects: { addAttack: 18, addElement: 200 } }
+    ]
+  },
+  burstImproved:{
+    label: "連撃強化",
+    levels: [
+      { level: 1, effects: { addAttack: 3 } },
+      { level: 2, effects: { addAttack: 10 } },
     ]
   }
 } as const;

@@ -22,5 +22,22 @@
                 }
             ]
         }
+    },
+    {
+        "name": "ダミー前面",
+        "description": "プリセット",
+        "data": {
+            "name": "ダミー前面",
+            "monster": "トレーニングダミー",
+            "targets": [
+                {
+                    "id": "WnsH5UYinjvS2uAc3TVg4",
+                    "monsterName": "トレーニングダミー",
+                    "partName": "前面",
+                    "scarred": false,
+                    "percentage": 100
+                }
+            ]
+        }
     }
 ]

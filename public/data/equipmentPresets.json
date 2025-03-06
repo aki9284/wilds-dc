@@ -4,7 +4,7 @@
         "description": "プリセット",
         "data": {
             "weaponStats": {
-                "attack": 150,
+                "attack": 210,
                 "affinity": 10,
                 "elementType": "water",
                 "elementValue": 10,
@@ -18,6 +18,42 @@
             ],
             "selectedBuffs": [
                 "melodyAttackLarge"
+            ]
+        }
+    },
+    {
+        "name": "裸グレートバグパイプ",
+        "description": "プリセット",
+        "data": {
+            "weaponStats": {
+                "attack": 210,
+                "affinity": 0,
+                "elementType": "none",
+                "elementValue": 0,
+                "sharpness": "white"
+            },
+            "selectedSkills": [],
+            "selectedBuffs": [
+                "melodyAttackLarge",
+                "powercharm"
+            ]
+        }
+    },
+    {
+        "name": "裸コーヴィラ",
+        "description": "プリセット",
+        "data": {
+            "weaponStats": {
+                "attack": 210,
+                "affinity": 0,
+                "elementType": "ice",
+                "elementValue": 500,
+                "sharpness": "white"
+            },
+            "selectedSkills": [],
+            "selectedBuffs": [
+                "melodyElementBoost",
+                "powercharm"
             ]
         }
     }

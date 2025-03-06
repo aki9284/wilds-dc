@@ -1,7 +1,7 @@
 'use client'
 
 import { useAtom } from 'jotai'
-import { selectedBuffsAtom } from '@/atoms/buffAtoms'
+import { selectedBuffsAtom } from '@/models/atoms/buffAtoms'
 import { BUFF_DATA } from '@/models/constants/buff'
 
 export function BuffSelector() {

@@ -3,7 +3,7 @@ import { SelectedSkill } from "@/models/constants/skill";
 import { SelectedTarget } from "./target";
 import { SelectedMotion } from "./motion";
 import { CalculationResults } from "@/lib/calculations/damageCalculator";
-import { ConditionValues } from "@/atoms/conditionAtoms";
+import { ConditionValues } from "@/models/atoms/conditionAtoms";
 
 export interface CalculationHistory {
   id: string;

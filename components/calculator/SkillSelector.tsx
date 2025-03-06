@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { Combobox } from '@headlessui/react'
 import { useAtom } from 'jotai'
-import { selectedSkillsAtom } from '@/atoms/skillAtoms'
+import { selectedSkillsAtom } from '@/models/atoms/skillAtoms'
 import { SKILL_DATA, SkillKey } from '@/models/constants/skill'
 
 export function SkillSelector() {

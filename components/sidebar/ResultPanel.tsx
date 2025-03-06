@@ -2,19 +2,20 @@
 
 import { useAtom } from 'jotai'
 import { useState } from 'react'
-import { currentWeaponStatsAtom } from '@/atoms/weaponAtom'
-import { selectedSkillsAtom } from '@/atoms/skillAtoms'
-import { selectedBuffsAtom } from '@/atoms/buffAtoms'
-import { selectedTargetsAtom } from '@/atoms/targetAtoms'
-import { selectedMotionsAtom } from '@/atoms/motionAtom'
-import { conditionsAtom } from '@/atoms/conditionAtoms'
-import { calculateDamage, CalculationResults } from '@/lib/calculations/damageCalculator'
+import { currentWeaponStatsAtom } from '@/models/atoms/weaponAtom'
+import { selectedSkillsAtom } from '@/models/atoms/skillAtoms'
+import { selectedBuffsAtom } from '@/models/atoms/buffAtoms'
+import { selectedTargetsAtom } from '@/models/atoms/targetAtoms'
+import { selectedMotionsAtom } from '@/models/atoms/motionAtom'
+import { conditionsAtom } from '@/models/atoms/conditionAtoms'
+import { calculateDamage, CalculationResults, MotionDamage } from '@/lib/calculations/damageCalculator'
 import { historyStorage } from '@/utils/historyStorage'
-import { updateTriggerAtom } from '@/atoms/historyAtom'
+import { updateTriggerAtom } from '@/models/atoms/historyAtom'
 import { nanoid } from 'nanoid'
 
 export function ResultPanel() {
   const [results, setResults] = useState<CalculationResults | null>(null)
+  const [expandedMotionIndex, setExpandedMotionIndex] = useState<number | null>(null)
   const [weaponStats] = useAtom(currentWeaponStatsAtom)
   const [selectedSkills] = useAtom(selectedSkillsAtom)
   const [selectedBuffs] = useAtom(selectedBuffsAtom)
@@ -51,6 +52,10 @@ export function ResultPanel() {
       historyStorage.save(history)
       setUpdateTrigger(prev => prev + 1)
     }
+  }
+
+  const toggleMotionDetails = (index: number) => {
+    setExpandedMotionIndex(expandedMotionIndex === index ? null : index)
   }
 
   return (
@@ -93,6 +98,26 @@ export function ResultPanel() {
           <div className="flex justify-between items-center">
             <span className="text-sm">期待DPS</span>
             <span className="font-mono text-sm">{results.dps}</span>
+          </div>
+
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold mb-2">モーション内訳</h3>
+            {results.motionDamages.map((motionDamage, index) => (
+              <div key={index} className="border-t py-2">
+                <button
+                  onClick={() => toggleMotionDetails(index)}
+                  className="w-full text-left text-sm font-bold text-blue-500"
+                >
+                  {motionDamage.motion.name} ダメージ: {motionDamage.expectedDamage.total}
+                </button>
+                {expandedMotionIndex === index && (
+                  <div className="mt-2 pl-4 text-sm">
+                    <div>物理ダメージ: {motionDamage.expectedDamage.physical}</div>
+                    <div>属性ダメージ: {motionDamage.expectedDamage.elemental}</div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       )}

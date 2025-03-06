@@ -1,5 +1,23 @@
 [
     {
+      "name": "トレーニングダミー",
+      "parts": [
+        {
+          "name": "前面",
+          "effectiveness": {
+            "slash": 80,
+            "impact": 80,
+            "shot": 80,
+            "fire": 30,
+            "water": 30,
+            "thunder": 30,
+            "ice": 30,
+            "dragon": 30
+          }
+        }
+      ]
+    },
+    {
       "name": "リオレウス",
       "parts": [
         {
