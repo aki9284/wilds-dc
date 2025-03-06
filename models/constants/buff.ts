@@ -1,4 +1,8 @@
 export const BUFF_DATA = {
+    melodySelfBoost: {
+        "label": "自分強化",
+        "multiplyAttack": 1.2
+    },
     melodyAttackLarge: {
         "label": "攻撃力UP【大】",
         "multiplyAttack": 1.1
