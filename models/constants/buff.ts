@@ -1,31 +1,38 @@
 export const BUFF_DATA = {
     melodySelfBoost: {
         "label": "自分強化",
-        "multiplyAttack": 1.2
+        "multiplyAttack": 1.2,
+        "order": 101
     },
     melodyAttackLarge: {
         "label": "攻撃力UP【大】",
-        "multiplyAttack": 1.1
+        "multiplyAttack": 1.1,
+        "order": 103
     },
     melodyAttackSmall: {
         "label": "攻撃力UP【小】",
-        "multiplyAttack": 1.05
+        "multiplyAttack": 1.05,
+        "order": 102
     },
     melodyElementBoost: {
         "label": "属性攻撃力UP",
-        "multiplyElement": 1.1
+        "multiplyElement": 1.1,
+        "order": 104
     },
     powercharm: {
         "label": "力の護符",
-        "addAttack": 6
+        "addAttack": 6,
+        "order": 501
     },
     potionAttackLarge: {
         "label": "鬼人薬G",
-        "addAttack": 15
+        "addAttack": 15,
+        "order": 502
     },
     potionAttackSmall:{
         "label": "鬼人薬",
-        "addAttack": 10
+        "addAttack": 10,
+        "order": 503
     }
 } as const;
 

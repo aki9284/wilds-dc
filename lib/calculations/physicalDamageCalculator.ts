@@ -1,6 +1,6 @@
 import { SingleMotionAndTargetParams } from "./damageCalculator";
 import { BUFF_DATA, BuffKey } from "@/models/constants/buff";
-import { SKILL_DATA, SkillKey } from "@/models/constants/skill";
+import { SelectedSkill, SKILL_DATA, SkillKey } from "@/models/constants/skill";
 import { getCachedMonsterData } from '@/utils/dataFetch';
 import { WeaponStats } from "@/models/types/weapon";
 import { Monster } from "@/models/types/monster";
@@ -21,40 +21,58 @@ export function calculatePhysicalDamages(params: SingleMotionAndTargetParams): {
       expected: Math.round(attack.expected * effectiveness.expected/100 * modifier.expected * 10) /10
     };
 }
+  // 物理攻撃力
+  function calculatePhysicalAttacks(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
+      let physicalAttack = params.weaponStats.attack;
 
-// 物理攻撃力
-function calculatePhysicalAttacks(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
-    let physicalAttack = params.weaponStats.attack;
+      // スキルとバフを統合したリストを作成し、orderプロパティを持たせる
+      const effects = [
+          ...params.selectedSkills.map(skill => ({
+              type: 'skill',
+              data: skill,
+              order: SKILL_DATA[skill.skillKey as SkillKey].order
+          })),
+          ...params.selectedBuffs.map(buff => ({
+              type: 'buff',
+              data: buff,
+              order: BUFF_DATA[buff as BuffKey].order
+          }))
+      ];
 
-    // スキルによる攻撃力加算と乗算
-    params.selectedSkills.forEach(selectedSkill => {
-        const skill = SKILL_DATA[selectedSkill.skillKey as SkillKey];
-        const skillLevel = skill.levels[selectedSkill.level - 1];
-        if ('addAttack' in skillLevel.effects) {
-            physicalAttack += skillLevel.effects.addAttack;
-        }
-        if ('multiplyAttack' in skillLevel.effects) {
-            physicalAttack = Math.round(physicalAttack * skillLevel.effects.multiplyAttack * 10) / 10;
-        }
-    });
+      // orderプロパティに基づいてソート
+      effects.sort((a, b) => a.order - b.order);
 
-    // バフによる攻撃力加算と乗算
-    params.selectedBuffs.forEach(buffKey => {
-        const buff = BUFF_DATA[buffKey as BuffKey];
-        if ('addAttack' in buff) {
-            physicalAttack += buff.addAttack;
-        }
-        if ('multiplyAttack' in buff) {
-            physicalAttack = Math.round(physicalAttack * buff.multiplyAttack * 10) / 10;
-        }
-    });
+      // ソートされたリストを基に計算を実行
+      effects.forEach(effect => {
+          if (effect.type === 'skill') {
+              const skill = SKILL_DATA[(effect.data as SelectedSkill).skillKey as SkillKey];
+              const skillLevel = skill.levels[(effect.data as SelectedSkill).level - 1];
+              if ('multiplyAttack' in skillLevel.effects) {
+                //physicalAttack = Math.round(physicalAttack * skillLevel.effects.multiplyAttack * 10) / 10;
+                //physicalAttack = physicalAttack * skillLevel.effects.multiplyAttack;
+                physicalAttack = Math.floor(physicalAttack * skillLevel.effects.multiplyAttack * 10) / 10;
+              }
+              if ('addAttack' in skillLevel.effects) {
+                  physicalAttack += skillLevel.effects.addAttack;
+              }
+          } else if (effect.type === 'buff') {
+              const buff = BUFF_DATA[effect.data as BuffKey];
+              if ('multiplyAttack' in buff) {
+                //physicalAttack = Math.round(physicalAttack * buff.multiplyAttack * 10) / 10;
+                physicalAttack = Math.floor(physicalAttack * buff.multiplyAttack * 10) / 10;
+              }
+              if ('addAttack' in buff) {
+                  physicalAttack += buff.addAttack;
+              }
+          }
+      });
 
-    return {
-        min: physicalAttack,
-        max: physicalAttack,
-        expected: physicalAttack
-    };
-}
+      return {
+          min: physicalAttack,
+          max: physicalAttack,
+          expected: physicalAttack
+      };
+  }
   
 // 物理肉質
 function calculatePhysicalEffectiveness(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
