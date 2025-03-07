@@ -4,6 +4,7 @@ import { SelectedSkill, SKILL_DATA, SkillKey } from '@/models/constants/skill';
 import { BUFF_DATA, BuffKey } from '@/models/constants/buff';
 import { CONDITION_LABELS } from '@/models/constants/conditionLabels';
 import { EFFECT_ORDER_CRITICAL } from '@/models/constants/effectOrder';
+import { getCachedMonsterData } from '@/utils/dataFetch';
 
 export interface PossibleParamPattern {
     params: SingleHitParams, 
@@ -90,7 +91,7 @@ function generateEffectCombinations(
         let inactivePossibility: number = 0;
         // 会心判定の場合のみ、武器会心率とそこまでのスキル会心率上昇から会心をactiveにするか計算
         if (effect.type === 'critical') {
-            activePossibility = (params.weaponStats.affinity + sumEffectAffinities(currentCombination))/100;
+            activePossibility = (params.weaponStats.affinity + sumEffectAffinities(currentCombination, params))/100;
             // マイナス会心の場合反転させて専用のeffectを代わりに挿入
             if (activePossibility < 0) {
                 newCombination = [...currentCombination, {
@@ -153,8 +154,11 @@ function calcEffectPossibility(requirements: string[], currentCombination: Effec
     // 設定できない特殊な前提条件たち ToDo: skill.tsの記述とこちらの条件名を揃えなければいけないのを改善したい
     // というか設定できるものも含めて単一条件しか今判定できないがせっかくrequirementsを配列にしているのでそれも組み合わせ展開すべき
     // 弱特
-    if (requirements.includes('wounded')) {
-        if (params.selectedTarget.scarred) {
+    if (requirements.includes('weakPart')) {
+        const monsters = getCachedMonsterData()
+        const monster = monsters.find(monster => monster.name === params.selectedTarget.monsterName);
+        const monsterPart = monster?.parts.find(part => part.name === params.selectedTarget.partName);
+        if (monsterPart !== undefined && monsterPart.effectiveness[params.motion.damageType] >= 45) {
             return 1.0;
         } else {
             return 0.0;
@@ -174,7 +178,9 @@ function calcEffectPossibility(requirements: string[], currentCombination: Effec
 }
 
 // 指定したeffectの中で会心率上昇を含むものがあればそれを全て足した値を返す
-function sumEffectAffinities(effects: Effect[]): number {
+function sumEffectAffinities(effects: Effect[], params:SingleHitParams): number {
+    const monsters = getCachedMonsterData()
+
     let sum = 0;
     for (const effect of effects) {
         if (effect.type === 'skill') {
@@ -182,6 +188,17 @@ function sumEffectAffinities(effects: Effect[]): number {
             const skillLevel = skill.levels[(effect.data as SelectedSkill).level - 1];
             if (skillLevel.effects.addAffinity !== undefined) {
                 sum += skillLevel.effects.addAffinity;
+            }
+            // 弱点特効の傷で更に追加分専用処理
+            if ((effect.data as SelectedSkill).skillKey === 'weaknessExploit') {
+                const monster = monsters.find(monster => monster.name === params.selectedTarget.monsterName);
+                if (monster !== undefined && monster.parts.some(part => part.name === params.selectedTarget.partName && part.wounded)) {
+                    if (skillLevel.effects.addAffinity2 !== undefined) {
+                        sum += skillLevel.effects.addAffinity2;
+                    } else {
+                        alert('弱点特効の傷追加分会心率が設定されていません');
+                    }
+                }
             }
         } else if (effect.type === 'buff') {
             const buff = BUFF_DATA[effect.data as BuffKey];

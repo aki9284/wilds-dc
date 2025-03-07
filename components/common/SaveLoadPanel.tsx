@@ -161,7 +161,7 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
                             onClick={() => onLoad(JSON.parse(JSON.stringify([...presetItems, ...savedItems][selectedIndex].data)))}
                             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                         >
-                            読み込み
+                            リロード
                         </button>
                         {selectedIndex >= (showPresets ? presetItems.length : 0) && (
                             <>

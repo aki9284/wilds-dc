@@ -12,6 +12,7 @@ export interface Effectiveness {
 export interface MonsterPart {
     name: string
     effectiveness: Effectiveness
+    wounded?: boolean
 }
   
 export interface Monster {

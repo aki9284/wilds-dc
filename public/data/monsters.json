@@ -14,6 +14,20 @@
             "ice": 30,
             "dragon": 30
           }
+        },
+        {
+          "name": "前面_傷",
+          "effectiveness": {
+            "slash": 100,
+            "impact": 100,
+            "shot": 100,
+            "fire": 30,
+            "water": 30,
+            "thunder": 30,
+            "ice": 30,
+            "dragon": 30
+          },
+          "wounded": true
         }
       ]
     },

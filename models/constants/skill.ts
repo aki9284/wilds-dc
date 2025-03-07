@@ -54,20 +54,24 @@ export const SKILL_DATA: { [key: string]: Skill } = {
   criticalBoost: {
     label: "超会心",
     levels: [
-      { level: 1, effects: { setCritFactor: 1.3 } },
-      { level: 2, effects: { setCritFactor: 1.35 } },
-      { level: 3, effects: { setCritFactor: 1.4 } }
+      { level: 1, effects: { setCritFactor: 1.28 } },
+      { level: 2, effects: { setCritFactor: 1.31 } },
+      { level: 3, effects: { setCritFactor: 1.34 } },
+      { level: 4, effects: { setCritFactor: 1.37 } },
+      { level: 5, effects: { setCritFactor: 1.40 } }
     ],
     order: 203
   },
   weaknessExploit: {
     label: "弱点特効",
     levels: [
-      { level: 1, effects: { addAffinity: 10, addAffinity2: 15 } },
-      { level: 2, effects: { addAffinity: 15, addAffinity2: 20 } },
-      { level: 3, effects: { addAffinity: 20, addAffinity2: 30 } }
+      { level: 1, effects: { addAffinity: 5, addAffinity2: 3 } },
+      { level: 2, effects: { addAffinity: 10, addAffinity2: 5 } },
+      { level: 3, effects: { addAffinity: 15, addAffinity2: 10 } },
+      { level: 4, effects: { addAffinity: 20, addAffinity2: 15 } },
+      { level: 5, effects: { addAffinity: 30, addAffinity2: 20 } }
     ],
-    requirements: ["wounded"],
+    requirements: ["weakPart"],
     order: 204
   },
   peakPerformance: {
@@ -127,8 +131,9 @@ export const SKILL_DATA: { [key: string]: Skill } = {
   criticalElement: {
     label: "属性会心",
     levels: [
-      { level: 1, effects: { addAffinity: 10 } },
-      { level: 2, effects: { addAffinity: 20 } },
+      { level: 1, effects: { multiplyElement: 1.05 } },
+      { level: 2, effects: { multiplyElement: 1.1 } },
+      { level: 3, effects: { multiplyElement: 1.15 } },
     ],
     requirements: ["critical"],
     order: EFFECT_ORDER_CRITICAL + 1
