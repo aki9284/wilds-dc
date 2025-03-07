@@ -1,3 +1,5 @@
+import { multiply } from "lodash";
+
 export type SkillEffect = {
   addAttack?: number;
   addAffinity?: number;
@@ -105,6 +107,15 @@ export const SKILL_DATA = {
       { level: 2, effects: { addAttack: 10 } },
     ],
     order: 301
+  },
+  elementAttack: {
+    label: "属性攻撃強化",
+    levels: [
+      { level: 1, effects: { addElement: 40} },
+      { level: 2, effects: { addElement: 50, multiplyElement: 1.1 } },
+      { level: 3, effects: { addElement: 60, multiplyElement: 1.2 } },
+    ],
+    order: 201
   }
 } as const;
 

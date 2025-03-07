@@ -7,6 +7,10 @@ export const CONDITION_LABELS = {
         label: '怒り状態割合',
         type: 'probability',
     },
+    skillPeakPerformanceEnabled: {
+        label: 'フルチャージ発動割合',
+        type: 'probability',
+    },
     skillTozyuEnabled: {
         label: '闘獣の力発動割合',
         type: 'probability',

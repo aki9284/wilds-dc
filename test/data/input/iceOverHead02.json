@@ -1,0 +1,56 @@
+{
+    "weaponStats": {
+        "attack": 210,
+        "affinity": 0,
+        "elementType": "ice",
+        "elementValue": 500,
+        "sharpness": "white"
+    },
+    "selectedSkills": [
+        {
+            "skillKey": "elementAttack",
+            "level": 3
+        }
+    ],
+    "selectedBuffs": [
+        "melodyElementBoost",
+        "powercharm"
+    ],
+    "selectedTargets": [
+        {
+            "id": "WnsH5UYinjvS2uAc3TVg4",
+            "monsterName": "トレーニングダミー",
+            "partName": "前面",
+            "scarred": false,
+            "percentage": 100
+        }
+    ],
+    "selectedMotions": [
+        {
+            "id": "7GkhondPiqfqnFlw_nMFT",
+            "motion": {
+                "weaponType": "huntingHorn",
+                "name": "叩きつけ1段目",
+                "value": 14,
+                "damageType": "impact",
+                "duration": 0.5
+            }
+        },
+        {
+            "id": "sEGHGD-knDPJSSQMXwtDk",
+            "motion": {
+                "weaponType": "huntingHorn",
+                "name": "叩きつけ2段目",
+                "value": 42,
+                "damageType": "impact",
+                "duration": 1
+            }
+        }
+    ],
+    "conditionValues": {
+        "damageCut": 100,
+        "enraged": 100,
+        "skillPeakPerformanceEnabled": 100,
+        "skillTozyuEnabled": 100
+    }
+}

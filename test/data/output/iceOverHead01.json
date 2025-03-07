@@ -1,0 +1,50 @@
+[
+    {
+        "motion": {
+            "weaponType": "huntingHorn",
+            "name": "叩きつけ1段目",
+            "value": 14,
+            "damageType": "impact",
+            "duration": 0.5
+        },
+        "minDamage": {
+            "total": 67.6,
+            "physical": 44.8,
+            "elemental": 22.8
+        },
+        "maxDamage": {
+            "total": 67.6,
+            "physical": 44.8,
+            "elemental": 22.8
+        },
+        "expectedDamage": {
+            "total": 67.6,
+            "physical": 44.8,
+            "elemental": 22.8
+        }
+    },
+    {
+        "motion": {
+            "weaponType": "huntingHorn",
+            "name": "叩きつけ2段目",
+            "value": 42,
+            "damageType": "impact",
+            "duration": 1
+        },
+        "minDamage": {
+            "total": 157.2,
+            "physical": 134.4,
+            "elemental": 22.8
+        },
+        "maxDamage": {
+            "total": 157.2,
+            "physical": 134.4,
+            "elemental": 22.8
+        },
+        "expectedDamage": {
+            "total": 157.2,
+            "physical": 134.4,
+            "elemental": 22.8
+        }
+    }
+]

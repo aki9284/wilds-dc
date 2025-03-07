@@ -3,8 +3,9 @@ import { SelectedTarget } from '@/models/types/target';
 import { Motion, SelectedMotion } from '@/models/types/motion';
 import { SelectedSkill } from '@/models/constants/skill';
 import { ConditionValues } from '@/models/atoms/conditionAtoms';
-import { calculatePhysicalDamages } from './physicalDamageCalculator';
-import { calculateElementalDamages } from './elementalDamageCalculator';
+import { calculatePhysicalDamage } from './physicalDamageCalculator';
+import { calculateElementalDamage } from './elementalDamageCalculator';
+import { enumeratePossibleParamPatterns } from './enumaratePossibleParamPatterns';
 
 interface DamageBreakdown {
   total: number;
@@ -36,13 +37,14 @@ export interface CalculationParams {
   conditionValues: ConditionValues;
 }
 
-export interface SingleMotionAndTargetParams {
+export interface SingleHitParams {
   weaponStats: WeaponStats;
   selectedSkills: SelectedSkill[];
   selectedBuffs: string[];
   selectedTarget: SelectedTarget;
   motion: Motion;
   conditionValues: ConditionValues;
+  critical: number; // 0:通常 正:会心 負:マイナス会心 
 }
 
 // ダメージ計算 UIからの呼び出し口
@@ -62,27 +64,59 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
 
     // ターゲット部位の割合に応じた加重平均
     const motionDamage = params.selectedTargets.map(target => {
-      const singleMotionAndTargetParams: SingleMotionAndTargetParams = {
+      const singleHitParams: SingleHitParams = {
         weaponStats: params.weaponStats,
         selectedSkills: params.selectedSkills,
         selectedBuffs: params.selectedBuffs,
         selectedTarget: target,
         motion: selectedMotion.motion!, //モーションは1つ上のmapでnullチェック済み
-        conditionValues: params.conditionValues
+        conditionValues: params.conditionValues,
+        critical: 0
       };
-      const physical = calculatePhysicalDamages(singleMotionAndTargetParams);
-      const elemental = calculateElementalDamages(singleMotionAndTargetParams);
+
+      // 実際にありうる会心・スキル等発動パターンとその確率を列挙しそれを加重平均
+      const paramPatterns = enumeratePossibleParamPatterns(singleHitParams);
+
+      let minTotal = Infinity;
+      let maxTotal = -Infinity;
+      let minPhysical = 0;
+      let minElemental = 0;
+      let maxPhysical = 0;
+      let maxElemental = 0;
+      let expectedPhysical = 0;
+      let expectedElemental = 0;
+
+      paramPatterns.forEach(pattern => {
+        const physical = calculatePhysicalDamage(pattern.params);
+        const elemental = calculateElementalDamage(pattern.params);
+        const total = physical + elemental;
+
+        if (total < minTotal && pattern.possibility > 0) {
+          minTotal = total;
+          minPhysical = physical;
+          minElemental = elemental;
+        }
+
+        if (total > maxTotal && pattern.possibility > 0) {
+          maxTotal = total;
+          maxPhysical = physical;
+          maxElemental = elemental;
+        }
+
+        expectedPhysical += physical * pattern.possibility;
+        expectedElemental += elemental * pattern.possibility;
+      });
 
       return {
         physical: {
-          min: physical.min * (target.percentage / totalPercentage),
-          max: physical.max * (target.percentage / totalPercentage),
-          expected: physical.expected * (target.percentage / totalPercentage)
+          min: minPhysical * (target.percentage / totalPercentage),
+          max: maxPhysical * (target.percentage / totalPercentage),
+          expected: expectedPhysical * (target.percentage / totalPercentage)
         },
         elemental: {
-          min: elemental.min * (target.percentage / totalPercentage),
-          max: elemental.max * (target.percentage / totalPercentage),
-          expected: elemental.expected * (target.percentage / totalPercentage)
+          min: minElemental * (target.percentage / totalPercentage),
+          max: maxElemental * (target.percentage / totalPercentage),
+          expected: expectedElemental * (target.percentage / totalPercentage)
         }
       };
     }).reduce((acc, curr) => ({
@@ -136,6 +170,8 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
     physical: { min: 0, max: 0, expected: 0 },
     elemental: { min: 0, max: 0, expected: 0 }
   });
+
+  console.log(params, motionDamages);
 
   return {
     minDamage: {      

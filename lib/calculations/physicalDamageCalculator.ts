@@ -1,4 +1,4 @@
-import { SingleMotionAndTargetParams } from "./damageCalculator";
+import { SingleHitParams } from "./damageCalculator";
 import { BUFF_DATA, BuffKey } from "@/models/constants/buff";
 import { SelectedSkill, SKILL_DATA, SkillKey } from "@/models/constants/skill";
 import { getCachedMonsterData } from '@/utils/dataFetch';
@@ -8,21 +8,18 @@ import { get } from "http";
 import { SHARPNESS_DATA } from "@/models/constants/sharpness";
 
 // 物理ダメージ
-export function calculatePhysicalDamages(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
-    const attack = calculatePhysicalAttacks(params);
+export function calculatePhysicalDamage(params: SingleHitParams): number {
+    const attack = calculatePhysicalAttack(params);
     const effectiveness = calculatePhysicalEffectiveness(params);
     const modifier = calculatePhysicalDamageModifier(params);
 
     console.log(attack, effectiveness, modifier);
 
-    return {
-      min: Math.round(attack.min * effectiveness.min/100 * modifier.min * 10) / 10,
-      max: Math.round(attack.max * effectiveness.max/100 * modifier.max * 10) / 10,
-      expected: Math.round(attack.expected * effectiveness.expected/100 * modifier.expected * 10) /10
-    };
+    return Math.round(attack * effectiveness/100 * modifier * 10) / 10;
 }
-  // 物理攻撃力
-  function calculatePhysicalAttacks(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
+
+// 物理攻撃力
+function calculatePhysicalAttack(params: SingleHitParams): number {
       let physicalAttack = params.weaponStats.attack;
 
       // スキルとバフを統合したリストを作成し、orderプロパティを持たせる
@@ -67,22 +64,14 @@ export function calculatePhysicalDamages(params: SingleMotionAndTargetParams): {
           }
       });
 
-      return {
-          min: physicalAttack,
-          max: physicalAttack,
-          expected: physicalAttack
-      };
+      return physicalAttack;
   }
   
 // 物理肉質
-function calculatePhysicalEffectiveness(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
+function calculatePhysicalEffectiveness(params: SingleHitParams): number {
     // 肉質無視モーション
     if (params.motion.ignoreEffectiveness) {
-        return {
-            min: 100,
-            max: 100,
-            expected: 100
-        };
+        return 100;
     }
 
     const { monsterName, partName } = params.selectedTarget;
@@ -102,15 +91,11 @@ function calculatePhysicalEffectiveness(params: SingleMotionAndTargetParams): { 
     const damageType = params.motion.damageType; // 例えば 'slash', 'impact', 'shot' など
     const effectiveness = part.effectiveness[damageType];
 
-    return {
-      min: effectiveness,
-      max: effectiveness,
-      expected: effectiveness
-    };
+    return effectiveness;
 }
   
 // 物理ダメージ補正
-function calculatePhysicalDamageModifier(params: SingleMotionAndTargetParams): { min: number, max: number, expected: number } {
+function calculatePhysicalDamageModifier(params: SingleHitParams): number {
     const motionValueModifier = params.motion.value/100;
 
     // 斬れ味補正
@@ -120,20 +105,16 @@ function calculatePhysicalDamageModifier(params: SingleMotionAndTargetParams): {
         sharpnessModifier = 1.0;
     }
 
-    // 会心補正 Todo:会心期待値計算
-    let critModifierMin = 1;
-    let critModifierEx = 1;
-    let critModifierMax = 1;
-    if (params.weaponStats.affinity > 0 && !params.motion.cannotCrit) {
-        critModifierMax = 1.25;
+    // 会心補正
+    let critModifier = 1.0;
+    if (params.critical > 0) {
+        critModifier = 1.25;
+    } else if (params.critical < 0) {
+        critModifier = 0.75;
     }
 
     // 全体防御率
     const totalDefenseModifier = params.conditionValues.damageCut/100;
 
-    return {
-      min: motionValueModifier * sharpnessModifier * critModifierMin * totalDefenseModifier,
-      max: motionValueModifier * sharpnessModifier * critModifierMax * totalDefenseModifier,
-      expected: motionValueModifier * sharpnessModifier * critModifierEx * totalDefenseModifier
-    };
+    return motionValueModifier * sharpnessModifier * critModifier * totalDefenseModifier;
 }
