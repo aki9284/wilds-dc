@@ -33,7 +33,6 @@ export function TargetSelector() {
         id: nanoid(),
         monsterName: selectedMonster,
         partName: availablePart.name,
-        scarred: false,
         percentage: 0
       }
       setSelectedTargets([...selectedTargets, newTarget])
