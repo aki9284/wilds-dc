@@ -138,7 +138,8 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
                     onChange={(e) => {
                         const index = Number(e.target.value);
                         setSelectedIndex(index);
-                        onLoad([...presetItems, ...savedItems][index].data);
+                        // ディープコピーを渡すことで利用側が変更しても変わらないようにする
+                        onLoad(JSON.parse(JSON.stringify([...presetItems, ...savedItems][index].data)));
                     }}
                 >
                     {[
@@ -156,7 +157,8 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
                 {selectedIndex !== null && (
                     <div className="flex gap-2">
                         <button
-                            onClick={() => onLoad([...presetItems, ...savedItems][selectedIndex].data)}
+                            // ディープコピーを渡すことで利用側が変更しても変わらないようにする
+                            onClick={() => onLoad(JSON.parse(JSON.stringify([...presetItems, ...savedItems][selectedIndex].data)))}
                             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                         >
                             読み込み

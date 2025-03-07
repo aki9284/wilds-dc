@@ -6,21 +6,25 @@ import { useEffect, useState } from 'react'
 import { selectedTargetsAtom, selectedMonsterAtom } from '@/models/atoms/targetAtoms'
 import { SelectedTarget } from '@/models/types/target'
 import { SaveLoadPanel } from '../common/SaveLoadPanel'
-import { Monster } from '@/models/types/monster'
 import { getCachedMonsterData } from '@/utils/dataFetch'
 
 export function TargetSelector() {
     const monsters = getCachedMonsterData();
     const [selectedMonster, setSelectedMonster] = useAtom(selectedMonsterAtom)
-    
-    const [targets, setTargets] = useAtom(selectedTargetsAtom)
+    const [selectedTargets, setSelectedTargets] = useAtom(selectedTargetsAtom)
+
+    useEffect(() => {
+      if(selectedTargets.length > 0 && selectedMonster !== selectedTargets[0].monsterName) {
+        setSelectedMonster(selectedTargets[0].monsterName)
+      }
+    }, [selectedTargets] )
 
     const addTarget = () => {
       const monster = monsters.find(m => m.name === selectedMonster)
       if (!monster) return
 
       const availablePart = monster.parts.find(part => 
-        !targets.some(t => t.partName === part.name)
+        !selectedTargets.some(t => t.partName === part.name)
       )
 
       if (!availablePart) return
@@ -32,21 +36,21 @@ export function TargetSelector() {
         scarred: false,
         percentage: 0
       }
-      setTargets([...targets, newTarget])
-      adjustPercentages([...targets, newTarget])
+      setSelectedTargets([...selectedTargets, newTarget])
+      adjustPercentages([...selectedTargets, newTarget])
     }
 
     const removeTarget = (id: string) => {
-      const newTargets = targets.filter(t => t.id !== id)
-      setTargets(newTargets)
+      const newTargets = selectedTargets.filter(t => t.id !== id)
+      setSelectedTargets(newTargets)
       adjustPercentages(newTargets)
     }
 
     const updateTarget = (id: string, updates: Partial<SelectedTarget>) => {
-      const newTargets = targets.map(target => 
+      const newTargets = selectedTargets.map(target => 
         target.id === id ? { ...target, ...updates } : target
       )
-      setTargets(newTargets)
+      setSelectedTargets(newTargets)
       if (updates.percentage !== undefined) {
         adjustPercentages(newTargets, id)
       }
@@ -88,7 +92,7 @@ export function TargetSelector() {
         }
       }
   
-      setTargets([...targetList]);
+      setSelectedTargets([...targetList]);
     }
 
     return (
@@ -99,7 +103,7 @@ export function TargetSelector() {
               value={selectedMonster}
               onChange={(e) => {
                 setSelectedMonster(e.target.value)
-                setTargets([])
+                setSelectedTargets([])
               }}
               className="border rounded p-2"
             >
@@ -119,7 +123,7 @@ export function TargetSelector() {
           </button>
 
           <div className="space-y-2">
-            {targets.map((target) => (
+            {selectedTargets.map((target) => (
               <div key={target.id} className="flex items-center gap-4 p-2 border rounded">
                 <select
                   value={target.partName}
@@ -131,7 +135,7 @@ export function TargetSelector() {
                     ?.parts
                     .filter(part => {
                       if (part.name === target.partName) return true
-                      return !targets.some(t => 
+                      return !selectedTargets.some(t => 
                         t.id !== target.id && 
                         t.partName === part.name
                       )
@@ -142,34 +146,24 @@ export function TargetSelector() {
                       </option>
                     ))}
                 </select>
-        
-                <input
-                  type="number"
-                  value={target.percentage}
-                  onChange={(e) => updateTarget(target.id, { 
-                    percentage: Math.max(0, Number(e.target.value))
-                  })}
-                  className="border rounded p-2 w-24"
-                  min="0"
-                  max="100"
-                />
-                <span>%</span>
-
-                <input
-                  type="checkbox"
-                  checked={target.scarred}
-                  onChange={(e) => updateTarget(target.id, { scarred: e.target.checked })}
-                  className="border rounded"
-                />
-                <span>傷</span>
-
-                <button
-                  onClick={() => removeTarget(target.id)}
-                  className="text-red-500 hover:text-red-700"
-                >
-                  削除
-                </button>
-              </div>
+                          <input
+                            type="number"
+                            value={target.percentage}
+                            onChange={(e) => updateTarget(target.id, { 
+                              percentage: Math.max(0, Number(e.target.value))
+                            })}
+                            className="border rounded p-2 w-24"
+                            min="0"
+                            max="100"
+                          />
+                          <span>%</span>
+                          <button
+                            onClick={() => removeTarget(target.id)}
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            削除
+                          </button>
+                        </div>
             ))}
           </div>
         </div>
@@ -178,13 +172,10 @@ export function TargetSelector() {
           storageKey="target-settings"
           presetFilePath="/data/targetPresets.json"
           onSave={(name) => ({
-            name,
-            monster: selectedMonster,
-            targets,
+            targets: selectedTargets,
           })}
           onLoad={(saved) => {
-            setSelectedMonster(saved.monster)
-            setTargets(saved.targets)
+            setSelectedTargets(saved.targets)
           }}
         />
       </div>

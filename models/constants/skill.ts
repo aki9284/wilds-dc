@@ -135,4 +135,4 @@ export const SKILL_DATA: { [key: string]: Skill } = {
   }
 } as const;
 
-export type SkillKey = keyof typeof SKILL_DATA;
+export type SkillKey = keyof typeof SKILL_DATA & string;

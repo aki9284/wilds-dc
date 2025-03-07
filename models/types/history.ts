@@ -4,6 +4,7 @@ import { SelectedTarget } from "./target";
 import { SelectedMotion } from "./motion";
 import { CalculationResults } from "@/lib/calculations/damageCalculator";
 import { ConditionValues } from "@/models/atoms/conditionAtoms";
+import { BuffKey } from "../constants/buff";
 
 export interface CalculationHistory {
   id: string;
@@ -11,7 +12,8 @@ export interface CalculationHistory {
   result: CalculationResults;
   savedState: {
     selectedSkills: SelectedSkill[];
-    selectedBuffs: string[];
+    selectedBuffs: BuffKey[];
+    selectedMonster: string;
     selectedTargets: SelectedTarget[];
     selectedMotions: SelectedMotion[];
     conditionValues: ConditionValues;

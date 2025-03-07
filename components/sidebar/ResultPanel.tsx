@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { currentWeaponStatsAtom } from '@/models/atoms/weaponAtom'
 import { selectedSkillsAtom } from '@/models/atoms/skillAtoms'
 import { selectedBuffsAtom } from '@/models/atoms/buffAtoms'
-import { selectedTargetsAtom } from '@/models/atoms/targetAtoms'
+import { selectedMonsterAtom, selectedTargetsAtom } from '@/models/atoms/targetAtoms'
 import { selectedMotionsAtom } from '@/models/atoms/motionAtom'
 import { conditionsAtom } from '@/models/atoms/conditionAtoms'
 import { calculateDamage, CalculationResults, MotionDamage } from '@/lib/calculations/damageCalculator'
@@ -19,19 +19,28 @@ export function ResultPanel() {
   const [weaponStats] = useAtom(currentWeaponStatsAtom)
   const [selectedSkills] = useAtom(selectedSkillsAtom)
   const [selectedBuffs] = useAtom(selectedBuffsAtom)
+  const [selectedMonster] = useAtom(selectedMonsterAtom)
   const [selectedTargets] = useAtom(selectedTargetsAtom)
   const [selectedMotions] = useAtom(selectedMotionsAtom)
   const [conditionValues] = useAtom(conditionsAtom);
   const [, setUpdateTrigger] = useAtom(updateTriggerAtom)
 
   const handleCalculate = () => {
+    if (selectedTargets.length === 0) {
+      alert('攻撃対象が選択されていません。')
+      return
+    }
+    if (selectedMotions.length === 0 || selectedMotions[0].motion === undefined || selectedMotions[0].motion === null) {
+      alert('モーションが選択されていません。')
+      return
+    }
     const calculationResults = calculateDamage({
       weaponStats,
       selectedSkills,
       selectedBuffs,
-      selectedTargets: selectedTargets,
+      selectedTargets,
       selectedMotions,
-      conditionValues: conditionValues
+      conditionValues
     })
     setResults(calculationResults)
 
@@ -44,7 +53,8 @@ export function ResultPanel() {
         savedState: {
           selectedSkills,
           selectedBuffs,
-          selectedTargets: selectedTargets,
+          selectedMonster,
+          selectedTargets,
           selectedMotions,
           conditionValues
         }

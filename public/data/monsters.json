@@ -45,6 +45,19 @@
             "ice": 5,
             "dragon": 20
           }
+        },
+        {
+          "name": "前脚",
+          "effectiveness": {
+            "slash": 35,
+            "impact": 35,
+            "shot": 25,
+            "fire": 0,
+            "water": 5,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 20
+          }
         }
       ]
     },

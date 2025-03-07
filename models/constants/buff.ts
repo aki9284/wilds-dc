@@ -48,4 +48,5 @@ export const BUFF_DATA: { [key: string]: Buff } = {
     }
 } as const;
 
-export type BuffKey = keyof typeof BUFF_DATA
+// そのままだとstringはnumberに自動変換しうるため&stringを付けないとtypescriptのエラーが出る
+export type BuffKey = keyof typeof BUFF_DATA & string;

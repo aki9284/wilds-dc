@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useAtom } from 'jotai'
 import { historiesAtom, updateTriggerAtom } from '@/models/atoms/historyAtom'
 import { selectedSkillsAtom } from '@/models/atoms/skillAtoms'
-import { selectedTargetsAtom } from '@/models/atoms/targetAtoms'
+import { selectedMonsterAtom, selectedTargetsAtom } from '@/models/atoms/targetAtoms'
 import { selectedMotionsAtom } from '@/models/atoms/motionAtom'
 import { selectedBuffsAtom } from '@/models/atoms/buffAtoms'
 import { currentWeaponStatsAtom } from '@/models/atoms/weaponAtom'
@@ -19,6 +19,7 @@ export function HistoryPanel() {
   const [, setWeaponStats] = useAtom(currentWeaponStatsAtom)
   const [, setSelectedSkills] = useAtom(selectedSkillsAtom)
   const [, setSelectedBuffs] = useAtom(selectedBuffsAtom)
+  const [, setSelectedMonster] = useAtom(selectedMonsterAtom)
   const [, setSelectedTargets] = useAtom(selectedTargetsAtom)
   const [, setSelectedMotions] = useAtom(selectedMotionsAtom)
   const [, setConditionValues] = useAtom(conditionsAtom)
@@ -30,7 +31,8 @@ export function HistoryPanel() {
   const restoreState = (history: CalculationHistory) => {
     setWeaponStats(history.weaponStats)
     setSelectedSkills(history.savedState.selectedSkills as SelectedSkill[])
-    setSelectedBuffs(history.savedState.selectedBuffs as BuffKey[] || [])
+    setSelectedBuffs(history.savedState.selectedBuffs as BuffKey[])
+    setSelectedMonster(history.savedState.selectedMonster)
     setSelectedTargets(history.savedState.selectedTargets)
     setSelectedMotions(history.savedState.selectedMotions)
     setConditionValues(history.savedState.conditionValues)
@@ -44,7 +46,8 @@ export function HistoryPanel() {
           <div 
             key={history.id} 
             className="p-3 border rounded-lg hover:bg-gray-100 cursor-pointer"
-            onClick={() => restoreState(history)}
+            // ディープコピーを使って復元させることで復元後にUIを弄られてもメモリ上の履歴が変わらないようにする
+            onClick={() => restoreState(JSON.parse(JSON.stringify(history)))}
           >
             <div className="flex justify-between items-center mb-2">
               <span className="font-medium">
