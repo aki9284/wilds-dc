@@ -1,0 +1,23 @@
+partName    state slash   impact   pierce   fire   water   thunder   ice   dragon stun
+Head		45	48	45	5	5	5	5	5	100
+Head	Wounds	45	48	45	5	5	5	5	5	100
+Torso		28	30	20	1	1	1	1	5	0
+Torso	Wounds	60	62	65	5	5	10	5	15	0
+Left Leg		26	25	20	2	2	2	2	4	0
+Left Leg	Wounds	60	62	65	5	5	10	5	15	0
+Right Leg		26	25	20	2	2	2	2	4	0
+Right Leg	Wounds	60	62	65	5	5	10	5	15	0
+Tail		45	40	42	5	5	5	5	5	0
+Tail	Wounds	60	62	65	5	5	10	5	15	0
+Left Wing		42	40	38	2	2	2	2	4	0
+Left Wing	Wounds	60	62	65	5	5	10	5	15	0
+Right Wing		42	40	38	2	2	2	2	4	0
+Right Wing	Wounds	60	62	65	5	5	10	5	15	0
+Left Chainblade		50	50	45	0	0	0	0	0	0
+Left Chainblade	State_1	52	52	48	20	20	20	20	25	0
+Left Chainblade	Wounds	70	70	68	30	30	30	30	38	0
+Left Chainblade	Weak Point	52	52	48	20	20	20	20	25	0
+Right Chainblade		50	50	45	0	0	0	0	0	0
+Right Chainblade	State_1	52	52	48	20	20	20	20	25	0
+Right Chainblade	Wounds	70	70	68	30	30	30	30	38	0
+Right Chainblade	Weak Point	52	52	48	20	20	20	20	25	0

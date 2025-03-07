@@ -1,0 +1,30 @@
+partName    state slash   impact   pierce   fire   water   thunder   ice   dragon stun
+Head		65	55	45	15	0	15	5	15	100
+Head	Wounds	75	70	50	15	0	15	5	15	100
+Head	Weak Point	75	70	50	15	0	15	5	15	100
+Antenna		75	70	50	20	0	10	5	25	100
+Antenna	Wounds	80	70	50	20	0	10	5	25	100
+Right Wingarm		27	27	20	20	0	15	5	10	0
+Right Wingarm	State_1	60	55	45	20	0	15	5	10	0
+Right Wingarm	Wounds	65	70	50	20	0	15	5	10	0
+Left Wingarm		27	27	20	20	0	15	5	10	0
+Left Wingarm	State_1	60	55	45	20	0	15	5	10	0
+Left Wingarm	Wounds	65	70	50	20	0	15	5	10	0
+Right Foreleg		42	42	25	10	0	5	5	5	0
+Right Foreleg	Wounds	65	70	50	20	0	15	5	10	0
+Left Foreleg		42	42	25	10	0	5	5	5	0
+Left Foreleg	Wounds	65	70	50	20	0	15	5	10	0
+Tail		38	38	25	10	0	10	5	5	0
+Tail	Wounds	65	70	50	20	0	15	5	10	0
+Right Hind Leg		38	38	35	10	0	5	5	5	0
+Right Hind Leg	Wounds	65	70	50	20	0	15	5	10	0
+Left Hind Leg		38	38	35	10	0	5	5	5	0
+Left Hind Leg	Wounds	65	70	50	20	0	15	5	10	0
+Torso		25	25	20	10	0	5	5	5	0
+Torso	Wounds	65	70	50	20	0	15	5	10	0
+Neck		45	45	25	15	0	10	5	5	0
+Neck	Wounds	65	70	50	20	0	15	5	10	0
+Right Wing		26	26	15	15	0	10	5	5	0
+Right Wing	Wounds	65	70	50	20	0	15	5	10	0
+Left Wing		26	26	15	15	0	10	5	5	0
+Left Wing	Wounds	65	70	50	20	0	15	5	10	0
