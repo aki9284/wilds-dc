@@ -9,19 +9,21 @@ export function SkillSelector() {
   const [selectedSkills, setSelectedSkills] = useAtom(selectedSkillsAtom)
   const [query, setQuery] = useState('')
   const [isInputFocused, setIsInputFocused] = useState(false)
-
   const filteredSkills = (index: number) => {
     const skillEntries = Object.entries(SKILL_DATA)
     if (isInputFocused && query === '') {
-      return skillEntries.filter(([key]) => 
-        !selectedSkills.some((selected, idx) => selected.skillKey === key && idx !== index)
-      )
+        return skillEntries.filter(([key, skill]) => 
+          !selectedSkills.some((selected, idx) => selected.skillKey === key && idx !== index) &&
+          !skill.hidden
+        )
     }
     return skillEntries.filter(([key, skill]) => 
       skill.label.toLowerCase().includes(query.toLowerCase()) &&
-      !selectedSkills.some((selected, idx) => selected.skillKey === key && idx !== index)
+      !selectedSkills.some((selected, idx) => selected.skillKey === key && idx !== index) &&
+      !skill.hidden
     )
   }
+  
   
   const addSkillSelection = () => {
     const firstAvailableSkill = Object.keys(SKILL_DATA)[0] as SkillKey

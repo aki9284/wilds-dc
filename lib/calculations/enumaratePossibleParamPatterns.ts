@@ -28,6 +28,21 @@ export function enumeratePossibleParamPatterns(params: SingleHitParams): Possibl
         }))
     ];
 
+    // 付随スキルとして表現しているものがある場合もここで追加 付随スキルのレベルは元と一致させる
+    params.selectedSkills.forEach(skill => {
+        const skillData = SKILL_DATA[skill.skillKey as SkillKey];
+        if (skillData && skillData.accompanies !== undefined) {
+            skillData.accompanies.forEach(accompanySkill => {
+                effects.push({
+                    type: 'skill',
+                    data: { skillKey: accompanySkill, level: skill.level } as SelectedSkill,
+                    order: SKILL_DATA[accompanySkill as SkillKey].order
+                });
+            });
+        }
+    });
+
+    // 会心判定の追加
     if (params.motion.cannotCrit !== undefined && params.motion.cannotCrit) {
         // 会心乗らないモーションはクリティカルのeffectを組み合わせに入れないことで表現
     } else {
@@ -196,7 +211,7 @@ function sumEffectAffinities(effects: Effect[], params:SingleHitParams): number 
             if (skillLevel.effects.addAffinity !== undefined) {
                 sum += skillLevel.effects.addAffinity;
             }
-            // 弱点特効の傷で更に追加分専用処理
+            // 弱点特効の傷で更に追加分専用処理  後で作った付随スキルの形式で表現するようにリファクタできそう
             if ((effect.data as SelectedSkill).skillKey === 'weaknessExploit') {
                 const monster = monsters.find(monster => monster.name === params.selectedTarget.monsterName);
                 if (monster !== undefined && monster.parts.some(part => part.name === params.selectedTarget.partName && part.wounded)) {

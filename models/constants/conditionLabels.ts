@@ -18,5 +18,9 @@ export const CONDITION_LABELS = {
     skillTozyuEnabled: {
         label: '闘獣の力発動割合',
         type: 'possibility',
+    },
+    frenzyRecovered: {
+        label: '狂竜症克服状態割合',
+        type: 'possibility',
     }
 } as const;

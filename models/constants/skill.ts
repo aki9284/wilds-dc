@@ -20,7 +20,9 @@ export type Skill = {
   label: string;
   levels: SkillLevel[];
   requirements?: string[];
+  accompanies?: SkillKey[];
   order: number;
+  hidden?: boolean;
 }
 
 export interface SelectedSkill {
@@ -118,6 +120,25 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     ],
     requirements: ["skillBurstActive"],
     order: 301
+  },
+  goreMagalasTyranny:{
+    label: "黒蝕一体",
+    levels: [
+      { level: 1, effects: { addAttack: 0 } },
+      { level: 2, effects: { addAttack: 10 } },
+    ],
+    accompanies: ["goreMagalasTyranny2"],
+    order: 302
+  },
+  goreMagalasTyranny2:{
+    label: "黒蝕一体_克服状態",
+    levels: [
+      { level: 1, effects: { addAttack: 0, addAffinity: 15 } },
+      { level: 2, effects: { addAttack: 5, addAffinity: 15} },
+    ],
+    requirements: ["frenzyRecovered"],
+    order: 302,
+    hidden: true
   },
   elementAttack: {
     label: "属性攻撃強化",
