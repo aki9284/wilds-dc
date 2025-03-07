@@ -118,12 +118,13 @@ export function ResultPanel() {
                   onClick={() => toggleMotionDetails(index)}
                   className="w-full text-left text-sm font-bold text-blue-500"
                 >
-                  {motionDamage.motion.name} ダメージ: {motionDamage.expectedDamage.total}
+                  {motionDamage.motion.name} ダメージ: {motionDamage.minDamage.total}
                 </button>
                 {expandedMotionIndex === index && (
                   <div className="mt-2 pl-4 text-sm">
-                    <div>物理ダメージ: {motionDamage.expectedDamage.physical}</div>
-                    <div>属性ダメージ: {motionDamage.expectedDamage.elemental}</div>
+                    <div>物理ダメージ: {motionDamage.minDamage.physical}</div>
+                    <div>属性ダメージ: {motionDamage.minDamage.elemental}</div>
+                    <div>最大ダメージ: {motionDamage.maxDamage.total}</div>
                   </div>
                 )}
               </div>

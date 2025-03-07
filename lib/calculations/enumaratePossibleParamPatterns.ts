@@ -25,13 +25,20 @@ export function enumeratePossibleParamPatterns(params: SingleHitParams): Possibl
             type: 'buff',
             data: buff,
             order: BUFF_DATA[buff as BuffKey].order
-        })),
-        {
-            type: 'critical',
-            data: undefined,
-            order: EFFECT_ORDER_CRITICAL
-        }
+        }))
     ];
+
+    if (params.motion.cannotCrit !== undefined && params.motion.cannotCrit) {
+        // 会心乗らないモーションはクリティカルのeffectを組み合わせに入れないことで表現
+    } else {
+        effects.push({
+            type: 'critical',
+            data: '',
+            order: EFFECT_ORDER_CRITICAL
+        });
+    }
+
+    effects.sort((a, b) => a.order - b.order);
 
     let effectCombinations: {effects: Effect[], possibility: number}[] = [];
     generateEffectCombinations(effects, 0, [], effectCombinations, 1.0, params);
