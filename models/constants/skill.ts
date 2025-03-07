@@ -158,6 +158,16 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     ],
     requirements: ["critical"],
     order: EFFECT_ORDER_CRITICAL + 1
+  },
+  coalescence: {
+    label: "災禍転福",
+    levels: [
+      { level: 1, effects: { multiplyElement: 1.1 } },
+      { level: 2, effects: { multiplyElement: 1.2 } },
+      { level: 3, effects: { multiplyElement: 1.3 } },
+    ],
+    requirements: ["coalescenceEnabled"],
+    order: 202
   }
 } as const;
 

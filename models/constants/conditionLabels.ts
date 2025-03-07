@@ -22,5 +22,9 @@ export const CONDITION_LABELS = {
     frenzyRecovered: {
         label: '狂竜症克服状態割合',
         type: 'possibility',
+    },
+    coalescenceEnabled: {
+        label: '災禍転福発動割合',
+        type: 'possibility',
     }
 } as const;
