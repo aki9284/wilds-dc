@@ -22,43 +22,25 @@ export function calculatePhysicalDamage(params: SingleHitParams): number {
 function calculatePhysicalAttack(params: SingleHitParams): number {
       let physicalAttack = params.weaponStats.attack;
 
-      // スキルとバフを統合したリストを作成し、orderプロパティを持たせる
-      const effects = [
-          ...params.selectedSkills.map(skill => ({
-              type: 'skill',
-              data: skill,
-              order: SKILL_DATA[skill.skillKey as SkillKey].order
-          })),
-          ...params.selectedBuffs.map(buff => ({
-              type: 'buff',
-              data: buff,
-              order: BUFF_DATA[buff as BuffKey].order
-          }))
-      ];
-
-      // orderプロパティに基づいてソート
-      effects.sort((a, b) => a.order - b.order);
-
-      // ソートされたリストを基に計算を実行
-      effects.forEach(effect => {
+      params.activeEffects.forEach(effect => {
           if (effect.type === 'skill') {
               const skill = SKILL_DATA[(effect.data as SelectedSkill).skillKey as SkillKey];
               const skillLevel = skill.levels[(effect.data as SelectedSkill).level - 1];
-              if ('multiplyAttack' in skillLevel.effects) {
+              if (skillLevel.effects.multiplyAttack !== undefined) {
                 //physicalAttack = Math.round(physicalAttack * skillLevel.effects.multiplyAttack * 10) / 10;
                 //physicalAttack = physicalAttack * skillLevel.effects.multiplyAttack;
                 physicalAttack = Math.floor(physicalAttack * skillLevel.effects.multiplyAttack * 10) / 10;
               }
-              if ('addAttack' in skillLevel.effects) {
+              if (skillLevel.effects.addAttack !== undefined) {
                   physicalAttack += skillLevel.effects.addAttack;
               }
           } else if (effect.type === 'buff') {
               const buff = BUFF_DATA[effect.data as BuffKey];
-              if ('multiplyAttack' in buff) {
+              if (buff.multiplyAttack !== undefined) {
                 //physicalAttack = Math.round(physicalAttack * buff.multiplyAttack * 10) / 10;
                 physicalAttack = Math.floor(physicalAttack * buff.multiplyAttack * 10) / 10;
               }
-              if ('addAttack' in buff) {
+              if (buff.addAttack !== undefined) {
                   physicalAttack += buff.addAttack;
               }
           }
@@ -107,9 +89,18 @@ function calculatePhysicalDamageModifier(params: SingleHitParams): number {
 
     // 会心補正
     let critModifier = 1.0;
-    if (params.critical > 0) {
-        critModifier = 1.25;
-    } else if (params.critical < 0) {
+    if (params.activeEffects.some(effect => effect.type === 'critical')) {
+        // 超会心専用処理
+        const criticalBoostEffect = params.activeEffects.find(
+            effect => effect.type === 'skill' && 
+            (effect.data as SelectedSkill).skillKey === 'criticalBoost');
+        if (criticalBoostEffect) {
+            const skillLevel = SKILL_DATA['criticalBoost'].levels[(criticalBoostEffect.data as SelectedSkill).level - 1];
+            critModifier = skillLevel.effects.setCritFactor || 1.25;
+        } else {
+            critModifier = 1.25;
+        }
+    } else if (params.activeEffects.some(effect => effect.type === 'negaCritical')) {
         critModifier = 0.75;
     }
 

@@ -1,4 +1,16 @@
-export const BUFF_DATA = {
+export interface Buff {
+    label: string;
+    multiplyAttack?: number;
+    multiplyElement?: number;
+    addAttack?: number;
+    addElement?: number;
+    addAffinity?: number;
+    requirements?: string[];
+    order: number;
+}
+
+
+export const BUFF_DATA: { [key: string]: Buff } = {
     melodySelfBoost: {
         "label": "自分強化",
         "multiplyAttack": 1.2,
@@ -24,14 +36,14 @@ export const BUFF_DATA = {
         "addAttack": 6,
         "order": 501
     },
-    potionAttackLarge: {
+    itemMegaDemonDrug: {
         "label": "鬼人薬G",
-        "addAttack": 15,
+        "addAttack": 7,
         "order": 502
     },
-    potionAttackSmall:{
+    itemDemonDrug: {
         "label": "鬼人薬",
-        "addAttack": 10,
+        "addAttack": 5,
         "order": 503
     }
 } as const;

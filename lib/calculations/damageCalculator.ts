@@ -37,6 +37,12 @@ export interface CalculationParams {
   conditionValues: ConditionValues;
 }
 
+export interface Effect {
+  type: string, 
+  data: SelectedSkill | string | undefined, 
+  order: number
+}
+
 export interface SingleHitParams {
   weaponStats: WeaponStats;
   selectedSkills: SelectedSkill[];
@@ -44,7 +50,7 @@ export interface SingleHitParams {
   selectedTarget: SelectedTarget;
   motion: Motion;
   conditionValues: ConditionValues;
-  critical: number; // 0:通常 正:会心 負:マイナス会心 
+  activeEffects: Effect[];
 }
 
 // ダメージ計算 UIからの呼び出し口
@@ -71,11 +77,12 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
         selectedTarget: target,
         motion: selectedMotion.motion!, //モーションは1つ上のmapでnullチェック済み
         conditionValues: params.conditionValues,
-        critical: 0
+        activeEffects: [] // この配列は後で組み合わせ列挙したときに埋まる
       };
 
       // 実際にありうる会心・スキル等発動パターンとその確率を列挙しそれを加重平均
       const paramPatterns = enumeratePossibleParamPatterns(singleHitParams);
+      console.log(paramPatterns);
 
       let minTotal = Infinity;
       let maxTotal = -Infinity;

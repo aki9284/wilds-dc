@@ -28,43 +28,24 @@ function calculateElementalValue(params: SingleHitParams): number {
         elementValue = params.motion.elementValueOverride;
     }
 
-    // スキルとバフを統合したリストを作成し、orderプロパティを持たせる
-    const effects = [
-        ...params.selectedSkills.map(skill => ({
-            type: 'skill',
-            data: skill,
-            order: SKILL_DATA[skill.skillKey as SkillKey].order
-        })),
-        ...params.selectedBuffs.map(buff => ({
-            type: 'buff',
-            data: buff,
-            order: BUFF_DATA[buff as BuffKey].order
-        }))
-    ];
-
-    // orderプロパティに基づいてソート
-    effects.sort((a, b) => a.order - b.order);
-
-    // ソートされたリストを基に計算を実行
-    effects.forEach(effect => {
+    params.activeEffects.forEach(effect => {
         if (effect.type === 'skill') {
             const skill = SKILL_DATA[(effect.data as SelectedSkill).skillKey as SkillKey];
             const skillLevel = skill.levels[(effect.data as SelectedSkill).level - 1];
-            if ('multiplyElement' in skillLevel.effects) {
+            if (skillLevel.effects.multiplyElement !== undefined) {
                 elementValue = Math.floor(elementValue * skillLevel.effects.multiplyElement * 10) / 10;
             }
-            if ('addElement' in skillLevel.effects) {
+            if (skillLevel.effects.addElement !== undefined) {
                 elementValue += skillLevel.effects.addElement;
             }
         } else if (effect.type === 'buff') {
             const buff = BUFF_DATA[effect.data as BuffKey];
-            if ('multiplyElement' in buff) {
+            if (buff.multiplyElement !== undefined) {
                 elementValue = Math.floor(elementValue * buff.multiplyElement * 10) / 10;
             }
-            //属性値加算のバフが思いつかないのでコメントアウト
-            //if ('addElement' in buff) {
-            //    elementValue += buff.addElement;
-            //}
+            if (buff.addElement !== undefined) {
+                elementValue += buff.addElement;
+            }
         }
     });
 

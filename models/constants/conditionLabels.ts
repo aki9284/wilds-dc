@@ -5,14 +5,18 @@ export const CONDITION_LABELS = {
     },
     enraged: {
         label: '怒り状態割合',
-        type: 'probability',
+        type: 'possibility',
     },
     skillPeakPerformanceEnabled: {
         label: 'フルチャージ発動割合',
-        type: 'probability',
+        type: 'possibility',
+    },
+    skillBurstEnabled: {
+        label: '連撃発動割合',
+        type: 'possibility',
     },
     skillTozyuEnabled: {
         label: '闘獣の力発動割合',
-        type: 'probability',
+        type: 'possibility',
     }
 } as const;

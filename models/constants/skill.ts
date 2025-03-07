@@ -1,4 +1,5 @@
 import { multiply } from "lodash";
+import { EFFECT_ORDER_CRITICAL } from "./effectOrder";
 
 export type SkillEffect = {
   addAttack?: number;
@@ -18,6 +19,7 @@ export type SkillLevel = {
 export type Skill = {
   label: string;
   levels: SkillLevel[];
+  requirements?: string[];
   order: number;
 }
 
@@ -26,7 +28,7 @@ export interface SelectedSkill {
   level: number
 }
 
-export const SKILL_DATA = {
+export const SKILL_DATA: { [key: string]: Skill } = {
   attackBoost: {
     label: "攻撃",
     levels: [
@@ -41,11 +43,11 @@ export const SKILL_DATA = {
   criticalEye: {
     label: "見切り",
     levels: [
-      { level: 1, effects: { addAffinity: 10 } },
-      { level: 2, effects: { addAffinity: 20 } },
-      { level: 3, effects: { addAffinity: 30 } },
-      { level: 4, effects: { addAffinity: 40 } },
-      { level: 5, effects: { addAffinity: 50 } }
+      { level: 1, effects: { addAffinity: 4 } },
+      { level: 2, effects: { addAffinity: 8 } },
+      { level: 3, effects: { addAffinity: 12 } },
+      { level: 4, effects: { addAffinity: 16 } },
+      { level: 5, effects: { addAffinity: 20 } }
     ],
     order: 202
   },
@@ -65,6 +67,7 @@ export const SKILL_DATA = {
       { level: 2, effects: { addAffinity: 15, addAffinity2: 20 } },
       { level: 3, effects: { addAffinity: 20, addAffinity2: 30 } }
     ],
+    requirements: ["wounded"],
     order: 204
   },
   peakPerformance: {
@@ -76,6 +79,7 @@ export const SKILL_DATA = {
       { level: 4, effects: { addAttack: 15 } },
       { level: 5, effects: { addAttack: 20 } }
     ],
+    requirements: ["skillPeakPerformanceEnabled"],
     order: 205
   },
   agitator: {
@@ -87,6 +91,7 @@ export const SKILL_DATA = {
       { level: 4, effects: { addAttack: 16, addAffinity: 10 } },
       { level: 5, effects: { addAttack: 20, addAffinity: 15 } }
     ],
+    requirements: ["enraged"],
     order: 206
   },
   burstHH: {
@@ -98,6 +103,7 @@ export const SKILL_DATA = {
       { level: 4, effects: { addAttack: 16, addElement: 160 } },
       { level: 5, effects: { addAttack: 18, addElement: 200 } }
     ],
+    requirements: ["skillBurstEnabled"],
     order: 207
   },
   burstImproved:{
@@ -106,6 +112,7 @@ export const SKILL_DATA = {
       { level: 1, effects: { addAttack: 3 } },
       { level: 2, effects: { addAttack: 10 } },
     ],
+    requirements: ["skillBurstActive"],
     order: 301
   },
   elementAttack: {
@@ -116,6 +123,15 @@ export const SKILL_DATA = {
       { level: 3, effects: { addElement: 60, multiplyElement: 1.2 } },
     ],
     order: 201
+  },
+  criticalElement: {
+    label: "属性会心",
+    levels: [
+      { level: 1, effects: { addAffinity: 10 } },
+      { level: 2, effects: { addAffinity: 20 } },
+    ],
+    requirements: ["critical"],
+    order: EFFECT_ORDER_CRITICAL + 1
   }
 } as const;
 
