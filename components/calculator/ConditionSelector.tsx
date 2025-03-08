@@ -4,6 +4,7 @@ import { useAtom } from 'jotai'
 import { CONDITION_LABELS } from '@/models/constants/conditionLabels'
 import { conditionsAtom } from '@/models/atoms/conditionAtoms'
 import { SaveLoadPanel } from '@/components/common/SaveLoadPanel'
+import { SaveLoadableTabLayout } from '../navigation/TabNavigation'
 
 export function ConditionSelector() {
   const [conditionValues, setConditionValues] = useAtom(conditionsAtom)
@@ -26,7 +27,16 @@ export function ConditionSelector() {
   }
 
   return (
-    <div className="space-y-6">
+    <SaveLoadableTabLayout
+      saveLoadPanel = {
+        <SaveLoadPanel
+          storageKey="condition-settings"
+          presetFilePath="/data/conditionPresets.json"
+          onSave={handleSaveConditions}
+          onLoad={handleLoadConditions}
+        />
+      }
+    >
       <h2 className="text-xl font-semibold">計算条件設定</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-2 space-y-4">
@@ -60,15 +70,7 @@ export function ConditionSelector() {
             </div>
           ))}
         </div>
-        <div className="md:col-span-1">
-          <SaveLoadPanel
-            storageKey="condition-settings"
-            presetFilePath="/data/conditionPresets.json"
-            onSave={handleSaveConditions}
-            onLoad={handleLoadConditions}
-          />
-        </div>
       </div>
-    </div>
+    </SaveLoadableTabLayout>
   )
 }

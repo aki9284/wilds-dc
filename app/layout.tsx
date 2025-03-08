@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Wilds DC",
-  description: "Monster Hunter Wilds DC",
+  title: "かりぴきゅれーたー：狩猟笛ダメージ計算機",
+  description: "モンスターハンター ワイルズの狩猟笛について様々な条件でダメージ計算を行うことができます。",
 };
 
 export default function RootLayout({

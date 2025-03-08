@@ -30,6 +30,9 @@ export function WeaponForm() {
           value={stats.attack}
           onChange={(e) => setStats({ ...stats, attack: Number(e.target.value) })}
           className="border rounded px-2 py-1"
+          step="10"
+          min="90"
+          max="500"
         />
       </div>
       <div className="flex items-center gap-4">
@@ -39,6 +42,9 @@ export function WeaponForm() {
           value={stats.affinity}
           onChange={(e) => setStats({ ...stats, affinity: Number(e.target.value) })}
           className="border rounded px-2 py-1"
+          step="5"
+          min="-100"
+          max="100"
         />
       </div>
       <div className="flex items-center gap-4">
@@ -62,6 +68,9 @@ export function WeaponForm() {
           value={stats.elementValue}
           onChange={(e) => setStats({ ...stats, elementValue: Number(e.target.value) })}
           className="border rounded px-2 py-1"
+          step="10"
+          min="0"
+          max="990"
         />
       </div>
       <div className="flex items-center gap-4">

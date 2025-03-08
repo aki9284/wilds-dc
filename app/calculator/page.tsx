@@ -38,23 +38,13 @@ export default function CalculatorPage() {
       case 'compare':
         return <ComparePanel />
       default:
-        return (
-          <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <h2 className="text-lg font-semibold">Quick Overview</h2>
-            </div>
-            <div className="space-y-4">
-              <h2 className="text-lg font-semibold">Quick Actions</h2>
-            </div>
-          </div>
-        )
+        setActiveTab('equipment')
     }
   }
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex-none">
-        <h1 className="text-2xl font-bold p-6 pb-4">Damage Calculator</h1>
         <TabNavigation 
           activeTab={activeTab} 
           onTabChange={setActiveTab} 

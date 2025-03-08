@@ -7,14 +7,16 @@ export default function CalculatorLayout({
     children: React.ReactNode
   }) {
     return (
-      <div className="flex">
-        <main className="flex-1">
-          {children}
-        </main>
-        <aside className="w-80">
-          <ResultPanel />
-          <HistoryPanel />
-        </aside>
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row gap-4">
+          <main className="flex-1">
+            {children}
+          </main>
+          <aside className="lg:w-80 w-full">
+            <ResultPanel />
+            <HistoryPanel />
+          </aside>
+        </div>
       </div>
     )
   }

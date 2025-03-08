@@ -7,6 +7,7 @@ import { selectedTargetsAtom, selectedMonsterAtom } from '@/models/atoms/targetA
 import { SelectedTarget } from '@/models/types/target'
 import { SaveLoadPanel } from '../common/SaveLoadPanel'
 import { getCachedMonsterData } from '@/utils/dataFetch'
+import { SaveLoadableTabLayout } from '../navigation/TabNavigation'
 
 export function TargetSelector() {
     const monsters = getCachedMonsterData();
@@ -95,7 +96,20 @@ export function TargetSelector() {
     }
 
     return (
-      <div className="flex gap-8">
+      <SaveLoadableTabLayout
+        saveLoadPanel = {
+          <SaveLoadPanel
+            storageKey="target-settings"
+            presetFilePath="/data/targetPresets.json"
+            onSave={(name) => ({
+              targets: selectedTargets,
+            })}
+            onLoad={(saved) => {
+              setSelectedTargets(saved.targets)
+            }}
+          />
+        }
+      >
         <div className="space-y-4 p-4">
           <div className="flex items-center gap-4">
             <select
@@ -145,38 +159,27 @@ export function TargetSelector() {
                       </option>
                     ))}
                 </select>
-                          <input
-                            type="number"
-                            value={target.percentage}
-                            onChange={(e) => updateTarget(target.id, { 
-                              percentage: Math.max(0, Number(e.target.value))
-                            })}
-                            className="border rounded p-2 w-24"
-                            min="0"
-                            max="100"
-                          />
-                          <span>%</span>
-                          <button
-                            onClick={() => removeTarget(target.id)}
-                            className="text-red-500 hover:text-red-700"
-                          >
-                            削除
-                          </button>
-                        </div>
+                <input
+                  type="number"
+                  value={target.percentage}
+                  onChange={(e) => updateTarget(target.id, { 
+                    percentage: Math.max(0, Number(e.target.value))
+                  })}
+                  className="border rounded p-2 w-24"
+                  min="0"
+                  max="100"
+                />
+                <span>%</span>
+                <button
+                  onClick={() => removeTarget(target.id)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  削除
+                </button>
+              </div>
             ))}
           </div>
         </div>
-
-        <SaveLoadPanel
-          storageKey="target-settings"
-          presetFilePath="/data/targetPresets.json"
-          onSave={(name) => ({
-            targets: selectedTargets,
-          })}
-          onLoad={(saved) => {
-            setSelectedTargets(saved.targets)
-          }}
-        />
-      </div>
+      </SaveLoadableTabLayout>
     )
   }

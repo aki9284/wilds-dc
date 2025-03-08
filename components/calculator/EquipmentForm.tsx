@@ -8,6 +8,7 @@ import { useAtom } from 'jotai'
 import { currentWeaponStatsAtom } from '@/models/atoms/weaponAtom'
 import { selectedSkillsAtom } from '@/models/atoms/skillAtoms'
 import { selectedBuffsAtom } from '@/models/atoms/buffAtoms'
+import { SaveLoadableTabLayout } from "../navigation/TabNavigation"
 
 export function EquipmentForm() {
   const [weaponStats, setWeaponStats] = useAtom(currentWeaponStatsAtom)
@@ -29,8 +30,17 @@ export function EquipmentForm() {
   }
 
   return (
-    <div className="flex gap-8">
-      <div className="flex-1 space-y-8">
+    <SaveLoadableTabLayout
+      saveLoadPanel={
+        <SaveLoadPanel 
+          storageKey="equipment-settings"
+          presetFilePath="/data/equipmentPresets.json"
+          onSave={handleSave}
+          onLoad={handleLoad}
+        />
+      }
+    >
+      <div className="flex-1 space-y-4">
         <div>
           <h2 className="text-lg font-semibold mb-4">武器設定</h2>
           <WeaponForm />
@@ -44,14 +54,6 @@ export function EquipmentForm() {
           <BuffSelector />
         </div>
       </div>
-      <div className="w-80">
-        <SaveLoadPanel 
-          storageKey="equipment-settings"
-          presetFilePath="/data/equipmentPresets.json"
-          onSave={handleSave}
-          onLoad={handleLoad}
-        />
-      </div>
-    </div>
+    </SaveLoadableTabLayout>
   )
 }

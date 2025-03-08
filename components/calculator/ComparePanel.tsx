@@ -20,8 +20,6 @@ const loadPresetData = async (filePath: string) => {
     return presets
 }
 
-// ComparisonRow interface は atom 定義ファイルに移動
-
 export function ComparePanel() {
     const motions = getCachedMotionData();
     const [rows, setRows] = useAtom(comparisonRowsAtom); // Use the atom
@@ -94,6 +92,10 @@ export function ComparePanel() {
     const removeRow = (id: string) => {
         setRows(rows.filter(row => row.id !== id))
     }
+
+    const removeAllRows = () => {
+        setRows([]);  // これにより全行が削除され、useEffect により自動的に1行が追加されます
+    };
 
     // プリセット選択を更新 (atom を更新)
     const updateRowPreset = (id: string, field: keyof ComparisonRow, value: string) => {
@@ -205,12 +207,20 @@ export function ComparePanel() {
                 >
                     行を追加
                 </button>
-                <button
-                    onClick={calculateAllRows}
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-                >
-                    すべて計算
-                </button>
+                <div className="flex gap-2">
+                    <button
+                        onClick={calculateAllRows}
+                        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                    >
+                        すべて計算
+                    </button>
+                    <button
+                        onClick={removeAllRows}
+                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                        すべて削除
+                    </button>
+                </div>
             </div>
 
             <div className="overflow-x-auto">

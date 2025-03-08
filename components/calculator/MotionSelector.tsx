@@ -7,6 +7,7 @@ import { Motion } from '@/models/types/motion';
 import { nanoid } from 'nanoid';
 import { SaveLoadPanel } from '../common/SaveLoadPanel';
 import { getCachedMotionData } from '@/utils/dataFetch';
+import { SaveLoadableTabLayout } from '../navigation/TabNavigation';
 
 export function MotionSelector() {
   const motions = getCachedMotionData();
@@ -48,7 +49,16 @@ export function MotionSelector() {
   };
 
   return (
-    <div className="flex gap-8">
+    <SaveLoadableTabLayout
+        saveLoadPanel={
+          <SaveLoadPanel 
+            storageKey="motion-settings"
+            presetFilePath='/data/motionPresets.json'
+            onSave={handleSave}
+            onLoad={handleLoad}
+          />
+        }
+    >
       <div className="flex-1">
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">モーション選択</h2>
@@ -91,26 +101,8 @@ export function MotionSelector() {
           >
             モーション追加
           </button>
-
-          <div className="mt-6 p-4 bg-gray-50 rounded">
-            <h3 className="font-semibold mb-2">選択中のモーション合計</h3>
-            <div>
-              総モーション値: {selectedMotions.reduce((sum, s) => sum + (Number(s.motion?.value) || 0), 0)}
-            </div>
-            <div>
-              総モーション時間: {selectedMotions.reduce((sum, s) => sum + (Number(s.motion?.duration) || 0), 0)}秒
-            </div>
-          </div>
         </div>
       </div>
-      <div className="w-80">
-        <SaveLoadPanel 
-          storageKey="motion-settings"
-          presetFilePath='/data/motionPresets.json'
-          onSave={handleSave}
-          onLoad={handleLoad}
-        />
-      </div>
-    </div>
+    </SaveLoadableTabLayout>
   );
 }
