@@ -1,0 +1,27 @@
+[
+    {
+      "name": "標準設定",
+      "description": "プリセット",
+      "data": {
+        "damageCut": 100,
+        "enraged": 50,
+        "skillPeakPerformanceEnabled": 80,
+        "skillBurstEnabled": 60,
+        "frenzyRecovered": 70,
+        "coalescenceEnabled": 50
+      }
+    },
+    {
+      "name": "攻撃的設定",
+      "description": "プリセット",
+      "data": {
+        "damageCut": 100,
+        "enraged": 80,
+        "skillPeakPerformanceEnabled": 90,
+        "skillBurstEnabled": 70,
+        "frenzyRecovered": 80,
+        "coalescenceEnabled": 60
+      }
+    }
+  ]
+  

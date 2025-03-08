@@ -6,6 +6,7 @@ import { TargetSelector } from '@/components/calculator/TargetSelector'
 import { MotionSelector } from '@/components/calculator/MotionSelector'
 import { ConditionSelector } from '@/components/calculator/ConditionSelector'
 import { fetchMonsterData, fetchMotionData } from '@/utils/dataFetch'
+import { ComparePanel } from '@/components/calculator/ComparePanel'
 
 export default function CalculatorPage() {
   const [activeTab, setActiveTab] = useState('overview')
@@ -34,7 +35,8 @@ export default function CalculatorPage() {
         return <MotionSelector />
       case 'condition':
         return <ConditionSelector />
-      case 'overview':
+      case 'compare':
+        return <ComparePanel />
       default:
         return (
           <div className="grid grid-cols-2 gap-6">
