@@ -5,8 +5,9 @@ import { useAtom } from 'jotai'
 import { nanoid } from 'nanoid'
 import { calculateDamage, CalculationResults } from '@/lib/calculations/damageCalculator'
 import { getCachedMotionData } from '@/utils/dataFetch'
+import { ComparisonRow, comparisonRowsAtom } from '@/models/atoms/comparePanelAtom' // Import the new atom
 
-// SaveLoadPanelと同じロジックを使用
+// SaveLoadPanelと同じロジックを使用 (変更なし)
 const loadSavedItems = (storageKey: string) => {
     const saved = localStorage.getItem(storageKey)
     if (!saved) return []
@@ -19,25 +20,17 @@ const loadPresetData = async (filePath: string) => {
     return presets
 }
 
-interface ComparisonRow {
-    id: string
-    equipmentPresetName: string
-    targetPresetName: string
-    motionPresetName: string
-    conditionPresetName: string
-    results: CalculationResults | null
-    isCalculating: boolean
-}
+// ComparisonRow interface は atom 定義ファイルに移動
 
 export function ComparePanel() {
     const motions = getCachedMotionData();
-    const [rows, setRows] = useState<ComparisonRow[]>([])
+    const [rows, setRows] = useAtom(comparisonRowsAtom); // Use the atom
     const [equipmentPresets, setEquipmentPresets] = useState<any[]>([])
     const [targetPresets, setTargetPresets] = useState<any[]>([])
     const [motionPresets, setMotionPresets] = useState<any[]>([])
     const [conditionPresets, setConditionPresets] = useState<any[]>([])
 
-    // 各種プリセット読み込み
+    // 各種プリセット読み込み (変更なし)
     useEffect(() => {
         const loadAllPresets = async () => {
             // ローカルストレージから項目を読み込み
@@ -45,13 +38,13 @@ export function ComparePanel() {
             const savedTargets = loadSavedItems('target-settings')
             const savedMotions = loadSavedItems('motion-settings')
             const savedConditions = loadSavedItems('condition-settings')
-            
+
             // JSONファイルからプリセットを読み込み
             const equipmentJsonPresets = await loadPresetData('/data/equipmentPresets.json')
             const targetJsonPresets = await loadPresetData('/data/targetPresets.json')
             const motionJsonPresets = await loadPresetData('/data/motionPresets.json')
             const conditionJsonPresets = await loadPresetData('/data/conditionPresets.json')
-            
+
             // 両方を結合して設定
             setEquipmentPresets([...savedEquipment, ...equipmentJsonPresets])
             setTargetPresets([...savedTargets, ...targetJsonPresets])
@@ -62,59 +55,73 @@ export function ComparePanel() {
         loadAllPresets()
     }, [])
 
-    // 新しい行を追加
+    // タブ切り替え時などに全行再計算
+    useEffect(() => {
+        // 全ての行に対して計算を試みる
+        rows.forEach(row => {
+          const hasAllPresets = 
+            equipmentPresets.find(p => p.name === row.equipmentPresetName) &&
+            targetPresets.find(p => p.name === row.targetPresetName) &&
+            motionPresets.find(p => p.name === row.motionPresetName) &&
+            conditionPresets.find(p => p.name === row.conditionPresetName);
+      
+          if (hasAllPresets) {
+            calculateRow(row, true);
+          } else {
+            // プリセットが見つからない場合は結果をクリア
+            setRows(prevRows => 
+              prevRows.map(r => 
+                r.id === row.id ? { ...r, results: null } : r
+              )
+            );
+          }
+        });
+      }, [equipmentPresets, targetPresets, motionPresets, conditionPresets]);
+      
+    // 新しい行を追加 (atom を更新)
     const addRow = () => {
-        const newRow: ComparisonRow = {
+        const newRow = {
             id: nanoid(),
             equipmentPresetName: equipmentPresets.length > 0 ? equipmentPresets[0].name : '',
             targetPresetName: targetPresets.length > 0 ? targetPresets[0].name : '',
             motionPresetName: motionPresets.length > 0 ? motionPresets[0].name : '',
             conditionPresetName: conditionPresets.length > 0 ? conditionPresets[0].name : '',
-            results: null,
-            isCalculating: false
         }
         setRows([...rows, newRow])
     }
 
-    // 行を削除
+    // 行を削除 (atom を更新)
     const removeRow = (id: string) => {
         setRows(rows.filter(row => row.id !== id))
     }
 
-    // プリセット選択を更新
+    // プリセット選択を更新 (atom を更新)
     const updateRowPreset = (id: string, field: keyof ComparisonRow, value: string) => {
-        setRows(rows.map(row => 
-            row.id === id ? { ...row, [field]: value, results: null } : row
-        ))
-    }
+        setRows(
+            rows.map((row) => 
+                row.id === id 
+                ? { ...row, [field]: value, results: null } // resultsをnullにリセット
+                : row
+            )
+        );
+    };
 
     // 特定の行の計算を実行
-    const calculateRow = async (row: ComparisonRow) => {
-        // 既に計算済みの場合はスキップ
-        if (row.results !== null) return
+    const calculateRow = async (row: any, forceRecalculate: boolean = false) => {
 
-        // プリセットが選択されているか確認
-        if (!row.equipmentPresetName || !row.targetPresetName || 
-            !row.motionPresetName || !row.conditionPresetName) {
-            return
-        }
+        // 計算前に results を null に設定
+        setRows(prevRows => prevRows.map(r => r.id === row.id ? { ...r, results: null } : r));
 
-        // 計算中フラグを設定
-        setRows(rows.map(r => 
-            r.id === row.id ? { ...r, isCalculating: true } : r
-        ))
-
-        // 各プリセットのデータを取得
-        const equipmentPreset = equipmentPresets.find(p => p.name === row.equipmentPresetName)
-        const targetPreset = targetPresets.find(p => p.name === row.targetPresetName)
-        const motionPreset = motionPresets.find(p => p.name === row.motionPresetName)
-        const conditionPreset = conditionPresets.find(p => p.name === row.conditionPresetName)
+        // 各プリセットのデータを取得 (null チェックを追加)
+        const equipmentPreset = equipmentPresets.find(p => p.name === row.equipmentPresetName) ?? null;
+        const targetPreset = targetPresets.find(p => p.name === row.targetPresetName) ?? null;
+        const motionPreset = motionPresets.find(p => p.name === row.motionPresetName) ?? null;
+        const conditionPreset = conditionPresets.find(p => p.name === row.conditionPresetName) ?? null;
 
         if (!equipmentPreset || !targetPreset || !motionPreset || !conditionPreset) {
-            setRows(rows.map(r => 
-                r.id === row.id ? { ...r, isCalculating: false } : r
-            ))
-            return
+            console.error("Preset not found for:", row);
+            // 必要に応じてエラーメッセージを表示するなどの処理
+            return;
         }
 
         // 計算に必要な値をプリセットから取得
@@ -139,46 +146,66 @@ export function ComparePanel() {
                 conditionValues
             })
 
-            // 結果を更新
-            setRows(rows.map(r => 
-                r.id === row.id ? { ...r, results, isCalculating: false } : r
-            ))
+            // 結果をローカルステートに反映 (atomはプリセット名のみ保持)
+            setRows(prevRows => prevRows.map(r => {
+                if (r.id === row.id) {
+                    return { ...r, results }; // results を保持
+                }
+                return r;
+            }));
+
         } catch (error) {
             console.error("計算エラー:", error)
-            setRows(rows.map(r => 
-                r.id === row.id ? { ...r, isCalculating: false } : r
-            ))
+            // 必要に応じてエラーメッセージを表示
         }
     }
+    // 計算結果表示用のstate
+    const [resultsMap, setResultsMap] = useState<Record<string, CalculationResults | null>>({});
+
+    useEffect(() => {
+        const newResultsMap: Record<string, CalculationResults | null> = {};
+        rows.forEach(row => {
+          if (row.results) {
+            newResultsMap[row.id] = row.results;
+          } else {
+            newResultsMap[row.id] = null;
+          }
+        });
+        setResultsMap(newResultsMap);
+      }, [rows]);
 
     // すべての行の計算を実行
     const calculateAllRows = () => {
-        rows.forEach(row => calculateRow(row))
-    }
+      const promises = rows.map(row => calculateRow(row, true)); // forceRecalculate を true に
+      Promise.all(promises).then(() => {
+          // 全ての計算が終了した後の処理（必要であれば）
+      });
+    };
 
-    // 初回レンダリング時に空の行を追加
+    // 初回レンダリング時に空の行を追加 (atom が空の場合のみ)
     useEffect(() => {
-        if (rows.length === 0 && 
-            equipmentPresets.length > 0 && 
-            targetPresets.length > 0 && 
-            motionPresets.length > 0 && 
+        if (rows.length === 0 &&
+            equipmentPresets.length > 0 &&
+            targetPresets.length > 0 &&
+            motionPresets.length > 0 &&
             conditionPresets.length > 0) {
             addRow()
         }
-    }, [equipmentPresets, targetPresets, motionPresets, conditionPresets])
+    }, [equipmentPresets, targetPresets, motionPresets, conditionPresets, rows.length]) // rows.length を依存配列に追加
+
 
     return (
         <div className="space-y-4">
             <h2 className="text-xl font-semibold">装備・条件の複数比較</h2>
-            
+
             <div className="flex justify-between mb-4">
-                <button 
+                <button
                     onClick={addRow}
                     className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
                     行を追加
                 </button>
-                <button 
+                <button
                     onClick={calculateAllRows}
                     className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
                 >
@@ -260,31 +287,33 @@ export function ComparePanel() {
                                         ))}
                                     </select>
                                 </td>
-                                <td className="py-2 px-3 border text-right font-mono">
-                                    {row.isCalculating ? (
-                                        <span className="text-gray-400">計算中...</span>
-                                    ) : row.results ? (
-                                        row.results.minDamage.total
+                                <td className="py-2 px-3 border text-right font-mono" colSpan={resultsMap[row.id] ? 1 : 4}>
+                                    {resultsMap[row.id] ? (
+                                        resultsMap[row.id]?.minDamage.total
                                     ) : (
-                                        <button 
-                                            onClick={() => calculateRow(row)}
-                                            className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200"
+                                        <button
+                                        onClick={() => calculateRow(row, true)}
+                                        className="w-full h-[28px] leading-[28px] px-4 bg-blue-500 text-white rounded hover:bg-blue-600 text-center"
                                         >
-                                            計算
+                                        計算
                                         </button>
                                     )}
                                 </td>
-                                <td className="py-2 px-3 border text-right font-mono">
-                                    {row.results && !row.isCalculating ? row.results.expectedDamage.total : '-'}
-                                </td>
-                                <td className="py-2 px-3 border text-right font-mono">
-                                    {row.results && !row.isCalculating ? row.results.maxDamage.total : '-'}
-                                </td>
-                                <td className="py-2 px-3 border text-right font-mono">
-                                    {row.results && !row.isCalculating ? row.results.dps : '-'}
-                                </td>
+                                {resultsMap[row.id] && (
+                                    <>
+                                        <td className="py-2 px-3 border text-right font-mono">
+                                        {resultsMap[row.id]?.expectedDamage.total}
+                                        </td>
+                                        <td className="py-2 px-3 border text-right font-mono">
+                                        {resultsMap[row.id]?.maxDamage.total}
+                                        </td>
+                                        <td className="py-2 px-3 border text-right font-mono">
+                                        {resultsMap[row.id]?.dps}
+                                        </td>
+                                    </>
+                                )}
                                 <td className="py-2 px-3 border text-center">
-                                    <button 
+                                    <button
                                         onClick={() => removeRow(row.id)}
                                         className="px-2 py-1 text-xs bg-red-100 text-red-700 rounded hover:bg-red-200"
                                     >
