@@ -225,19 +225,18 @@ export function ComparePanel() {
                 </div>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border">
+            <div className="overflow-x-auto max-w-full">
+                <table className="min-w-full bg-white border table-fixed">
                     <thead>
                         <tr className="bg-gray-100">
-                            <th className="py-2 px-3 border text-left">装備</th>
-                            <th className="py-2 px-3 border text-left">攻撃対象</th>
-                            <th className="py-2 px-3 border text-left">モーション</th>
-                            <th className="py-2 px-3 border text-left">計算条件</th>
-                            <th className="py-2 px-3 border text-right">最小ダメージ</th>
-                            <th className="py-2 px-3 border text-right">期待ダメージ</th>
-                            <th className="py-2 px-3 border text-right">最大ダメージ</th>
-                            <th className="py-2 px-3 border text-right">DPS</th>
-                            <th className="py-2 px-3 border text-center">操作</th>
+                            <th className="py-2 px-3 border text-left min-w-[180px]">装備</th>
+                            <th className="py-2 px-3 border text-left min-w-[180px]">攻撃対象</th>
+                            <th className="py-2 px-3 border text-left min-w-[180px]">モーション</th>
+                            <th className="py-2 px-3 border text-left min-w-[180px]">計算条件</th>
+                            <th className="py-2 px-3 border text-right min-w-[60px]">最小</th>
+                            <th className="py-2 px-3 border text-right min-w-[60px]">期待値</th>
+                            <th className="py-2 px-3 border text-right min-w-[60px]">最大</th>
+                            <th className="py-2 px-3 border text-center min-w-[80px]">操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -318,9 +317,6 @@ export function ComparePanel() {
                                         </td>
                                         <td className="py-2 px-3 border text-right font-mono">
                                         {resultsMap[row.id]?.maxDamage.total}
-                                        </td>
-                                        <td className="py-2 px-3 border text-right font-mono">
-                                        {resultsMap[row.id]?.dps}
                                         </td>
                                     </>
                                 )}

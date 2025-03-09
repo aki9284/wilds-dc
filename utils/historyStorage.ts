@@ -1,18 +1,25 @@
 import { CalculationHistory } from "@/models/types/history";
+import { historiesAtom } from '@/models/atoms/historyAtom'
+import { getDefaultStore } from 'jotai'
+
+const store = getDefaultStore()
 
 export const historyStorage = {
-  save: (history: CalculationHistory) => {
-    const histories = localStorage.getItem('damage-calc-histories');
-    const existingHistories = histories ? JSON.parse(histories) : [];
-    localStorage.setItem('damage-calc-histories', JSON.stringify([history, ...existingHistories]));
-  },
-  
   getAll: (): CalculationHistory[] => {
-    const histories = localStorage.getItem('damage-calc-histories');
-    return histories ? JSON.parse(histories) : [];
+    const histories = JSON.parse(localStorage.getItem('histories') || '[]')
+    store.set(historiesAtom, histories)
+    return histories
+  },
+
+  save: (history: CalculationHistory) => {
+    const histories = historyStorage.getAll()
+    histories.unshift(history)
+    localStorage.setItem('histories', JSON.stringify(histories))
+    store.set(historiesAtom, histories)
   },
   
   clear: () => {
-    localStorage.removeItem('damage-calc-histories');
+    localStorage.removeItem('histories')
+    store.set(historiesAtom, [])
   }
-};
+}

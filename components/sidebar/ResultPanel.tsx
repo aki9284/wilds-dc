@@ -10,7 +10,6 @@ import { selectedMotionsAtom } from '@/models/atoms/motionAtom'
 import { conditionsAtom } from '@/models/atoms/conditionAtoms'
 import { calculateDamage, CalculationResults, MotionDamage } from '@/lib/calculations/damageCalculator'
 import { historyStorage } from '@/utils/historyStorage'
-import { updateTriggerAtom } from '@/models/atoms/historyAtom'
 import { nanoid } from 'nanoid'
 
 export function ResultPanel() {
@@ -23,7 +22,6 @@ export function ResultPanel() {
   const [selectedTargets] = useAtom(selectedTargetsAtom)
   const [selectedMotions] = useAtom(selectedMotionsAtom)
   const [conditionValues] = useAtom(conditionsAtom);
-  const [, setUpdateTrigger] = useAtom(updateTriggerAtom)
 
   const handleCalculate = () => {
     if (selectedTargets.length === 0) {
@@ -60,7 +58,6 @@ export function ResultPanel() {
         }
       }
       historyStorage.save(history)
-      setUpdateTrigger(prev => prev + 1)
     }
   }
 
@@ -85,7 +82,7 @@ export function ResultPanel() {
             <span className="text-sm">最小ダメージ</span>
             <div className="flex gap-3 text-sm">
               <span className="font-mono">{results.minDamage.total}</span>
-              <span className="font-mono">({results.minDamage.physical}/{results.minDamage.elemental})</span>
+              <span className="font-mono">({results.minDamage.physical}+{results.minDamage.elemental})</span>
             </div>
           </div>
 
@@ -93,7 +90,7 @@ export function ResultPanel() {
             <span className="text-sm">最大ダメージ</span>
             <div className="flex gap-3 text-sm">
               <span className="font-mono">{results.maxDamage.total}</span>
-              <span className="font-mono">({results.maxDamage.physical}/{results.maxDamage.elemental})</span>
+              <span className="font-mono">({results.maxDamage.physical}+{results.maxDamage.elemental})</span>
             </div>
           </div>
 
@@ -101,30 +98,25 @@ export function ResultPanel() {
             <span className="text-sm">期待ダメージ</span>
             <div className="flex gap-3 text-sm">
               <span className="font-mono">{results.expectedDamage.total}</span>
-              <span className="font-mono">({results.expectedDamage.physical}/{results.expectedDamage.elemental})</span>
+              <span className="font-mono">({results.expectedDamage.physical}+{results.expectedDamage.elemental})</span>
             </div>
           </div>
 
-          <div className="flex justify-between items-center">
-            <span className="text-sm">期待DPS</span>
-            <span className="font-mono text-sm">{results.dps}</span>
-          </div>
-
           <div className="mt-4">
-            <h3 className="text-lg font-semibold mb-2">モーション内訳</h3>
+            <h4 className="font-semibold mt-8 mb-2">モーション内訳</h4>
             {results.motionDamages.map((motionDamage, index) => (
               <div key={index} className="border-t py-2">
                 <button
                   onClick={() => toggleMotionDetails(index)}
                   className="w-full text-left text-sm font-bold text-blue-500"
                 >
-                  {motionDamage.motion.name} ダメージ: {motionDamage.minDamage.total}
+                  {motionDamage.motion.name} : {motionDamage.minDamage.total}
                 </button>
                 {expandedMotionIndex === index && (
                   <div className="mt-2 pl-4 text-sm">
-                    <div>物理ダメージ: {motionDamage.minDamage.physical}</div>
-                    <div>属性ダメージ: {motionDamage.minDamage.elemental}</div>
-                    <div>最大ダメージ: {motionDamage.maxDamage.total}</div>
+                    <div>最小: {motionDamage.minDamage.total}（{motionDamage.minDamage.physical}+{motionDamage.minDamage.elemental}）</div>
+                    <div>期待値:{motionDamage.expectedDamage.total}（{motionDamage.expectedDamage.physical}+{motionDamage.expectedDamage.elemental}）</div>
+                    <div>最大: {motionDamage.maxDamage.total}（{motionDamage.maxDamage.physical}+{motionDamage.maxDamage.elemental}）</div>
                   </div>
                 )}
               </div>

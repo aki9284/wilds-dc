@@ -131,7 +131,7 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
             </div>
 
             <div className="space-y-2">
-                <h3 className="font-bold">保存済み</h3>
+                <h3 className="font-bold">保存済みの設定</h3>
                 <div className="flex items-center gap-2">
                     <input
                         type="checkbox"
