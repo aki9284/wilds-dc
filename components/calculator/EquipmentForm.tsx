@@ -40,16 +40,16 @@ export function EquipmentForm() {
         />
       }
     >
-      <div className="flex-1 space-y-4">
-        <div>
+      <div className="flex flex-wrap gap-4">
+        <div className="flex-[1_1_250px]">
           <h2 className="text-lg font-semibold mb-4">武器設定</h2>
           <WeaponForm />
         </div>
-        <div>
+        <div className="flex-[1_1_400px]">
           <h2 className="text-lg font-semibold mb-4">スキル設定</h2>
           <SkillSelector />
         </div>
-        <div>
+        <div className="flex-[1_1_250px]">
           <h2 className="text-lg font-semibold mb-4">バフ設定</h2>
           <BuffSelector />
         </div>

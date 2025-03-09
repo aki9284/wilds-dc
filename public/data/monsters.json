@@ -459,7 +459,7 @@
             "water": 5,
             "thunder": 5,
             "ice": 5,
-            "dragon": 100
+            "dragon": 5
           }
         },
         {
@@ -472,7 +472,7 @@
             "water": 5,
             "thunder": 5,
             "ice": 5,
-            "dragon": 100
+            "dragon": 5
           },
           "wounded": true
         },
@@ -486,7 +486,7 @@
             "water": 1,
             "thunder": 1,
             "ice": 1,
-            "dragon": 0
+            "dragon": 5
           }
         },
         {
@@ -499,7 +499,7 @@
             "water": 5,
             "thunder": 10,
             "ice": 5,
-            "dragon": 0
+            "dragon": 15
           },
           "wounded": true
         },
@@ -513,7 +513,7 @@
             "water": 2,
             "thunder": 2,
             "ice": 2,
-            "dragon": 0
+            "dragon": 4
           }
         },
         {
@@ -526,7 +526,7 @@
             "water": 5,
             "thunder": 10,
             "ice": 5,
-            "dragon": 0
+            "dragon": 15
           },
           "wounded": true
         },
@@ -540,7 +540,7 @@
             "water": 2,
             "thunder": 2,
             "ice": 2,
-            "dragon": 0
+            "dragon": 4
           }
         },
         {
@@ -553,7 +553,7 @@
             "water": 5,
             "thunder": 10,
             "ice": 5,
-            "dragon": 0
+            "dragon": 15
           },
           "wounded": true
         },
@@ -567,7 +567,7 @@
             "water": 5,
             "thunder": 5,
             "ice": 5,
-            "dragon": 0
+            "dragon": 5
           }
         },
         {
@@ -580,7 +580,7 @@
             "water": 5,
             "thunder": 10,
             "ice": 5,
-            "dragon": 0
+            "dragon": 15
           },
           "wounded": true
         },
@@ -594,7 +594,7 @@
             "water": 2,
             "thunder": 2,
             "ice": 2,
-            "dragon": 0
+            "dragon": 4
           }
         },
         {
@@ -607,7 +607,7 @@
             "water": 5,
             "thunder": 10,
             "ice": 5,
-            "dragon": 0
+            "dragon": 15
           },
           "wounded": true
         },
@@ -621,7 +621,7 @@
             "water": 2,
             "thunder": 2,
             "ice": 2,
-            "dragon": 0
+            "dragon": 4
           }
         },
         {
@@ -634,7 +634,7 @@
             "water": 5,
             "thunder": 10,
             "ice": 5,
-            "dragon": 0
+            "dragon": 15
           },
           "wounded": true
         },
@@ -661,7 +661,7 @@
             "water": 30,
             "thunder": 30,
             "ice": 30,
-            "dragon": 0
+            "dragon": 38
           },
           "wounded": true
         },
@@ -688,7 +688,7 @@
             "water": 30,
             "thunder": 30,
             "ice": 30,
-            "dragon": 0
+            "dragon": 38
           },
           "wounded": true
         }

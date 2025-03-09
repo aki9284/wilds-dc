@@ -87,6 +87,14 @@ export function ResultPanel() {
           </div>
 
           <div className="flex justify-between items-center">
+            <span className="text-sm">期待ダメージ</span>
+            <div className="flex gap-3 text-sm">
+              <span className="font-mono">{results.expectedDamage.total}</span>
+              <span className="font-mono">({results.expectedDamage.physical}+{results.expectedDamage.elemental})</span>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center">
             <span className="text-sm">最大ダメージ</span>
             <div className="flex gap-3 text-sm">
               <span className="font-mono">{results.maxDamage.total}</span>
@@ -94,13 +102,7 @@ export function ResultPanel() {
             </div>
           </div>
 
-          <div className="flex justify-between items-center">
-            <span className="text-sm">期待ダメージ</span>
-            <div className="flex gap-3 text-sm">
-              <span className="font-mono">{results.expectedDamage.total}</span>
-              <span className="font-mono">({results.expectedDamage.physical}+{results.expectedDamage.elemental})</span>
-            </div>
-          </div>
+          
 
           <div className="mt-4">
             <h4 className="font-semibold mt-8 mb-2">モーション内訳</h4>
@@ -110,7 +112,7 @@ export function ResultPanel() {
                   onClick={() => toggleMotionDetails(index)}
                   className="w-full text-left text-sm font-bold text-blue-500"
                 >
-                  {motionDamage.motion.name} : {motionDamage.minDamage.total}
+                  {motionDamage.motion.name} : {motionDamage.minDamage.total}～{motionDamage.expectedDamage.total}～{motionDamage.maxDamage.total}
                 </button>
                 {expandedMotionIndex === index && (
                   <div className="mt-2 pl-4 text-sm">

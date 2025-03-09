@@ -19,7 +19,7 @@ export function MenuBar() {
             {/* ロゴエリアを追加 */}
             <div className="flex-shrink-0">
               <Link href="/">
-                <span className="text-xl font-bold text-white">かりぴきゅれーたー</span>
+                <span className="text-xl font-bold text-white">かりぴきゅれーたー(仮)</span>
                 {/* または画像ロゴの場合:
                 <Image
                   src="/logo.png"

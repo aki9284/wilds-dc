@@ -298,7 +298,7 @@ export function ComparePanel() {
                                         ))}
                                     </select>
                                 </td>
-                                <td className="py-2 px-3 border text-right font-mono" colSpan={resultsMap[row.id] ? 1 : 4}>
+                                <td className="py-2 px-3 border text-right font-mono" colSpan={resultsMap[row.id] ? 1 : 3}>
                                     {resultsMap[row.id] ? (
                                         resultsMap[row.id]?.minDamage.total
                                     ) : (

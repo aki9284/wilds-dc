@@ -78,7 +78,7 @@ export function MotionSelector() {
                   <option value="">モーションを選択</option>
                   {motions.map((motion) => (
                     <option key={motion.name} value={motion.name}>
-                      {motion.weaponType} - {motion.name} (MV: {motion.value})
+                      {motion.name}
                     </option>
                   ))}
                 </select>

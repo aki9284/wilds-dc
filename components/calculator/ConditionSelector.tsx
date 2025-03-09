@@ -37,8 +37,7 @@ export function ConditionSelector() {
         />
       }
     >
-      <h2 className="text-xl font-semibold">計算条件設定</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
         <div className="md:col-span-2 space-y-4">
           {Object.entries(CONDITION_LABELS).map(([key, condition]) => (
             <div key={key} className="space-y-2">
