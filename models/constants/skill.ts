@@ -140,6 +140,16 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     order: 302,
     hidden: true
   },
+  antivirus:{
+    label: "無我の境地",
+    levels: [
+      { level: 1, effects: { addAffinity: 3 } },
+      { level: 2, effects: { addAffinity: 6 } },
+      { level: 3, effects: { addAffinity: 10 } }
+    ],
+    requirements: ["frenzyRecovered"],
+    order: 303,
+  },
   elementAttack: {
     label: "属性攻撃強化",
     levels: [
