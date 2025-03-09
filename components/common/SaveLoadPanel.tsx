@@ -108,6 +108,18 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
       setSavedItems(newItems)
       setSelectedIndex(null)
   }
+
+    const handleOverwrite = (index: number) => {
+        const data = onSave(savedItems[index].name);
+        const newItems = [...savedItems];
+        newItems[index] = {
+            ...newItems[index],
+            data: data,
+        };
+        localStorage.setItem(storageKey, JSON.stringify(newItems));
+        setSavedItems(newItems);
+    };
+
     return (
         <div className="space-y-4 p-4 border-l">
             <div className="space-y-2">
@@ -171,7 +183,7 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
                         >
                             リロード
                         </button>
-                        {selectedIndex >= (showPresets ? presetItems.length : 0) && (
+                        {selectedIndex !== null && selectedIndex >= (showPresets ? presetItems.length : 0) && (
                             <>
                                 {isRenaming ? (
                                     <>
@@ -199,6 +211,12 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
                                         名前変更
                                     </button>
                                 )}
+                                <button
+                                    onClick={() => handleOverwrite(selectedIndex - (showPresets ? presetItems.length : 0))}
+                                    className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
+                                >
+                                    上書き
+                                </button>
                                 <button
                                     onClick={() => handleDelete(selectedIndex - (showPresets ? presetItems.length : 0))}
                                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
