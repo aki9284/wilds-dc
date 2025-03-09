@@ -38,11 +38,12 @@ export function ComparePanel() {
             const savedMotions = loadSavedItems('motion-settings')
             const savedConditions = loadSavedItems('condition-settings')
 
-            // JSONファイルからプリセットを読み込み
-            const equipmentJsonPresets = await loadPresetData('/data/equipmentPresets.json')
-            const targetJsonPresets = await loadPresetData('/data/targetPresets.json')
-            const motionJsonPresets = await loadPresetData('/data/motionPresets.json')
-            const conditionJsonPresets = await loadPresetData('/data/conditionPresets.json')
+            // JSONファイルからプリセットを読み込み    
+            const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+            const equipmentJsonPresets = await loadPresetData(`${basePath}/data/equipmentPresets.json`)
+            const targetJsonPresets = await loadPresetData(`${basePath}/data/targetPresets.json`)
+            const motionJsonPresets = await loadPresetData(`${basePath}/data/motionPresets.json`)
+            const conditionJsonPresets = await loadPresetData(`${basePath}/data/conditionPresets.json`)
 
             // 両方を結合して設定
             setEquipmentPresets([...savedEquipment, ...equipmentJsonPresets])
