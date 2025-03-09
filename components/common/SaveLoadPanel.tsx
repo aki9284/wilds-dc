@@ -9,7 +9,7 @@ interface SaveLoadPanelProps {
   onLoad: (data: any) => void;
 }
 
-interface SavedItem {
+export interface SavedItem {
   version: string;
   key: string;
   name: string;
@@ -17,12 +17,20 @@ interface SavedItem {
   data: any;
 }
 
+interface PresetItem {
+    name: string;
+    description: string;
+    data: any;
+}
+
 const CURRENT_DATA_VERSION = '1.0.0';
 
 const loadPresetData = async (filePath: string): Promise<SavedItem[]> => {
-  const response = await fetch(filePath);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const url = `${basePath}${filePath}`;
+  const response = await fetch(url);
   const presets = await response.json();
-  return presets.map((preset: any) => ({
+  return presets.map((preset: PresetItem) => ({
       version: CURRENT_DATA_VERSION,
       key: preset.name,
       name: preset.name,

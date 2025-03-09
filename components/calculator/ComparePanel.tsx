@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid'
 import { calculateDamage, CalculationResults } from '@/lib/calculations/damageCalculator'
 import { getCachedMotionData } from '@/utils/dataFetch'
 import { ComparisonRow, comparisonRowsAtom } from '@/models/atoms/comparePanelAtom' // Import the new atom
+import { SavedItem } from '../common/SaveLoadPanel'
 
 // SaveLoadPanelと同じロジックを使用 (変更なし)
 const loadSavedItems = (storageKey: string) => {
@@ -23,10 +24,10 @@ const loadPresetData = async (filePath: string) => {
 export function ComparePanel() {
     const motions = getCachedMotionData();
     const [rows, setRows] = useAtom(comparisonRowsAtom); // Use the atom
-    const [equipmentPresets, setEquipmentPresets] = useState<any[]>([])
-    const [targetPresets, setTargetPresets] = useState<any[]>([])
-    const [motionPresets, setMotionPresets] = useState<any[]>([])
-    const [conditionPresets, setConditionPresets] = useState<any[]>([])
+    const [equipmentPresets, setEquipmentPresets] = useState<SavedItem[]>([])
+    const [targetPresets, setTargetPresets] = useState<SavedItem[]>([])
+    const [motionPresets, setMotionPresets] = useState<SavedItem[]>([])
+    const [conditionPresets, setConditionPresets] = useState<SavedItem[]>([])
 
     // 各種プリセット読み込み (変更なし)
     useEffect(() => {
@@ -64,7 +65,7 @@ export function ComparePanel() {
             conditionPresets.find(p => p.name === row.conditionPresetName);
       
           if (hasAllPresets) {
-            calculateRow(row, true);
+            calculateRow(row);
           } else {
             // プリセットが見つからない場合は結果をクリア
             setRows(prevRows => 
@@ -109,7 +110,7 @@ export function ComparePanel() {
     };
 
     // 特定の行の計算を実行
-    const calculateRow = async (row: any, forceRecalculate: boolean = false) => {
+    const calculateRow = async (row: ComparisonRow) => {
 
         // 計算前に results を null に設定
         setRows(prevRows => prevRows.map(r => r.id === row.id ? { ...r, results: null } : r));
@@ -178,7 +179,7 @@ export function ComparePanel() {
 
     // すべての行の計算を実行
     const calculateAllRows = () => {
-      const promises = rows.map(row => calculateRow(row, true)); // forceRecalculate を true に
+      const promises = rows.map(row => calculateRow(row));
       Promise.all(promises).then(() => {
           // 全ての計算が終了した後の処理（必要であれば）
       });
@@ -302,7 +303,7 @@ export function ComparePanel() {
                                         resultsMap[row.id]?.minDamage.total
                                     ) : (
                                         <button
-                                        onClick={() => calculateRow(row, true)}
+                                        onClick={() => calculateRow(row)}
                                         className="w-full h-[28px] leading-[28px] px-4 bg-blue-500 text-white rounded hover:bg-blue-600 text-center"
                                         >
                                         計算

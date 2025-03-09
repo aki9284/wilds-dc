@@ -1,5 +1,4 @@
 'use client'
-import { useEffect, useState } from 'react'
 
 interface Content {
   id: number
@@ -13,23 +12,6 @@ interface Data {
 }
 
 export default function Home() {
-  const [data, setData] = useState<Data | null>(null)
-
-  if (!data) return <div>Loading...</div>
-
-  return (
-    <main className="p-4">
-      <h1>{data.title}</h1>
-      <a href="/dc">Damage Calculator</a>
-      <div>
-        {data.content.map((item) => (
-          <div key={item.id}>
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-          </div>
-        ))}
-      </div>
-    </main>
-  )
+  return <div>Loading...</div>
 }
 

@@ -12,7 +12,7 @@ export interface PossibleParamPattern {
 }
 
 export function enumeratePossibleParamPatterns(params: SingleHitParams): PossibleParamPattern[] {
-    let patterns: PossibleParamPattern[] = [];
+    const patterns: PossibleParamPattern[] = [];
 
     // 付く可能性のあるスキルとバフに加えてクリティカル判定をまとめてeffectとし、orderでソート
     const effects = [
@@ -55,7 +55,7 @@ export function enumeratePossibleParamPatterns(params: SingleHitParams): Possibl
 
     effects.sort((a, b) => a.order - b.order);
 
-    let effectCombinations: {effects: Effect[], possibility: number}[] = [];
+    const effectCombinations: {effects: Effect[], possibility: number}[] = [];
     generateEffectCombinations(effects, 0, [], effectCombinations, 1.0, params);
        
     effectCombinations.forEach(effectCombination => {

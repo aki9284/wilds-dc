@@ -36,7 +36,9 @@ async function fetchData(url: string, cacheKey: string): Promise<any> {
 }
 
 export async function fetchMonsterData(): Promise<Monster[]> {
-    return fetchData('/data/monsters.json', MONSTER_CACHE_KEY);
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    const url = `${basePath}/data/monsters.json`;
+    return fetchData(url, MONSTER_CACHE_KEY);
 }
 
 export function getCachedMonsterData(): Monster[] {
@@ -48,7 +50,9 @@ export function getCachedMonsterData(): Monster[] {
 }
 
 export async function fetchMotionData(): Promise<Motion[]> {
-    return fetchData('/data/motions.json', MOTION_CACHE_KEY);
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    const url = `${basePath}/data/motions.json`;
+    return fetchData(url, MOTION_CACHE_KEY);
 }
 
 export function getCachedMotionData(): Motion[] {
