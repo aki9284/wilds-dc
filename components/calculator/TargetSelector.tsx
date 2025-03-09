@@ -176,6 +176,27 @@ export function TargetSelector() {
                 >
                   削除
                 </button>
+                <div>
+                  打：{monsters.find(m => m.name === selectedMonster)?.parts.find(p => p.name === target.partName)?.effectiveness.impact }
+                </div>
+                <div>
+                  斬：{monsters.find(m => m.name === selectedMonster)?.parts.find(p => p.name === target.partName)?.effectiveness.slash }
+                </div>
+                <div>
+                  火：{monsters.find(m => m.name === selectedMonster)?.parts.find(p => p.name === target.partName)?.effectiveness.fire }
+                </div>
+                <div>
+                  水：{monsters.find(m => m.name === selectedMonster)?.parts.find(p => p.name === target.partName)?.effectiveness.water }
+                </div>
+                <div>
+                  雷：{monsters.find(m => m.name === selectedMonster)?.parts.find(p => p.name === target.partName)?.effectiveness.thunder }
+                </div>
+                <div>
+                  氷：{monsters.find(m => m.name === selectedMonster)?.parts.find(p => p.name === target.partName)?.effectiveness.ice }
+                </div>
+                <div>
+                  龍：{monsters.find(m => m.name === selectedMonster)?.parts.find(p => p.name === target.partName)?.effectiveness.dragon }
+                </div>
               </div>
             ))}
           </div>
