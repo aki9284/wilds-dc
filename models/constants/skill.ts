@@ -192,11 +192,11 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     order: 601
   },
   criticalElement: {
-    label: "属性会心",
+    label: "会心撃【属性】",
     levels: [
-      { level: 1, effects: { setCritFactor: 1.05 } },
-      { level: 2, effects: { setCritFactor: 1.1 } },
-      { level: 3, effects: { setCritFactor: 1.15 } },
+      { level: 1, effects: { setCritFactor: 1.07 } },
+      { level: 2, effects: { setCritFactor: 1.14 } },
+      { level: 3, effects: { setCritFactor: 1.21 } },
     ],
     requirements: ["critical"],
     order: EFFECT_ORDER_CRITICAL + 1
