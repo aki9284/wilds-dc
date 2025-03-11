@@ -3,10 +3,11 @@ import { SingleHitParams } from "./damageCalculator";
 import { SelectedSkill, SKILL_DATA, SkillKey } from "@/models/constants/skill";
 import { BUFF_DATA, BuffKey } from "@/models/constants/buff";
 import { SHARPNESS_DATA } from "@/models/constants/sharpness";
+import { DamageElemntTypeKey, isDamageElementType } from "@/models/constants/damageTypes";
 
 // 属性ダメージ
 export function calculateElementalDamage(params: SingleHitParams): number {
-    if (params.weaponStats.elementType === 'none') {
+    if (!isDamageElementType(params.weaponStats.elementType)) {
         return 0;
     }
 
@@ -70,8 +71,8 @@ function calculateElementalEffectiveness(params: SingleHitParams): number {
     }
 
     const damageType = params.weaponStats.elementType;
-    if (damageType === 'none') {
-        throw new Error(`Elemental damage type is none`);
+    if (!isDamageElementType(damageType)) {
+        throw new Error(`Element type is not valid: ${damageType}`);
     }
     const effectiveness = part.effectiveness[damageType];
 

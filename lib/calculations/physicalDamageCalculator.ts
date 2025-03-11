@@ -29,6 +29,7 @@ function calculatePhysicalAttack(params: SingleHitParams): number {
               if (skillLevel.effects.multiplyAttack !== undefined) {
                 //physicalAttack = Math.round(physicalAttack * skillLevel.effects.multiplyAttack * 10) / 10;
                 //physicalAttack = physicalAttack * skillLevel.effects.multiplyAttack;
+                //表示攻撃力は整数切り捨てだが内部は小数点1まで持っていないと計算が合わない それもroundではなくfloorに思われるが要追加検証
                 physicalAttack = Math.floor(physicalAttack * skillLevel.effects.multiplyAttack * 10) / 10;
               }
               if (skillLevel.effects.addAttack !== undefined) {

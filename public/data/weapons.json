@@ -1,0 +1,255 @@
+[
+    {
+      "id": "HH_01",
+      "name": "エスペラホルン",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 210,
+        "affinity": 0,
+        "elementType": "none",
+        "elementValue": 0,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_02",
+      "name": "白炎笛アリエント",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 200,
+        "affinity": 15,
+        "elementType": "fire",
+        "elementValue": 300,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_03",
+      "name": "グレートバグパイプ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 210,
+        "affinity": 0,
+        "elementType": "none",
+        "elementValue": 0,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_04",
+      "name": "断崖のコーヴィラ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 210,
+        "affinity": 0,
+        "elementType": "ice",
+        "elementValue": 500,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_05",
+      "name": "赫炎笛ジーヴァカ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 210,
+        "affinity": 10,
+        "elementType": "blast",
+        "elementValue": 250,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_06",
+      "name": "暗琴クージン",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 220,
+        "affinity": 0,
+        "elementType": "water",
+        "elementValue": 250,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_07",
+      "name": "沙海笛ガントヴィジ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 210,
+        "affinity": 10,
+        "elementType": "water",
+        "elementValue": 300,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_08",
+      "name": "煌雷鼓ブリスビッツァ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 220,
+        "affinity": 0,
+        "elementType": "thunder",
+        "elementValue": 300,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_09",
+      "name": "ロイヤルビードロー",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 220,
+        "affinity": 0,
+        "elementType": "paralysis",
+        "elementValue": 400,
+        "sharpness": "blue"
+      }
+    },
+    {
+      "id": "HH_10",
+      "name": "ハードボーンホルン",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 220,
+        "affinity": 0,
+        "elementType": "none",
+        "elementValue": 0,
+        "sharpness": "blue"
+      }
+    },
+    {
+      "id": "HH_11",
+      "name": "闢轟笛ホンガタピリ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 240,
+        "affinity": -5,
+        "elementType": "none",
+        "elementValue": 0,
+        "sharpness": "blue"
+      }
+    },
+    {
+      "id": "HH_12",
+      "name": "護鎖刃笛ガルシュハド",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 230,
+        "affinity": -10,
+        "elementType": "dragon",
+        "elementValue": 250,
+        "sharpness": "blue"
+      }
+    },
+    {
+      "id": "HH_13",
+      "name": "鎖刃笛ギャラハッド",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 210,
+        "affinity": 0,
+        "elementType": "dragon",
+        "elementValue": 400,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_14",
+      "name": "護闢轟笛ガルグマピリ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 250,
+        "affinity": -15,
+        "elementType": "none",
+        "elementValue": 0,
+        "sharpness": "blue"
+      }
+    },
+    {
+      "id": "HH_15",
+      "name": "ウォーコンガ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 210,
+        "affinity": 5,
+        "elementType": "none",
+        "elementValue": 0,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_16",
+      "name": "クックカンタービレ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 230,
+        "affinity": 0,
+        "elementType": "fire",
+        "elementValue": 500,
+        "sharpness": "blue"
+      }
+    },
+    {
+      "id": "HH_17",
+      "name": "護雷笛ホーンガルデ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 210,
+        "affinity": 15,
+        "elementType": "thunder",
+        "elementValue": 400,
+        "sharpness": "blue"
+      }
+    },
+    {
+      "id": "HH_18",
+      "name": "毒笛カプリ【狂奏】",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 230,
+        "affinity": 0,
+        "elementType": "poison",
+        "elementValue": 400,
+        "sharpness": "blue"
+      }
+    },
+    {
+      "id": "HH_19",
+      "name": "クイーンリコーダー",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 200,
+        "affinity": 15,
+        "elementType": "poison",
+        "elementValue": 250,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_20",
+      "name": "火竜笛アンビシオン",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 200,
+        "affinity": 10,
+        "elementType": "fire",
+        "elementValue": 400,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_21",
+      "name": "サウンドofソロウ",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 200,
+        "affinity": 20,
+        "elementType": "dragon",
+        "elementValue": 300,
+        "sharpness": "white"
+      }
+    }
+  ]
+  

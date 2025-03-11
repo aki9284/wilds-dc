@@ -1,6 +1,5 @@
 import { SharpnessKey } from '../constants/sharpness';
 import { ElementTypeKey } from '../constants/damageTypes';
-import exp from 'constants';
 
 export const WEAPON_TYPES = {
   greatSword: {
@@ -57,3 +56,10 @@ export type WeaponStats = {
   elementValue: number;
   sharpness: SharpnessKey;
 };
+
+export type NamedWeaponData = {
+  id: string;
+  name: string;
+  type: WeaponTypeKey;
+  stats: WeaponStats;
+}

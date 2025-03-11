@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Combobox } from '@headlessui/react'
+import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from '@headlessui/react'
 import { useAtom } from 'jotai'
 import { selectedSkillsAtom } from '@/models/atoms/skillAtoms'
 import { SKILL_DATA, SkillKey } from '@/models/constants/skill'
@@ -50,7 +50,7 @@ export function SkillSelector() {
             as="div"
             className="relative"
           >
-            <Combobox.Button as="div" className="relative">
+            <ComboboxButton as="div" className="relative">
               <Combobox.Input
                 className="border rounded px-2 py-1"
                 onChange={(event) => setQuery(event.target.value)}
@@ -58,11 +58,11 @@ export function SkillSelector() {
                 onBlur={() => setIsInputFocused(false)}
                 displayValue={(key: SkillKey) => SKILL_DATA[key].label}
               />
-            </Combobox.Button>
+            </ComboboxButton>
 
-            <Combobox.Options className="absolute mt-1 bg-white border rounded shadow-lg max-h-60 overflow-auto w-full z-10">
+            <ComboboxOptions className="absolute mt-1 bg-white border rounded shadow-lg max-h-60 overflow-auto w-full z-10">
               {filteredSkills(index).map(([key, skill]) => (
-                <Combobox.Option
+                <ComboboxOption
                   key={key}
                   value={key}
                   className={({ active }) =>
@@ -76,9 +76,9 @@ export function SkillSelector() {
                       {skill.label}
                     </span>
                   )}
-                </Combobox.Option>
+                </ComboboxOption>
               ))}
-            </Combobox.Options>
+            </ComboboxOptions>
           </Combobox>
 
           <select

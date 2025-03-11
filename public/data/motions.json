@@ -1,6 +1,48 @@
 [ 
     { 
         "weaponType": "huntingHorn",
+        "name": "前方攻撃", 
+        "value": 32,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "左ぶん回し",
+        "value": 33,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "右ぶん回し",
+        "value": 33,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "連音攻撃1段目",
+        "value": 15,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    { 
+        "weaponType": "huntingHorn",
+        "name": "連音攻撃2段目", 
+        "value": 25,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    { 
+        "weaponType": "huntingHorn",
+        "name": "後方攻撃", 
+        "value": 46,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    { 
+        "weaponType": "huntingHorn",
         "name": "叩きつけ1段目", 
         "value": 14,
         "damageType": "impact",
@@ -12,6 +54,20 @@
         "value": 42,
         "damageType": "impact",
         "duration": 1
+    },
+    { 
+        "weaponType": "huntingHorn",
+        "name": "叩きつけ・追撃", 
+        "value": 65,
+        "damageType": "impact",
+        "duration": 1
+    },
+    { 
+        "weaponType": "huntingHorn",
+        "name": "柄攻撃", 
+        "value": 10,
+        "damageType": "slash",
+        "duration": 0.2
     },
     { 
         "weaponType": "huntingHorn",
@@ -144,6 +200,72 @@
         "ignoreEffectiveness": true,
         "ignoreSharpness": true,
         "multiplyElement": 0.3,
+        "duration": 0
+    },
+    { 
+        "weaponType": "huntingHorn",
+        "name": "集中音撃【残響】突き", 
+        "value": 20,
+        "damageType": "impact",
+        "duration": 1
+    },
+    { 
+        "weaponType": "huntingHorn",
+        "name": "集中音撃【残響】衝撃波", 
+        "value": 10,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreEffectiveness": true,
+        "ignoreSharpness": true,
+        "duration": 1
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "集中音撃【残響】フィニッシュ",
+        "value": 50,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreEffectiveness": true,
+        "ignoreSharpness": true,
+        "duration": 1
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "相殺の調べ",
+        "value": 75,
+        "damageType": "impact",
+        "duration": 1
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "響鳴の調べ1段目",
+        "value": 20,
+        "damageType": "impact",
+        "duration": 0.2
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "響鳴の調べ2段目",
+        "value": 22,
+        "damageType": "impact",
+        "duration": 0.2
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "響鳴の調べ3段目",
+        "value": 20,
+        "damageType": "impact",
+        "duration": 0.2
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "響鳴の調べ衝撃波",
+        "value": 15,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "ignoreEffectiveness": true,
+        "multiplyElement": 0.5,
         "duration": 0
     }
 ]
