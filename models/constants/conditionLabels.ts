@@ -15,6 +15,18 @@ export const CONDITION_LABELS = {
         label: '連撃発動割合',
         type: 'possibility',
     },
+    skillAdrenalineRushEnabled: {
+        label: '巧撃発動割合',
+        type: 'possibility',
+    },
+    skillCounterstrikeEnabled: {
+        label: '逆襲発動割合',
+        type: 'possibility',
+    },
+    skillMaximumMightEnabled: {
+        label: '渾身発動割合',
+        type: 'possibility',
+    },
     frenzyRecovered: {
         label: '狂竜症克服状態割合',
         type: 'possibility',

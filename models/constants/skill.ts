@@ -53,6 +53,16 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     ],
     order: 202
   },
+  maximumMight: {
+    label: "渾身",
+    levels: [
+      { level: 1, effects: { addAffinity: 10 } },
+      { level: 2, effects: { addAffinity: 20 } },
+      { level: 3, effects: { addAffinity: 30 } },
+    ],
+    requirements: ["skillMaximumMightEnabled"],
+    order: 202
+  },
   criticalBoost: {
     label: "超会心",
     levels: [
@@ -100,6 +110,28 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     requirements: ["enraged"],
     order: 206
   },
+  adrenalineRush: {
+    label: "巧撃",
+    levels: [
+      { level: 1, effects: { addAttack: 10 } },
+      { level: 2, effects: { addAttack: 15 } },
+      { level: 3, effects: { addAttack: 20 } },
+      { level: 4, effects: { addAttack: 25 } },
+      { level: 5, effects: { addAttack: 30 } }
+    ],
+    requirements: ["skillAdrenalineRushEnabled"],
+    order: 207
+  },
+  counterstrike: {
+    label: "逆襲",
+    levels: [
+      { level: 1, effects: { addAttack: 10 } },
+      { level: 2, effects: { addAttack: 15 } },
+      { level: 3, effects: { addAttack: 25 } },
+    ],
+    requirements: ["skillCounterstrikeEnabled"],
+    order: 208
+  },
   burstHH: {
     label: "連撃(笛)",
     levels: [
@@ -110,7 +142,7 @@ export const SKILL_DATA: { [key: string]: Skill } = {
       { level: 5, effects: { addAttack: 18, addElement: 200 } }
     ],
     requirements: ["skillBurstEnabled"],
-    order: 207
+    order: 602
   },
   burstImproved:{
     label: "連撃強化",
@@ -119,7 +151,7 @@ export const SKILL_DATA: { [key: string]: Skill } = {
       { level: 2, effects: { addAttack: 10 } },
     ],
     requirements: ["skillBurstActive"],
-    order: 301
+    order: 603
   },
   goreMagalasTyranny:{
     label: "黒蝕一体",
@@ -157,14 +189,14 @@ export const SKILL_DATA: { [key: string]: Skill } = {
       { level: 2, effects: { addElement: 50, multiplyElement: 1.1 } },
       { level: 3, effects: { addElement: 60, multiplyElement: 1.2 } },
     ],
-    order: 201
+    order: 601
   },
   criticalElement: {
     label: "属性会心",
     levels: [
-      { level: 1, effects: { multiplyElement: 1.05 } },
-      { level: 2, effects: { multiplyElement: 1.1 } },
-      { level: 3, effects: { multiplyElement: 1.15 } },
+      { level: 1, effects: { setCritFactor: 1.05 } },
+      { level: 2, effects: { setCritFactor: 1.1 } },
+      { level: 3, effects: { setCritFactor: 1.15 } },
     ],
     requirements: ["critical"],
     order: EFFECT_ORDER_CRITICAL + 1

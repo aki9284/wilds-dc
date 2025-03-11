@@ -27,6 +27,7 @@ function calculateElementalValue(params: SingleHitParams): number {
     if (params.motion.elementValueOverride !== undefined && params.motion.elementValueOverride !== null) {
         elementValue = params.motion.elementValueOverride;
     }
+    const elementValueMax = Math.max(elementValue + 350, elementValue * 1.9);
 
     params.activeEffects.forEach(effect => {
         if (effect.type === 'skill') {
@@ -49,7 +50,7 @@ function calculateElementalValue(params: SingleHitParams): number {
         }
     });
 
-    return elementValue;
+    return Math.min(elementValue, elementValueMax);
 }
 
 // 属性肉質
@@ -93,8 +94,22 @@ function calculateElementalDamageModifier(params: SingleHitParams): number {
         motionModifier = params.motion.multiplyElement;
     }
 
+    // 会心補正（属性会心のみ）
+    let critModifier = 1.0;
+    if (params.activeEffects.some(effect => effect.type === 'critical')) {
+        const criticalElementEffect = params.activeEffects.find(
+            effect => effect.type === 'skill' && 
+            (effect.data as SelectedSkill).skillKey === 'criticalElement');
+        if (criticalElementEffect) {
+            const skillLevel = SKILL_DATA['criticalElement'].levels[(criticalElementEffect.data as SelectedSkill).level - 1];
+            critModifier = skillLevel.effects.setCritFactor || 1;
+        } else {
+            critModifier = 1;
+        }
+    }
+
     // 全体防御率
     const totalDefenseModifier = params.conditionValues.damageCut/100;
     
-    return sharpnessModifier * motionModifier * totalDefenseModifier;
+    return sharpnessModifier * motionModifier * critModifier * totalDefenseModifier;
 }
