@@ -78,6 +78,14 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
   }, [storageKey, presetFilePath]);
 
   const handleSave = (name: string) => {
+      // 既存の保存データとプリセットの名前をチェック
+      const isDuplicate = [...presetItems, ...savedItems].some(item => item.name === name);
+
+      if (isDuplicate) {
+          alert('この名前は既に使用されています。別の名前を指定してください。');
+          return;
+      }
+    
       const data = onSave(name);
       const newItem: SavedItem = {
           version: CURRENT_DATA_VERSION,
