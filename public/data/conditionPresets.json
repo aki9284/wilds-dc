@@ -1,26 +1,32 @@
 [
     {
-      "name": "標準設定",
+      "name": "全スキル常時発動",
+      "description": "プリセット",
+      "data": {
+        "damageCut": 100,
+        "enraged": 100,
+        "skillPeakPerformanceEnabled": 100,
+        "skillBurstEnabled": 100,
+        "skillAdrenalineRushEnabled": 100,
+        "skillCounterstrikeEnabled": 100,
+        "skillMaximumMightEnabled": 100,
+        "frenzyRecovered": 100,
+        "coalescenceEnabled": 100
+      }
+    },
+    {
+      "name": "条件スキル50%発動",
       "description": "プリセット",
       "data": {
         "damageCut": 100,
         "enraged": 50,
-        "skillPeakPerformanceEnabled": 80,
-        "skillBurstEnabled": 60,
-        "frenzyRecovered": 70,
+        "skillPeakPerformanceEnabled": 50,
+        "skillBurstEnabled": 50,
+        "skillAdrenalineRushEnabled": 50,
+        "skillCounterstrikeEnabled": 50,
+        "skillMaximumMightEnabled": 50,
+        "frenzyRecovered": 50,
         "coalescenceEnabled": 50
-      }
-    },
-    {
-      "name": "攻撃的設定",
-      "description": "プリセット",
-      "data": {
-        "damageCut": 100,
-        "enraged": 80,
-        "skillPeakPerformanceEnabled": 90,
-        "skillBurstEnabled": 70,
-        "frenzyRecovered": 80,
-        "coalescenceEnabled": 60
       }
     }
   ]

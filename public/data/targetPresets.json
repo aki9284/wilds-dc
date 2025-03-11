@@ -1,37 +1,48 @@
 [
     {
-        "name": "リオレウス5050",
-        "description": "プリセット",
-        "data": {
-            "targets": [
-                {
-                    "id": "WnsH5UYinjvS2uAc3TVg4",
-                    "monsterName": "リオレウス",
-                    "partName": "頭",
-                    "scarred": false,
-                    "percentage": 50
-                },
-                {
-                    "id": "G8M25HOMB5Afza0CwjPU_",
-                    "monsterName": "リオレウス",
-                    "partName": "胴体",
-                    "scarred": false,
-                    "percentage": 50
-                }
-            ]
-        }
-    },
-    {
         "name": "ダミー前面",
         "description": "プリセット",
         "data": {
             "targets": [
                 {
-                    "id": "WnsH5UYinjvS2uAc3TVg4",
+                    "id": "preset01-01",
                     "monsterName": "トレーニングダミー",
                     "partName": "前面",
-                    "scarred": false,
                     "percentage": 100
+                }
+            ]
+        }
+    },
+    {
+        "name": "アルシュベルド頭",
+        "description": "プリセット",
+        "data": {
+            "targets": [
+                {
+                    "id": "preset02-01",
+                    "monsterName": "アルシュベルド",
+                    "partName": "頭",
+                    "percentage": 100
+                }
+            ]
+        }
+    },
+    {
+        "name": "ゴア頭:触角 50:50",
+        "description": "プリセット",
+        "data": {
+            "targets": [
+                {
+                    "id": "preset03-01",
+                    "monsterName": "ゴアマガラ",
+                    "partName": "頭",
+                    "percentage": 50
+                },
+                {
+                    "id": "preset03-02",
+                    "monsterName": "ゴアマガラ",
+                    "partName": "触角",
+                    "percentage": 50
                 }
             ]
         }

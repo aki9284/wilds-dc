@@ -152,8 +152,46 @@
     },
     {
         "weaponType":"huntingHorn",
+        "name": "響周波【打】_2重",
+        "value": 70,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "mutiplyElement":0,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【打】_3重",
+        "value": 100,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "mutiplyElement":0,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
         "name": "響周波【斬】",
         "value": 50,
+        "damageType": "slash",
+        "ignoreSharpness": true,
+        "mutiplyElement":0,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【斬】_2重",
+        "value": 70,
+        "damageType": "slash",
+        "ignoreSharpness": true,
+        "mutiplyElement":0,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【斬】_3重",
+        "value": 100,
         "damageType": "slash",
         "ignoreSharpness": true,
         "mutiplyElement":0,
@@ -167,6 +205,56 @@
         "cannotCrit": true,
         "ignoreSharpness": true,
         "elementValueOverride": 600,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【属性】_2重",
+        "value": 65,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "elementValueOverride": 1000,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【属性】_3重",
+        "value": 85,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "elementValueOverride": 1400,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【異常】",
+        "value": 45,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "elementValueOverride": 500,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【異常】_2重",
+        "value": 65,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "elementValueOverride": 1000,
+        "duration":0
+    },
+    {
+        "weaponType":"huntingHorn",
+        "name": "響周波【異常】_3重",
+        "value": 85,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreSharpness": true,
+        "elementValueOverride": 1500,
         "duration":0
     },
     {

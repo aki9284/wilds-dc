@@ -1,58 +1,71 @@
 [
     {
-        "name": "テスト武器A",
+        "name": "アーティア（無属性）攻撃特化",
         "description": "プリセット",
         "data": {
             "weaponStats": {
-                "attack": 210,
-                "affinity": 10,
-                "elementType": "water",
-                "elementValue": 10,
-                "sharpness": "blue"
-            },
-            "selectedSkills": [
-                {
-                    "skillKey": "attackBoost",
-                    "level": 3
-                }
-            ],
-            "selectedBuffs": [
-                "melodyAttackLarge"
-            ]
-        }
-    },
-    {
-        "name": "裸グレートバグパイプ",
-        "description": "プリセット",
-        "data": {
-            "weaponStats": {
-                "attack": 210,
-                "affinity": 0,
+                "attack": 230,
+                "affinity": 5,
                 "elementType": "none",
                 "elementValue": 0,
                 "sharpness": "white"
             },
-            "selectedSkills": [],
+            "selectedSkills": [
+                {
+                    "skillKey": "burstHH",
+                    "level": 5
+                }
+            ],
             "selectedBuffs": [
-                "melodyAttackLarge",
-                "powercharm"
+                "melodySelfBoost",
+                "powercharm",
+                "melodyAttackSmall"
             ]
         }
     },
     {
-        "name": "裸コーヴィラ",
+        "name": "アーティア（属性）攻撃特化",
         "description": "プリセット",
         "data": {
             "weaponStats": {
-                "attack": 210,
-                "affinity": 0,
-                "elementType": "ice",
-                "elementValue": 500,
+                "attack": 230,
+                "affinity": 5,
+                "elementType": "thunder",
+                "elementValue": 350,
                 "sharpness": "white"
             },
-            "selectedSkills": [],
+            "selectedSkills": [
+                {
+                    "skillKey": "burstHH",
+                    "level": 5
+                }
+            ],
             "selectedBuffs": [
-                "melodyElementBoost",
+                "melodySelfBoost",
+                "powercharm",
+                "melodyElementBoost"
+            ]
+        }
+    },
+    {
+        "name": "アーティア（異常）攻撃特化",
+        "description": "プリセット",
+        "data": {
+            "weaponStats": {
+                "attack": 230,
+                "affinity": 5,
+                "elementType": "paralysis",
+                "elementValue": 350,
+                "sharpness": "white"
+            },
+            "selectedSkills": [
+                {
+                    "skillKey": "burstHH",
+                    "level": 5
+                }
+            ],
+            "selectedBuffs": [
+                "melodySelfBoost",
                 "powercharm"
             ]
         }
