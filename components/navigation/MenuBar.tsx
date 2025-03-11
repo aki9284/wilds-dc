@@ -49,7 +49,7 @@ export function MenuBar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md hover:bg-gray-100"
+              className="p-2 rounded-md bg-white hover:bg-gray-100"
             >
               <span className="sr-only">Open menu</span>
               {isOpen ? '✕' : '☰'}
@@ -66,7 +66,7 @@ export function MenuBar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"
+                className="block px-3 py-2 rounded-md text-white hover:text-gray-400"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
