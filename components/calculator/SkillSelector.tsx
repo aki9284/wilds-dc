@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Combobox, ComboboxButton, ComboboxOption, ComboboxOptions } from '@headlessui/react'
+import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions } from '@headlessui/react'
 import { useAtom } from 'jotai'
 import { selectedSkillsAtom } from '@/models/atoms/skillAtoms'
 import { SKILL_DATA, SkillKey } from '@/models/constants/skill'
@@ -26,8 +26,16 @@ export function SkillSelector() {
   
   
   const addSkillSelection = () => {
-    const firstAvailableSkill = Object.keys(SKILL_DATA)[0] as SkillKey
-    setSelectedSkills([...selectedSkills, { skillKey: firstAvailableSkill, level: 1 }])
+    const availableSkill = Object.entries(SKILL_DATA)
+    .find(([key, skill]) => 
+      !selectedSkills.some(selected => selected.skillKey === key) && 
+      !skill.hidden
+    );
+
+    if (availableSkill) {
+      const [skillKey] = availableSkill;
+      setSelectedSkills([...selectedSkills, { skillKey: skillKey as SkillKey, level: 1 }]);
+    }
   }
 
   const updateSkillSelection = (index: number, skillKey: SkillKey, level: number) => {
@@ -38,6 +46,12 @@ export function SkillSelector() {
 
   const removeSkillSelection = (index: number) => {
     setSelectedSkills(selectedSkills.filter((_, i) => i !== index))
+  }
+
+  const isValidSkill = (input: string): boolean => {
+    return Object.values(SKILL_DATA).some(skill => 
+      skill.label.toLowerCase() === input.toLowerCase()
+    )
   }
 
   return (
@@ -51,11 +65,29 @@ export function SkillSelector() {
             className="relative"
           >
             <ComboboxButton as="div" className="relative">
+              {/* 入力によるスキル選択は複数コンボボックス間で妙な事象を引き起こすため一時無効化
+              <ComboboxInput
+                className="border rounded px-2 py-1"
+                onChange={(event) => {
+                  setQuery(event.target.value)
+                  // 入力が空の場合は現在の選択値を維持
+                  if (!event.target.value) {
+                    event.target.value = SKILL_DATA[selected.skillKey].label
+                  }
+                }}
+                onFocus={() => setIsInputFocused(true)}
+                onBlur={(event) => {
+                  setIsInputFocused(false)
+                  if (!isValidSkill(event.target.value)) {
+                    // 無効な入力の場合、現在選択中のスキルのラベルに戻す
+                    event.target.value = SKILL_DATA[selected.skillKey].label
+                  }
+                }}
+                displayValue={(key: SkillKey) => SKILL_DATA[key].label}
+              /> */}
               <Combobox.Input
                 className="border rounded px-2 py-1"
-                onChange={(event) => setQuery(event.target.value)}
-                onFocus={() => setIsInputFocused(true)}
-                onBlur={() => setIsInputFocused(false)}
+                readOnly
                 displayValue={(key: SkillKey) => SKILL_DATA[key].label}
               />
             </ComboboxButton>
