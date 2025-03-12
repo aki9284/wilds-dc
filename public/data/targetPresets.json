@@ -34,13 +34,13 @@
             "targets": [
                 {
                     "id": "preset03-01",
-                    "monsterName": "ゴアマガラ",
+                    "monsterName": "ゴア・マガラ",
                     "partName": "頭",
                     "percentage": 50
                 },
                 {
                     "id": "preset03-02",
-                    "monsterName": "ゴアマガラ",
+                    "monsterName": "ゴア・マガラ",
                     "partName": "触角",
                     "percentage": 50
                 }
