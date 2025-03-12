@@ -77,6 +77,16 @@
         "duration": 1
     },
     {
+        "weaponType":"huntingHorn",
+        "name": "演奏衝撃波",
+        "value": 27,
+        "damageType": "impact",
+        "cannotCrit": true,
+        "ignoreEffectiveness": true,
+        "ignoreSharpness": true,
+        "duration":0
+    },
+    {
         "weaponType": "huntingHorn",
         "name": "奏撃1_タイミングOK",
         "value": 35,
@@ -85,8 +95,22 @@
     },
     {
         "weaponType": "huntingHorn",
+        "name": "奏撃1_タイミングNG",
+        "value": 29,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType": "huntingHorn",
         "name": "奏撃2_タイミングOK",
         "value": 45,
+        "damageType": "impact",
+        "duration": 0.5
+    },
+    {
+        "weaponType": "huntingHorn",
+        "name": "奏撃2_タイミングNG",
+        "value": 31,
         "damageType": "impact",
         "duration": 0.5
     },
@@ -110,16 +134,6 @@
         "value": 35,
         "damageType": "impact",
         "duration": 0.5
-    },
-    {
-        "weaponType":"huntingHorn",
-        "name": "演奏衝撃波",
-        "value": 27,
-        "damageType": "impact",
-        "cannotCrit": true,
-        "ignoreEffectiveness": true,
-        "ignoreSharpness": true,
-        "duration":0
     },
     {
         "weaponType":"huntingHorn",
