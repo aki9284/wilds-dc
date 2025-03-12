@@ -5,7 +5,7 @@ import { NamedWeaponData, WeaponStats } from '@/models/types/weapon'
 import { WEAPON_STATS_LABELS } from '@/models/constants/weaponLabels'
 import { SHARPNESS_DATA } from '@/models/constants/sharpness';
 import { ELEMENT_TYPES } from '@/models/constants/damageTypes';
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { WeaponSelectModal } from './WeaponSelectModal'
 
 const FormLabel = ({ name, required = false }: { name: keyof typeof WEAPON_STATS_LABELS, required?: boolean }) => (
@@ -35,31 +35,108 @@ export function WeaponForm() {
     setIsModalOpen(false)
   }
 
+  const NumberInput = ({ value, onChange, min, max, step }: {
+    value: number;
+    onChange: (value: number) => void;
+    min: number;
+    max: number;
+    step: number;
+  }) => {
+    // 内部で文字列として値を保持
+    const [inputValue, setInputValue] = useState(value.toString());
+    const inputRef = useRef<HTMLInputElement>(null);
+  
+    // 入力値が変更されたときの処理（親コンポーネントは更新しない）
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+    };
+  
+    // フォーカスが外れたときに親コンポーネントを更新
+    const handleBlur = () => {
+      if (inputValue === '' || isNaN(Number(inputValue))) {
+        // 無効な値の場合は元の値に戻す
+        setInputValue(value.toString());
+      } else {
+        // 値の範囲を確認して調整
+        const numValue = Number(inputValue);
+        if (numValue < min) {
+          setInputValue(min.toString());
+          onChange(min);
+        } else if (numValue > max) {
+          setInputValue(max.toString());
+          onChange(max);
+        } else {
+          setInputValue(numValue.toString());
+          onChange(numValue);
+        }
+      }
+    };
+  
+    // ボタンクリックでの値変更と自動フォーカス維持
+    const handleButtonClick = (newValue: number) => {
+      const adjustedValue = Math.max(min, Math.min(max, newValue));
+      onChange(adjustedValue);
+      setInputValue(adjustedValue.toString());
+      // ボタンクリック後もフォーカスを維持
+      inputRef.current?.focus();
+    };
+  
+    // 外部からの値変更を反映
+    useEffect(() => {
+      if (!document.activeElement || document.activeElement !== inputRef.current) {
+        setInputValue(value.toString());
+      }
+    }, [value]);
+  
+    return (
+      <div className="flex items-center">
+        <button
+          type="button"
+          onClick={() => handleButtonClick(value - step)}
+          className="px-3 py-1 border rounded-l bg-gray-100"
+        >
+          -
+        </button>
+        <input
+          ref={inputRef}
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          onBlur={handleBlur}
+          className="border-y w-12 text-center px-2 py-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        />
+        <button
+          type="button"
+          onClick={() => handleButtonClick(value + step)}
+          className="px-3 py-1 border rounded-r bg-gray-100"
+        >
+          +
+        </button>
+      </div>
+    )
+  }
+
   return (
     <>
       <form className="space-y-4">
         <div className="flex items-center gap-4">
           <FormLabel name="attack" />
-          <input
-            type="number"
+          <NumberInput
             value={stats.attack}
-            onChange={(e) => setStats({ ...stats, attack: Number(e.target.value) })}
-            className="border rounded px-2 py-1"
-            step="10"
-            min="90"
-            max="500"
+            onChange={(value) => setStats({ ...stats, attack: value })}
+            min={90}
+            max={500}
+            step={5}
           />
         </div>
         <div className="flex items-center gap-4">
           <FormLabel name="affinity" />
-          <input
-            type="number"
+          <NumberInput
             value={stats.affinity}
-            onChange={(e) => setStats({ ...stats, affinity: Number(e.target.value) })}
-            className="border rounded px-2 py-1"
-            step="5"
-            min="-100"
-            max="100"
+            onChange={(value) => setStats({ ...stats, affinity: value })}
+            min={-100}
+            max={100}
+            step={5}
           />
         </div>
         <div className="flex items-center gap-4">
@@ -78,14 +155,12 @@ export function WeaponForm() {
         </div>
         <div className="flex items-center gap-4">
           <FormLabel name="elementValue" />
-          <input
-            type="number"
+          <NumberInput
             value={stats.elementValue}
-            onChange={(e) => setStats({ ...stats, elementValue: Number(e.target.value) })}
-            className="border rounded px-2 py-1"
-            step="10"
-            min="0"
-            max="990"
+            onChange={(value) => setStats({ ...stats, elementValue: value })}
+            min={0}
+            max={990}
+            step={10}
           />
         </div>
         <div className="flex items-center gap-4">
