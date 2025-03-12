@@ -1489,6 +1489,294 @@
           "wounded": true
         }
       ]
-    }    
+    },
+    {
+      "name": "ジン・ダハド",
+      "parts": [
+        {
+          "name": "頭",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 45,
+            "fire": 20,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "頭_傷",
+          "effectiveness": {
+            "slash": 75,
+            "impact": 75,
+            "shot": 50,
+            "fire": 25,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "首",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 60,
+            "shot": 45,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "首_傷",
+          "effectiveness": {
+            "slash": 75,
+            "impact": 75,
+            "shot": 50,
+            "fire": 25,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "胴体",
+          "effectiveness": {
+            "slash": 30,
+            "impact": 30,
+            "shot": 20,
+            "fire": 5,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "胴体_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "右前脚",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 30,
+            "fire": 5,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "右前脚_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "左前脚",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 30,
+            "fire": 5,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "左前脚_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "右後脚",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 30,
+            "fire": 5,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "右後脚_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "左後脚",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 30,
+            "fire": 5,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "左後脚_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "尻尾",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "尻尾_傷",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 60,
+            "shot": 50,
+            "fire": 15,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "腹部凍成殻",
+          "effectiveness": {
+            "slash": 75,
+            "impact": 75,
+            "shot": 45,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "腹部凍成殻_傷",
+          "effectiveness": {
+            "slash": 85,
+            "impact": 85,
+            "shot": 50,
+            "fire": 25,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "大凍成殻(露出前)",
+          "effectiveness": {
+            "slash": 1,
+            "impact": 1,
+            "shot": 1,
+            "fire": 0,
+            "water": 0,
+            "thunder": 0,
+            "ice": 0,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "大凍成殻(露出後)",
+          "effectiveness": {
+            "slash": 75,
+            "impact": 75,
+            "shot": 45,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "大凍成殻(露出後)_傷",
+          "effectiveness": {
+            "slash": 85,
+            "impact": 85,
+            "shot": 50,
+            "fire": 25,
+            "water": 5,
+            "thunder": 5,
+            "ice": 0,
+            "dragon": 5
+          },
+          "wounded": true
+        }
+      ]
+    }       
 ]
 
