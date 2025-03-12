@@ -114,6 +114,12 @@ function generateEffectCombinations(
         // 会心判定の場合のみ、武器会心率とそこまでのスキル会心率上昇から会心をactiveにするか計算
         if (effect.type === 'critical') {
             activePossibility = (params.weaponStats.affinity + sumEffectAffinities(currentCombination, params))/100;
+            // 会心率は-100～100％の範囲を出ないようにする
+            if (activePossibility > 1) {
+                activePossibility = 1;
+            } else if (activePossibility < -1) {
+                activePossibility = -1;
+            }
             // マイナス会心の場合反転させて専用のeffectを代わりに挿入
             if (activePossibility < 0) {
                 newCombination = [...currentCombination, {
