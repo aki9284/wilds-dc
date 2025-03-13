@@ -28,6 +28,24 @@ export function enumeratePossibleParamPatterns(params: SingleHitParams): Possibl
         }))
     ];
 
+    // バフが他と同時だと無効化する（disablesプロパティ持ち）場合ここで削除
+    effects.forEach((effect, index) => {
+        if (effect.type === 'buff') {
+            const buff = BUFF_DATA[effect.data as BuffKey];
+            if (buff.disables) {
+                // disablesで指定されたBuffKeyを持つeffectを削除
+                const disabledIndices = effects
+                    .map((e, i) => e.type === 'buff' && buff.disables?.includes(e.data as BuffKey) ? i : -1)
+                    .filter(i => i !== -1);
+                
+                // 後ろから削除することで、インデックスがずれるのを防ぐ
+                disabledIndices.reverse().forEach(i => {
+                    effects.splice(i, 1);
+                });
+            }
+        }
+    });
+
     // 付随スキルとして表現しているものがある場合もここで追加 付随スキルのレベルは元と一致させる
     params.selectedSkills.forEach(skill => {
         const skillData = SKILL_DATA[skill.skillKey as SkillKey];

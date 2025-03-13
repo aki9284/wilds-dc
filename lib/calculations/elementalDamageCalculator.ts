@@ -7,6 +7,11 @@ import { DamageElemntTypeKey, isDamageElementType } from "@/models/constants/dam
 
 // 属性ダメージ
 export function calculateElementalDamage(params: SingleHitParams): number {
+    // 固定ダメージの場合は物理側で処理するので属性は0
+    if (params.motion.fixedDamage !== undefined) {
+        return 0;
+    }
+
     if (!isDamageElementType(params.weaponStats.elementType)) {
         return 0;
     }

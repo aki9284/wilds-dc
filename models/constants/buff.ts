@@ -6,6 +6,7 @@ export interface Buff {
     addElement?: number;
     addAffinity?: number;
     requirements?: string[];
+    disables?: BuffKey[];
     order: number;
 }
 
@@ -50,12 +51,29 @@ export const BUFF_DATA: { [key: string]: Buff } = {
     itemMegaDemonDrug: {
         "label": "鬼人薬G",
         "addAttack": 7,
-        "order": 502
+        "order": 502,
+        "disables": ["itemDemonDrug"]
     },
     itemDemonDrug: {
         "label": "鬼人薬",
         "addAttack": 5,
         "order": 503
+    },
+    itemMightSeed: {
+        "label": "力の種",
+        "addAttack": 10,
+        "order": 506,
+    },
+    itemMightPill: {
+        "label": "怪力の丸薬",
+        "addAttack": 25,
+        "order": 508,
+        "disables": ["itemMightSeed"]
+    },
+    itemDemonPowder : {
+        "label": "鬼人の粉塵",
+        "addAttack": 10,
+        "order": 507
     },
     mealNative: {
         "label": "食事：振る舞い",
