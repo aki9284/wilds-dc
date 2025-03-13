@@ -1,0 +1,16 @@
+partName    state slash   impact   pierce   fire   water   thunder   ice   dragon stun
+Head		70	65	50	5	3	5	25	0	100
+Head	Wounds	80	80	60	5	3	5	30	0	100
+Tentacle		30	50	20	10	5	10	30	0	0
+Tentacle	Wounds	60	60	55	5	3	5	30	0	0
+Membrane		30	50	20	10	5	10	30	0	0
+Membrane	Wounds	60	60	55	5	3	5	30	0	0
+Torso		30	50	20	10	5	10	30	0	0
+Torso	Wounds	60	60	55	5	3	5	30	0	0
+Front Arm		50	45	30	5	3	5	25	0	0
+Front Arm	Wounds	60	60	55	5	3	5	30	0	0
+Middle Arm		50	45	30	5	3	5	25	0	0
+Middle Arm	Wounds	60	60	55	5	3	5	30	0	0
+Rear Arm		50	45	30	5	3	5	25	0	0
+Rear Arm	Wounds	60	60	55	5	3	5	30	0	0
+Mouth		100	100	70	15	10	15	45	0	0

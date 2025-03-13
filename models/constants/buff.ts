@@ -78,7 +78,8 @@ export const BUFF_DATA: { [key: string]: Buff } = {
     mealNative: {
         "label": "食事：振る舞い",
         "addAttack": 5,
-        "order": 504
+        "order": 504,
+        "disables": ["mealMobile"]
     },
     mealMobile: {
         "label": "食事：携帯肉",
