@@ -1,0 +1,18 @@
+partName    state slash   impact   pierce   fire   water   thunder   ice   dragon stun
+Head		20	28	20	0	15	5	5	25	100
+Head	Breakable	25	35	25	0	15	5	5	30	100
+Head	Wounds	80	82	80	0	35	15	15	25	100
+Neck		25	30	20	0	30	5	10	20	0
+Neck	Wounds	70	70	70	0	35	15	15	35	0
+Belly		25	30	30	0	35	5	15	30	0
+Belly	Breakable	70	70	60	15	45	5	15	40	0
+Belly	Wounds	70	70	70	0	35	15	15	35	0
+Back		25	30	25	0	25	5	15	15	0
+Back	Breakable	45	45	40	5	35	5	10	15	0
+Back	Wounds	70	70	70	0	35	15	15	35	0
+Tail		25	30	20	0	30	5	10	20	0
+Tail	Wounds	70	70	70	0	35	15	15	35	0
+Leg		20	20	20	0	30	5	5	10	0
+Leg	Wounds	70	70	70	0	35	15	15	35	0
+Wing		20	20	20	0	20	5	5	15	0
+Wing	Wounds	70	70	70	0	35	15	15	35	0
