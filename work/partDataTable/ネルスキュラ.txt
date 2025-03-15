@@ -1,0 +1,25 @@
+partName    state slash   impact   pierce   fire   water   thunder   ice   dragon stun
+Head		50	65	50	15	0	0	5	0	100
+Head	Breakable	50	65	50	5	0	10	5	0	100
+Head	Wounds	75	75	75	25	0	15	15	0	100
+Torso		36	36	40	25	0	0	5	0	0
+Torso	Breakable	36	36	40	5	0	25	5	0	0
+Torso	Wounds	55	55	45	25	0	25	15	0	0
+Belly		65	50	45	15	0	20	5	0	0
+Belly	Breakable	65	50	45	5	0	20	5	0	0
+Belly	Wounds	55	55	45	25	0	25	15	0	0
+Claw		20	30	20	5	0	10	5	0	0
+Claw	Breakable	20	30	20	5	0	10	5	0	0
+Claw	Wounds	55	55	45	25	0	25	15	0	0
+Foreleg		35	35	25	20	0	0	5	0	0
+Foreleg	Breakable	35	35	25	5	0	10	5	0	0
+Foreleg	Wounds	55	55	45	25	0	25	15	0	0
+Mantle		45	45	35	20	0	0	5	0	0
+Mantle	Breakable	45	45	25	5	0	10	5	0	0
+Mantle	Wounds	55	55	45	25	0	25	15	0	0
+Hind Leg		28	35	20	10	0	0	5	0	0
+Hind Leg	Breakable	45	45	35	5	0	10	5	0	0
+Hind Leg	Wounds	55	55	45	25	0	25	15	0	0
+Stinger		28	35	65	25	0	0	5	0	0
+Stinger	Breakable	28	35	65	5	0	35	5	0	0
+Stinger	Wounds	55	55	45	25	0	25	15	0	0

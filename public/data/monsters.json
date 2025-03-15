@@ -3384,7 +3384,7 @@
           "wounded": true
         },
         {
-          "name": "尻尾",
+          "name": "尾毛",
           "effectiveness": {
             "slash": 38,
             "impact": 35,
@@ -3397,7 +3397,7 @@
           }
         },
         {
-          "name": "尻尾_傷",
+          "name": "尾毛_傷",
           "effectiveness": {
             "slash": 52,
             "impact": 52,
@@ -4079,7 +4079,7 @@
           "wounded": true
         },
         {
-          "name": "尻尾",
+          "name": "尾毛",
           "effectiveness": {
             "slash": 35,
             "impact": 35,
@@ -4092,7 +4092,7 @@
           }
         },
         {
-          "name": "尻尾_傷",
+          "name": "尾毛_傷",
           "effectiveness": {
             "slash": 65,
             "impact": 65,
@@ -4102,6 +4102,1330 @@
             "thunder": 15,
             "ice": 10,
             "dragon": 30
+          },
+          "wounded": true
+        }
+      ]
+    },
+    {
+      "name": "ゲリョス",
+      "parts": [
+        {
+          "name": "頭",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 55,
+            "shot": 45,
+            "fire": 30,
+            "water": 10,
+            "thunder": 0,
+            "ice": 20,
+            "dragon": 10
+          }
+        },
+        {
+          "name": "頭_傷",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 70,
+            "shot": 55,
+            "fire": 30,
+            "water": 10,
+            "thunder": 0,
+            "ice": 20,
+            "dragon": 10
+          },
+          "wounded": true
+        },
+        {
+          "name": "首",
+          "effectiveness": {
+            "slash": 50,
+            "impact": 25,
+            "shot": 40,
+            "fire": 20,
+            "water": 5,
+            "thunder": 0,
+            "ice": 10,
+            "dragon": 10
+          }
+        },
+        {
+          "name": "胴体",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 30,
+            "shot": 20,
+            "fire": 20,
+            "water": 5,
+            "thunder": 0,
+            "ice": 10,
+            "dragon": 10
+          }
+        },
+        {
+          "name": "胴体_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 10,
+            "thunder": 0,
+            "ice": 10,
+            "dragon": 10
+          },
+          "wounded": true
+        },
+        {
+          "name": "脚",
+          "effectiveness": {
+            "slash": 25,
+            "impact": 25,
+            "shot": 30,
+            "fire": 10,
+            "water": 5,
+            "thunder": 0,
+            "ice": 10,
+            "dragon": 10
+          }
+        },
+        {
+          "name": "脚_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 10,
+            "thunder": 0,
+            "ice": 10,
+            "dragon": 10
+          },
+          "wounded": true
+        },
+        {
+          "name": "尻尾",
+          "effectiveness": {
+            "slash": 70,
+            "impact": 40,
+            "shot": 80,
+            "fire": 20,
+            "water": 5,
+            "thunder": 0,
+            "ice": 10,
+            "dragon": 10
+          }
+        },
+        {
+          "name": "尻尾_傷",
+          "effectiveness": {
+            "slash": 80,
+            "impact": 60,
+            "shot": 90,
+            "fire": 20,
+            "water": 15,
+            "thunder": 0,
+            "ice": 20,
+            "dragon": 10
+          },
+          "wounded": true
+        },
+        {
+          "name": "翼",
+          "effectiveness": {
+            "slash": 42,
+            "impact": 30,
+            "shot": 30,
+            "fire": 20,
+            "water": 10,
+            "thunder": 0,
+            "ice": 20,
+            "dragon": 10
+          }
+        },
+        {
+          "name": "翼_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 10,
+            "thunder": 0,
+            "ice": 10,
+            "dragon": 10
+          },
+          "wounded": true
+        }
+      ]
+    },
+    {
+      "name": "ババコンガ",
+      "parts": [
+        {
+          "name": "頭",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 70,
+            "shot": 60,
+            "fire": 25,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "頭_傷",
+          "effectiveness": {
+            "slash": 75,
+            "impact": 80,
+            "shot": 70,
+            "fire": 25,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "胴体",
+          "effectiveness": {
+            "slash": 35,
+            "impact": 35,
+            "shot": 35,
+            "fire": 10,
+            "water": 5,
+            "thunder": 5,
+            "ice": 10,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "胴体_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 55,
+            "fire": 25,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "胴体_弱点",
+          "effectiveness": {
+            "slash": 80,
+            "impact": 80,
+            "shot": 90,
+            "fire": 25,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "前脚",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 45,
+            "fire": 15,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "前脚_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 55,
+            "fire": 25,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "後脚",
+          "effectiveness": {
+            "slash": 35,
+            "impact": 35,
+            "shot": 35,
+            "fire": 15,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "後脚_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 55,
+            "fire": 25,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "尻尾",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 45,
+            "fire": 15,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "尻尾_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 55,
+            "fire": 25,
+            "water": 10,
+            "thunder": 10,
+            "ice": 15,
+            "dragon": 5
+          },
+          "wounded": true
+        }
+      ]
+    },
+    {
+      "name": "ドドブランゴ",
+      "parts": [
+        {
+          "name": "頭",
+          "effectiveness": {
+            "slash": 70,
+            "impact": 70,
+            "shot": 60,
+            "fire": 30,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "頭_傷",
+          "effectiveness": {
+            "slash": 75,
+            "impact": 75,
+            "shot": 70,
+            "fire": 30,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "胴体",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 50,
+            "shot": 40,
+            "fire": 20,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "胴体_傷",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 60,
+            "shot": 55,
+            "fire": 30,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "胴体_弱点",
+          "effectiveness": {
+            "slash": 80,
+            "impact": 80,
+            "shot": 80,
+            "fire": 30,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "前脚",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 40,
+            "shot": 30,
+            "fire": 15,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "前脚_傷",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 60,
+            "shot": 55,
+            "fire": 30,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "後脚",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 40,
+            "shot": 30,
+            "fire": 15,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "後脚_傷",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 60,
+            "shot": 55,
+            "fire": 30,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "尻尾",
+          "effectiveness": {
+            "slash": 50,
+            "impact": 40,
+            "shot": 25,
+            "fire": 15,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "尻尾_傷",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 60,
+            "shot": 55,
+            "fire": 30,
+            "water": 5,
+            "thunder": 15,
+            "ice": 0,
+            "dragon": 0
+          },
+          "wounded": true
+        }
+      ]
+    },
+    {
+      "name": "ネルスキュラ",
+      "parts": [
+        {
+          "name": "頭",
+          "effectiveness": {
+            "slash": 50,
+            "impact": 65,
+            "shot": 50,
+            "fire": 15,
+            "water": 0,
+            "thunder": 0,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "頭_露出時",
+          "effectiveness": {
+            "slash": 50,
+            "impact": 65,
+            "shot": 50,
+            "fire": 5,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "頭_傷",
+          "effectiveness": {
+            "slash": 75,
+            "impact": 75,
+            "shot": 75,
+            "fire": 25,
+            "water": 0,
+            "thunder": 15,
+            "ice": 15,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "胴体",
+          "effectiveness": {
+            "slash": 36,
+            "impact": 36,
+            "shot": 40,
+            "fire": 25,
+            "water": 0,
+            "thunder": 0,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "胴体_露出時",
+          "effectiveness": {
+            "slash": 36,
+            "impact": 36,
+            "shot": 40,
+            "fire": 5,
+            "water": 0,
+            "thunder": 25,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "胴体_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 25,
+            "water": 0,
+            "thunder": 25,
+            "ice": 15,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "腹部",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 50,
+            "shot": 45,
+            "fire": 15,
+            "water": 0,
+            "thunder": 20,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "腹部_露出時",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 50,
+            "shot": 45,
+            "fire": 5,
+            "water": 0,
+            "thunder": 20,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "腹部_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 25,
+            "water": 0,
+            "thunder": 25,
+            "ice": 15,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "爪",
+          "effectiveness": {
+            "slash": 20,
+            "impact": 30,
+            "shot": 20,
+            "fire": 5,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "爪_露出時",
+          "effectiveness": {
+            "slash": 20,
+            "impact": 30,
+            "shot": 20,
+            "fire": 5,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "爪_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 25,
+            "water": 0,
+            "thunder": 25,
+            "ice": 15,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "前脚",
+          "effectiveness": {
+            "slash": 35,
+            "impact": 35,
+            "shot": 25,
+            "fire": 20,
+            "water": 0,
+            "thunder": 0,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "前脚_露出時",
+          "effectiveness": {
+            "slash": 35,
+            "impact": 35,
+            "shot": 25,
+            "fire": 5,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "前脚_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 25,
+            "water": 0,
+            "thunder": 25,
+            "ice": 15,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "外套膜",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 35,
+            "fire": 20,
+            "water": 0,
+            "thunder": 0,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "外套膜_露出時",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 25,
+            "fire": 5,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "外套膜_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 25,
+            "water": 0,
+            "thunder": 25,
+            "ice": 15,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "後脚",
+          "effectiveness": {
+            "slash": 28,
+            "impact": 35,
+            "shot": 20,
+            "fire": 10,
+            "water": 0,
+            "thunder": 0,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "後脚_露出時",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 35,
+            "fire": 5,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "後脚_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 25,
+            "water": 0,
+            "thunder": 25,
+            "ice": 15,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "針",
+          "effectiveness": {
+            "slash": 28,
+            "impact": 35,
+            "shot": 65,
+            "fire": 25,
+            "water": 0,
+            "thunder": 0,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "針_露出時",
+          "effectiveness": {
+            "slash": 28,
+            "impact": 35,
+            "shot": 65,
+            "fire": 5,
+            "water": 0,
+            "thunder": 35,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "針_傷",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 25,
+            "water": 0,
+            "thunder": 25,
+            "ice": 15,
+            "dragon": 0
+          },
+          "wounded": true
+        }
+      ]
+    },
+    {
+      "name": "ケマトリス",
+      "parts": [
+        {
+          "name": "頭",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 65,
+            "shot": 60,
+            "fire": 0,
+            "water": 20,
+            "thunder": 5,
+            "ice": 10,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "頭_傷",
+          "effectiveness": {
+            "slash": 75,
+            "impact": 75,
+            "shot": 75,
+            "fire": 0,
+            "water": 30,
+            "thunder": 15,
+            "ice": 20,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "頭部弱点",
+          "effectiveness": {
+            "slash": 80,
+            "impact": 80,
+            "shot": 70,
+            "fire": 0,
+            "water": 20,
+            "thunder": 5,
+            "ice": 10,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "胴体",
+          "effectiveness": {
+            "slash": 40,
+            "impact": 40,
+            "shot": 30,
+            "fire": 0,
+            "water": 15,
+            "thunder": 5,
+            "ice": 5,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "胴体_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 65,
+            "fire": 0,
+            "water": 25,
+            "thunder": 15,
+            "ice": 15,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "尻尾",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 60,
+            "shot": 60,
+            "fire": 0,
+            "water": 25,
+            "thunder": 5,
+            "ice": 10,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "尻尾_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 65,
+            "fire": 0,
+            "water": 25,
+            "thunder": 15,
+            "ice": 15,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "前脚",
+          "effectiveness": {
+            "slash": 40,
+            "impact": 35,
+            "shot": 35,
+            "fire": 0,
+            "water": 15,
+            "thunder": 5,
+            "ice": 5,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "前脚_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 65,
+            "fire": 0,
+            "water": 25,
+            "thunder": 15,
+            "ice": 15,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "後脚",
+          "effectiveness": {
+            "slash": 40,
+            "impact": 35,
+            "shot": 35,
+            "fire": 0,
+            "water": 15,
+            "thunder": 5,
+            "ice": 5,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "後脚_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 65,
+            "fire": 0,
+            "water": 25,
+            "thunder": 15,
+            "ice": 15,
+            "dragon": 5
+          },
+          "wounded": true
+        }
+      ]
+    },
+    {
+      "name": "ラバラ・バリナ",
+      "parts": [
+        {
+          "name": "頭",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 60,
+            "shot": 50,
+            "fire": 20,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "頭_傷",
+          "effectiveness": {
+            "slash": 70,
+            "impact": 70,
+            "shot": 65,
+            "fire": 20,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "胴体",
+          "effectiveness": {
+            "slash": 40,
+            "impact": 40,
+            "shot": 30,
+            "fire": 15,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "胴体_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 60,
+            "fire": 20,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "尻尾",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 60,
+            "shot": 50,
+            "fire": 25,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "尻尾_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 60,
+            "fire": 20,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "尻尾_弱点",
+          "effectiveness": {
+            "slash": 90,
+            "impact": 90,
+            "shot": 90,
+            "fire": 25,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "爪",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 40,
+            "fire": 15,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "爪_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 60,
+            "fire": 20,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "前脚",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 35,
+            "fire": 15,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "前脚_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 60,
+            "fire": 20,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "後脚",
+          "effectiveness": {
+            "slash": 45,
+            "impact": 45,
+            "shot": 35,
+            "fire": 15,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "後脚_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 60,
+            "fire": 20,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          },
+          "wounded": true
+        },
+        {
+          "name": "花弁状部",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 60,
+            "shot": 50,
+            "fire": 25,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          }
+        },
+        {
+          "name": "花弁状部_傷",
+          "effectiveness": {
+            "slash": 65,
+            "impact": 65,
+            "shot": 60,
+            "fire": 20,
+            "water": 0,
+            "thunder": 10,
+            "ice": 5,
+            "dragon": 0
+          },
+          "wounded": true
+        }
+      ]
+    },
+    {
+      "name": "ププロポル",
+      "parts": [
+        {
+          "name": "頭",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 65,
+            "shot": 60,
+            "fire": 10,
+            "water": 25,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "頭_傷",
+          "effectiveness": {
+            "slash": 70,
+            "impact": 75,
+            "shot": 70,
+            "fire": 10,
+            "water": 25,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "頭部弱点",
+          "effectiveness": {
+            "slash": 80,
+            "impact": 80,
+            "shot": 90,
+            "fire": 10,
+            "water": 20,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "胴体",
+          "effectiveness": {
+            "slash": 35,
+            "impact": 35,
+            "shot": 35,
+            "fire": 5,
+            "water": 15,
+            "thunder": 5,
+            "ice": 5,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "胴体_傷",
+          "effectiveness": {
+            "slash": 50,
+            "impact": 50,
+            "shot": 50,
+            "fire": 10,
+            "water": 20,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "背中",
+          "effectiveness": {
+            "slash": 55,
+            "impact": 55,
+            "shot": 45,
+            "fire": 10,
+            "water": 20,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "背中_傷",
+          "effectiveness": {
+            "slash": 70,
+            "impact": 70,
+            "shot": 70,
+            "fire": 10,
+            "water": 25,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "前脚",
+          "effectiveness": {
+            "slash": 40,
+            "impact": 40,
+            "shot": 40,
+            "fire": 5,
+            "water": 15,
+            "thunder": 5,
+            "ice": 5,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "前脚_傷",
+          "effectiveness": {
+            "slash": 50,
+            "impact": 50,
+            "shot": 50,
+            "fire": 10,
+            "water": 20,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "後脚",
+          "effectiveness": {
+            "slash": 33,
+            "impact": 33,
+            "shot": 33,
+            "fire": 5,
+            "water": 15,
+            "thunder": 5,
+            "ice": 5,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "後脚_傷",
+          "effectiveness": {
+            "slash": 50,
+            "impact": 50,
+            "shot": 50,
+            "fire": 10,
+            "water": 20,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
+          },
+          "wounded": true
+        },
+        {
+          "name": "尻尾",
+          "effectiveness": {
+            "slash": 60,
+            "impact": 60,
+            "shot": 60,
+            "fire": 10,
+            "water": 25,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
+          }
+        },
+        {
+          "name": "尻尾_傷",
+          "effectiveness": {
+            "slash": 70,
+            "impact": 70,
+            "shot": 70,
+            "fire": 10,
+            "water": 25,
+            "thunder": 10,
+            "ice": 10,
+            "dragon": 5
           },
           "wounded": true
         }
