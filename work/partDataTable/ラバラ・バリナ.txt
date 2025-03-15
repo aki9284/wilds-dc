@@ -1,0 +1,16 @@
+partName    state slash   impact   pierce   fire   water   thunder   ice   dragon stun
+Head		55	60	50	20	0	10	5	0	100
+Head	Wounds	70	70	65	20	0	10	5	0	100
+Torso		40	40	30	15	0	10	5	0	0
+Torso	Wounds	65	65	60	20	0	10	5	0	0
+Tail		60	60	50	25	0	10	5	0	0
+Tail	Wounds	65	65	60	20	0	10	5	0	0
+Tail	Weak Point	90	90	90	25	0	10	5	0	0
+Claw		45	45	40	15	0	10	5	0	0
+Claw	Wounds	65	65	60	20	0	10	5	0	0
+Foreleg		45	45	35	15	0	10	5	0	0
+Foreleg	Wounds	65	65	60	20	0	10	5	0	0
+Hind Leg		45	45	35	15	0	10	5	0	0
+Hind Leg	Wounds	65	65	60	20	0	10	5	0	0
+Petals		60	60	50	25	0	10	5	0	0
+Petals	Wounds	65	65	60	20	0	10	5	0	0

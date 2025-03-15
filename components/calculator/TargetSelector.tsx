@@ -120,11 +120,14 @@ export function TargetSelector() {
               }}
               className="border rounded p-2"
             >
-              {monsters.map(monster => (
-                <option key={monster.name} value={monster.name}>
-                  {monster.name}
-                </option>
-              ))}
+              {monsters
+                .slice() // 元の配列を変更しないようにコピーを作成
+                .sort((a, b) => a.name.localeCompare(b.name, 'ja')) // 日本語の照合順序でソート
+                .map(monster => (
+                  <option key={monster.name} value={monster.name}>
+                    {monster.name}
+                  </option>
+                ))}
             </select>
           </div>
 
