@@ -1,0 +1,17 @@
+partName    state slash   impact   pierce   fire   water   thunder   ice   dragon stun
+Head (Crystalized)		40	45	45	10	5	5	5	15	100
+Wingarm (Crystalized)		40	40	10	10	5	5	5	15	0
+Head		65	70	65	15	5	5	10	30	100
+Head	Wounds	75	80	75	15	5	5	10	30	100
+Wingarm		85	85	60	20	5	5	15	30	0
+Wingarm	Wounds	95	95	70	20	5	5	15	30	0
+Foreleg		45	45	45	10	5	5	5	15	0
+Foreleg	Wounds	60	60	60	15	5	5	10	30	0
+Hind Leg		25	25	25	5	5	5	5	10	0
+Hind Leg	Wounds	60	60	60	15	5	5	10	30	0
+Neck		30	30	40	5	5	5	5	30	0
+Neck	Wounds	60	60	60	15	5	5	10	30	0
+Torso		25	25	5	5	5	5	5	10	0
+Torso	Wounds	60	60	60	15	5	5	10	30	0
+Tail		35	35	40	10	5	5	5	10	0
+Tail	Wounds	60	60	60	15	5	5	10	30	0
