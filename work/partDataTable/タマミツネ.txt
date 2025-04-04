@@ -1,0 +1,15 @@
+partName    state slash   impact   pierce   fire   water   thunder   ice   dragon stun
+Head		63	63	45	5	0	10	5	8	100
+Head	Wounds	70	70	60	10	0	15	10	10	100
+Leg		28	28	10	5	0	25	15	30	0
+Leg	Wounds	50	50	50	10	0	30	20	30	0
+Claw		24	24	10	5	0	30	15	30	0
+Claw	Wounds	50	50	50	10	0	30	20	30	0
+Hind Leg		38	38	25	5	0	10	5	5	0
+Hind Leg	Wounds	50	50	50	10	0	30	20	30	0
+Torso		25	25	20	5	0	10	5	5	0
+Torso	Wounds	50	50	50	10	0	30	20	30	0
+Tail		43	33	40	5	0	10	5	5	0
+Tail	Wounds	50	50	50	10	0	30	20	30	0
+Dorsal Fin		43	43	45	8	0	15	5	10	0
+Dorsal Fin	Wounds	50	50	50	10	0	30	20	30	0
