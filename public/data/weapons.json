@@ -250,6 +250,30 @@
         "elementValue": 300,
         "sharpness": "white"
       }
+    },
+    {
+      "id": "HH_22",
+      "name": "熾光たるガヴリア",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 220,
+        "affinity": 5,
+        "elementType": "dragon",
+        "elementValue": 250,
+        "sharpness": "white"
+      }
+    },
+    {
+      "id": "HH_23",
+      "name": "なるかみの音鈴の乙鳴",
+      "type": "huntingHorn",
+      "stats": {
+        "attack": 210,
+        "affinity": 15,
+        "elementType": "water",
+        "elementValue": 350,
+        "sharpness": "white"
+      }
     }
   ]
   

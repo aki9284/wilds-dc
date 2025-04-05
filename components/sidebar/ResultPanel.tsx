@@ -82,7 +82,7 @@ export function ResultPanel() {
             <span className="text-sm">最小ダメージ</span>
             <div className="flex gap-3 text-sm">
               <span className="font-mono">{results.minDamage.total}</span>
-              <span className="font-mono">({results.minDamage.physical}+{results.minDamage.elemental})</span>
+              <span className="font-mono">({results.minDamage.physical}+{results.minDamage.elemental}+{results.minDamage.additional})</span>
             </div>
           </div>
 
@@ -90,7 +90,7 @@ export function ResultPanel() {
             <span className="text-sm">期待ダメージ</span>
             <div className="flex gap-3 text-sm">
               <span className="font-mono">{results.expectedDamage.total}</span>
-              <span className="font-mono">({results.expectedDamage.physical}+{results.expectedDamage.elemental})</span>
+              <span className="font-mono">({results.expectedDamage.physical}+{results.expectedDamage.elemental}+{results.expectedDamage.additional})</span>
             </div>
           </div>
 
@@ -98,7 +98,7 @@ export function ResultPanel() {
             <span className="text-sm">最大ダメージ</span>
             <div className="flex gap-3 text-sm">
               <span className="font-mono">{results.maxDamage.total}</span>
-              <span className="font-mono">({results.maxDamage.physical}+{results.maxDamage.elemental})</span>
+              <span className="font-mono">({results.maxDamage.physical}+{results.maxDamage.elemental}+{results.maxDamage.additional})</span>
             </div>
           </div>
 
@@ -116,9 +116,9 @@ export function ResultPanel() {
                 </button>
                 {expandedMotionIndex === index && (
                   <div className="mt-2 pl-4 text-sm">
-                    <div>最小: {motionDamage.minDamage.total}（{motionDamage.minDamage.physical}+{motionDamage.minDamage.elemental}）</div>
-                    <div>期待値:{motionDamage.expectedDamage.total}（{motionDamage.expectedDamage.physical}+{motionDamage.expectedDamage.elemental}）</div>
-                    <div>最大: {motionDamage.maxDamage.total}（{motionDamage.maxDamage.physical}+{motionDamage.maxDamage.elemental}）</div>
+                    <div>最小: {motionDamage.minDamage.total}（{motionDamage.minDamage.physical}+{motionDamage.minDamage.elemental}+{motionDamage.minDamage.additional}）</div>
+                    <div>期待値:{motionDamage.expectedDamage.total}（{motionDamage.expectedDamage.physical}+{motionDamage.expectedDamage.elemental}+{motionDamage.expectedDamage.additional}）</div>
+                    <div>最大: {motionDamage.maxDamage.total}（{motionDamage.maxDamage.physical}+{motionDamage.maxDamage.elemental}+{motionDamage.maxDamage.additional}）</div>
                   </div>
                 )}
               </div>

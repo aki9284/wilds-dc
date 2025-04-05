@@ -1,5 +1,12 @@
 import { multiply } from "lodash";
-import { EFFECT_ORDER_CRITICAL } from "./effectOrder";
+import { EFFECT_ORDER_CRITICAL, EFFECT_ORDER_ELEMENTATTACK } from "./effectOrder";
+import { DamageElemntTypeKey } from "./damageTypes";
+
+export type AddDamageParams = {
+  fixedDamage?: number;
+  elementType?: DamageElemntTypeKey;
+  elementValue?: number;
+}
 
 export type SkillEffect = {
   addAttack?: number;
@@ -9,6 +16,7 @@ export type SkillEffect = {
   multiplyAttack?: number;
   addElement?: number;
   multiplyElement?: number;
+  addDamage?: AddDamageParams;
 }
 
 export type SkillLevel = {
@@ -37,8 +45,8 @@ export const SKILL_DATA: { [key: string]: Skill } = {
       { level: 1, effects: { addAttack: 3 } },
       { level: 2, effects: { addAttack: 5 } },
       { level: 3, effects: { addAttack: 7 } },
-      { level: 4, effects: { addAttack: 8 , multiplyAttack: 1.02 } },
-      { level: 5, effects: { addAttack: 9 , multiplyAttack: 1.04 } },
+      { level: 4, effects: { addAttack: 8, multiplyAttack: 1.02 } },
+      { level: 5, effects: { addAttack: 9, multiplyAttack: 1.04 } },
     ],
     order: 201
   },
@@ -101,8 +109,8 @@ export const SKILL_DATA: { [key: string]: Skill } = {
   agitator: {
     label: "挑戦者",
     levels: [
-      { level: 1, effects: { addAttack: 4 , addAffinity: 3 } },
-      { level: 2, effects: { addAttack: 8 , addAffinity: 5 } },
+      { level: 1, effects: { addAttack: 4, addAffinity: 3 } },
+      { level: 2, effects: { addAttack: 8, addAffinity: 5 } },
       { level: 3, effects: { addAttack: 12, addAffinity: 7 } },
       { level: 4, effects: { addAttack: 16, addAffinity: 10 } },
       { level: 5, effects: { addAttack: 20, addAffinity: 15 } }
@@ -135,7 +143,7 @@ export const SKILL_DATA: { [key: string]: Skill } = {
   burstHH: {
     label: "連撃(笛)",
     levels: [
-      { level: 1, effects: { addAttack: 10, addElement: 80} },
+      { level: 1, effects: { addAttack: 10, addElement: 80 } },
       { level: 2, effects: { addAttack: 12, addElement: 100 } },
       { level: 3, effects: { addAttack: 14, addElement: 120 } },
       { level: 4, effects: { addAttack: 16, addElement: 160 } },
@@ -144,7 +152,7 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     requirements: ["skillBurstEnabled"],
     order: 602
   },
-  burstImproved:{
+  burstImproved: {
     label: "連撃強化",
     levels: [
       { level: 1, effects: { addAttack: 3 } },
@@ -153,7 +161,7 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     requirements: ["skillBurstActive"],
     order: 603
   },
-  goreMagalasTyranny:{
+  goreMagalasTyranny: {
     label: "黒蝕一体",
     levels: [
       { level: 1, effects: { addAttack: 0 } },
@@ -162,17 +170,17 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     accompanies: ["goreMagalasTyranny2"],
     order: 302
   },
-  goreMagalasTyranny2:{
+  goreMagalasTyranny2: {
     label: "黒蝕一体_克服状態",
     levels: [
       { level: 1, effects: { addAttack: 0, addAffinity: 15 } },
-      { level: 2, effects: { addAttack: 5, addAffinity: 15} },
+      { level: 2, effects: { addAttack: 5, addAffinity: 15 } },
     ],
     requirements: ["frenzyRecovered"],
     order: 302,
     hidden: true
   },
-  antivirus:{
+  antivirus: {
     label: "無我の境地",
     levels: [
       { level: 1, effects: { addAffinity: 3 } },
@@ -185,11 +193,21 @@ export const SKILL_DATA: { [key: string]: Skill } = {
   elementAttack: {
     label: "属性攻撃強化",
     levels: [
-      { level: 1, effects: { addElement: 40} },
+      { level: 1, effects: { addElement: 40 } },
       { level: 2, effects: { addElement: 50, multiplyElement: 1.1 } },
       { level: 3, effects: { addElement: 60, multiplyElement: 1.2 } },
     ],
-    order: 601
+    order: EFFECT_ORDER_ELEMENTATTACK
+  },
+  elementAttackFire: {
+    label: "火属性攻撃強化",
+    levels: [
+      { level: 1, effects: { addElement: 40 } },
+      { level: 2, effects: { addElement: 50, multiplyElement: 1.1 } },
+      { level: 3, effects: { addElement: 60, multiplyElement: 1.2 } },
+    ],
+    requirements: ["elementTypeIsFire"],
+    order: EFFECT_ORDER_ELEMENTATTACK
   },
   criticalElement: {
     label: "会心撃【属性】",
@@ -210,6 +228,23 @@ export const SKILL_DATA: { [key: string]: Skill } = {
     ],
     requirements: ["coalescenceEnabled"],
     order: 202
+  },
+  whiteflame: {
+    label: "白熾の奔流",
+    levels: [
+      { level: 1, effects: { addDamage: { fixedDamage: 50 } } },
+    ],
+    requirements: ["whiteflameTriggered"],
+    order: 800
+  },
+  whiteflameFlare: {
+    label: "白熾＋灼熱化",
+    levels: [
+      { level: 1, effects: { addDamage: { fixedDamage: 60, elementType: "fire", elementValue: 300 } } },
+      { level: 2, effects: { addDamage: { fixedDamage: 80, elementType: "fire", elementValue: 800 } } },
+    ],
+    requirements: ["whiteflameTriggered"],
+    order: 800
   }
 } as const;
 

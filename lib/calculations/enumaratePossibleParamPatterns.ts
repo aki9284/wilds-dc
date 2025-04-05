@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Effect, SingleHitParams } from "./damageCalculator";
-import { SelectedSkill, SKILL_DATA, SkillKey } from '@/models/constants/skill';
+import { AddDamageParams, SelectedSkill, SKILL_DATA, SkillKey } from '@/models/constants/skill';
 import { BUFF_DATA, BuffKey } from '@/models/constants/buff';
 import { CONDITION_LABELS } from '@/models/constants/conditionLabels';
 import { EFFECT_ORDER_CRITICAL } from '@/models/constants/effectOrder';
@@ -8,7 +8,7 @@ import { getCachedMonsterData } from '@/utils/dataFetch';
 
 export interface PossibleParamPattern {
     params: SingleHitParams, 
-    possibility: number
+    possibility: number,
 }
 
 export function enumeratePossibleParamPatterns(params: SingleHitParams): PossibleParamPattern[] {
@@ -89,7 +89,7 @@ export function enumeratePossibleParamPatterns(params: SingleHitParams): Possibl
 // 特定の順番にactive判定しないとおかしくなるものがあればeffectsがその順番で並んでいる前提とする
 // 特にcriticalはorderで制御されており、criticalのeffectに差しかかかったタイミングでcritかそうでないかに分岐させてよいものとする
 //
-// effects: 会心率に影響するスキル・バフのリスト
+// effects: スキル・バフのリスト
 // index: 現在処理中のスキル・バフのインデックス
 // currentCombination: 現在の組み合わせ
 // combinations: 出力用、effectsの中でactiveになっているもののリストとその組み合わせの発生確率のペア配列
@@ -215,6 +215,26 @@ function calcEffectPossibility(requirements: string[], currentCombination: Effec
         // 連撃を武器ごとに分ける必要があるためskillKeyがburstHHなどになっているが、他武器対応するならここに条件追加が必要か
         if (currentCombination.some(effect => effect.type === 'skill' && (effect.data as SelectedSkill).skillKey === 'burstHH')) {
             return 1.0;
+        } else {
+            return 0.0;
+        }
+    }
+    // 火属性攻撃強化
+    // 火属性武器で、汎用の属性攻撃強化と重複して選んでいない場合のみ発動。
+    // 灼熱化で武器属性側の属性強化と火属性強化を両方入れた場合に対応するため、火属性強化だけ別途設定できるようにしているが
+    // 火属性武器で火属性強化と汎用の属性攻撃強化を両方選ばれたときに2重に計算されると困るため。
+    // 灼熱化に対する属性強化自体は追加ダメージ計算ロジック側で専用対応するため、ここではあくまで通常モーションの火属性強化の判定
+    if (requirements.includes('elementTypeIsFire')) {
+        if (params.weaponStats.elementType === 'fire' && !params.selectedSkills.some(skill => { if (skill.skillKey === 'elementAttack') { return true;}})) {
+            return 1.0;
+        } else {
+            return 0.0;
+        }
+    }
+    // 白熾の奔流（モーションに発動率設定がされていればそれを返す）
+    if (requirements.includes('whiteflameTriggered')) {
+        if (params.motion.whiteflame !== undefined && params.motion.whiteflame > 0) {
+            return params.motion.whiteflame;
         } else {
             return 0.0;
         }

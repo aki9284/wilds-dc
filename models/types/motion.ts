@@ -14,6 +14,7 @@ export interface Motion {
   ignoreSharpness?: boolean;
   elementValueOverride?: number;
   fixedDamage?: number;
+  whiteflame?: number;
 }
 
 export interface SelectedMotion {

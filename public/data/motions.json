@@ -4,21 +4,24 @@
         "name": "前方攻撃", 
         "value": 32,
         "damageType": "impact",
-        "duration": 0.5
+        "duration": 0.5,
+        "whiteflame": 0.25
     },
     {
         "weaponType": "huntingHorn",
         "name": "左ぶん回し",
         "value": 33,
         "damageType": "impact",
-        "duration": 0.5
+        "duration": 0.5,
+        "whiteflame": 0.25
     },
     {
         "weaponType": "huntingHorn",
         "name": "右ぶん回し",
         "value": 33,
         "damageType": "impact",
-        "duration": 0.5
+        "duration": 0.5,
+        "whiteflame": 0.25
     },
     {
         "weaponType": "huntingHorn",
@@ -74,7 +77,8 @@
         "name": "演奏", 
         "value": 29,
         "damageType": "impact",
-        "duration": 1
+        "duration": 1,
+        "whiteflame": 0.5
     },
     {
         "weaponType":"huntingHorn",
@@ -119,7 +123,8 @@
         "name": "重ね掛け1段目",
         "value": 20,
         "damageType": "impact",
-        "duration": 0.5
+        "duration": 0.5,
+        "whiteflame": 0.2
     },
     {
         "weaponType": "huntingHorn",
