@@ -16,7 +16,7 @@ export type SkillEffect = {
   multiplyAttack?: number;
   addElement?: number;
   multiplyElement?: number;
-  addDamage?: AddDamageParams;
+  additionalHit?: AddDamageParams;
 }
 
 export type SkillLevel = {
@@ -197,6 +197,7 @@ export const SKILL_DATA: { [key: string]: Skill } = {
       { level: 2, effects: { addElement: 50, multiplyElement: 1.1 } },
       { level: 3, effects: { addElement: 60, multiplyElement: 1.2 } },
     ],
+    requirements: ["elementTypeIsWeapon"],
     order: EFFECT_ORDER_ELEMENTATTACK
   },
   elementAttackFire: {
@@ -232,18 +233,16 @@ export const SKILL_DATA: { [key: string]: Skill } = {
   whiteflame: {
     label: "白熾の奔流",
     levels: [
-      { level: 1, effects: { addDamage: { fixedDamage: 50 } } },
+      { level: 1, effects: { additionalHit: { fixedDamage: 50 } } },
     ],
-    requirements: ["whiteflameTriggered"],
     order: 800
   },
   whiteflameFlare: {
     label: "白熾＋灼熱化",
     levels: [
-      { level: 1, effects: { addDamage: { fixedDamage: 60, elementType: "fire", elementValue: 300 } } },
-      { level: 2, effects: { addDamage: { fixedDamage: 80, elementType: "fire", elementValue: 800 } } },
+      { level: 1, effects: { additionalHit: { fixedDamage: 60, elementType: "fire", elementValue: 300 } } },
+      { level: 2, effects: { additionalHit: { fixedDamage: 80, elementType: "fire", elementValue: 800 } } },
     ],
-    requirements: ["whiteflameTriggered"],
     order: 800
   }
 } as const;

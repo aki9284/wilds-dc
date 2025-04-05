@@ -15,7 +15,7 @@ export function MotionSelector() {
 
   const handleSave = (name: string) => {
     const totalMV = selectedMotions.reduce((sum, s) => sum + (Number(s.motion?.value) || 0), 0);
-    const totalDuration = selectedMotions.reduce((sum, s) => sum + (Number(s.motion?.duration) || 0), 0);
+    const totalDuration = selectedMotions.reduce((sum, s) => sum + (Number(s.motion?.motionTime) || 0), 0);
     
     // モーションjsonやpresetの変更時に最新データが表示されるようにするためモーション名のみで保存/読み込み
     const savedMotions = selectedMotions.map(s => s.motion?.name);
