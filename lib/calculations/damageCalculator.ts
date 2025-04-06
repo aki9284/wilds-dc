@@ -92,13 +92,10 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
       let maxTotal = -Infinity;
       let minPhysical = 0;
       let minElemental = 0;
-      let minAdditional = 0;
       let maxPhysical = 0;
       let maxElemental = 0;
-      let maxAdditional = 0;
       let expectedPhysical = 0;
       let expectedElemental = 0;
-      let expectedAdditional = 0;
 
       paramPatterns.forEach(pattern => {
         const physical = calculatePhysicalDamage(pattern.params);
