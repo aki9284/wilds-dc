@@ -1,11 +1,12 @@
 import { WeaponStats } from '@/models/types/weapon';
 import { SelectedTarget } from '@/models/types/target';
 import { Motion, SelectedMotion } from '@/models/types/motion';
-import { SelectedSkill } from '@/models/constants/skill';
+import { AddDamageParams, SelectedSkill, SKILL_DATA } from '@/models/constants/skill';
 import { ConditionValues } from '@/models/atoms/conditionAtoms';
 import { calculatePhysicalDamage } from './physicalDamageCalculator';
 import { calculateElementalDamage } from './elementalDamageCalculator';
 import { enumeratePossibleParamPatterns } from './enumaratePossibleParamPatterns';
+import { insertAdditionalHits } from './addtionalHitInserter';
 
 interface DamageBreakdown {
   total: number;
@@ -57,14 +58,17 @@ export interface SingleHitParams {
 export function calculateDamage(params: CalculationParams): CalculationResults {
   const totalPercentage = params.selectedTargets.reduce((sum, target) => sum + target.percentage, 0);
 
+  // 追加ヒットを予め挿入（追加ヒットが実際に発生するかは後で判定 判定タイミングがありさえすれば挿入する）
+  params = insertAdditionalHits(params);
+
   // モーションごとにダメージ計算
   const motionDamages: MotionDamage[] = params.selectedMotions.map(selectedMotion => {
     if (!selectedMotion.motion) {
       return {
         motion: selectedMotion.motion!,
-        minDamage: { total: 0, physical: 0, elemental: 0 },
-        maxDamage: { total: 0, physical: 0, elemental: 0 },
-        expectedDamage: { total: 0, physical: 0, elemental: 0 }
+        minDamage: { total: 0, physical: 0, elemental: 0, additional: 0 },
+        maxDamage: { total: 0, physical: 0, elemental: 0, additional: 0 },
+        expectedDamage: { total: 0, physical: 0, elemental: 0, additional: 0 }
       };
     }
 
@@ -88,10 +92,13 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
       let maxTotal = -Infinity;
       let minPhysical = 0;
       let minElemental = 0;
+      let minAdditional = 0;
       let maxPhysical = 0;
       let maxElemental = 0;
+      let maxAdditional = 0;
       let expectedPhysical = 0;
       let expectedElemental = 0;
+      let expectedAdditional = 0;
 
       paramPatterns.forEach(pattern => {
         const physical = calculatePhysicalDamage(pattern.params);
@@ -124,7 +131,7 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
           min: minElemental * (target.percentage / totalPercentage),
           max: maxElemental * (target.percentage / totalPercentage),
           expected: expectedElemental * (target.percentage / totalPercentage)
-        }
+        },
       };
     }).reduce((acc, curr) => ({
       physical: {
@@ -142,22 +149,28 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
       elemental: { min: 0, max: 0, expected: 0 }
     });
 
+    // スキップ割合が設定されている場合は最小0,期待値はスキップ割合を差し引いたものにする
+    const motion = selectedMotion.motion!;
+    const motionSkippable = motion.skipRate && motion.skipRate > 0;
+    const expectedPhysical = motionSkippable ? motionDamage.physical.expected * (1-motion.skipRate!) : motionDamage.physical.expected;
+    const expectedElemental = motionSkippable ? motionDamage.elemental.expected * (1-motion.skipRate!) : motionDamage.elemental.expected;
+
     return {
-      motion: selectedMotion.motion!,
+      motion: motion,
       minDamage: {
-        total: Math.round((motionDamage.physical.min + motionDamage.elemental.min) * 10) / 10,
-        physical: motionDamage.physical.min,
-        elemental: motionDamage.elemental.min
+        total: motionSkippable ? 0 : Math.round((motionDamage.physical.min + motionDamage.elemental.min) * 10) / 10,
+        physical: motionSkippable ? 0 : motionDamage.physical.min,
+        elemental: motionSkippable ? 0 : motionDamage.elemental.min,
       },
       maxDamage: {
         total: Math.round((motionDamage.physical.max + motionDamage.elemental.max) * 10) / 10,
         physical: motionDamage.physical.max,
-        elemental: motionDamage.elemental.max
+        elemental: motionDamage.elemental.max,
       },
       expectedDamage: {
-        total: Math.round((motionDamage.physical.expected + motionDamage.elemental.expected) * 10) / 10,
-        physical: motionDamage.physical.expected,
-        elemental: motionDamage.elemental.expected
+        total: Math.round((expectedPhysical + expectedElemental) * 10) / 10,
+        physical: Math.round(expectedPhysical * 10) / 10,
+        elemental: Math.round(expectedElemental * 10) / 10,
       }
     };
   });
@@ -184,17 +197,17 @@ export function calculateDamage(params: CalculationParams): CalculationResults {
     minDamage: {      
       total: Math.round((totalDamages.physical.min + totalDamages.elemental.min) * 10) / 10,
       physical: Math.round(totalDamages.physical.min * 10) / 10,
-      elemental: Math.round(totalDamages.elemental.min * 10) / 10
+      elemental: Math.round(totalDamages.elemental.min * 10) / 10,
     },
     maxDamage: {
       total: Math.round((totalDamages.physical.max + totalDamages.elemental.max) * 10) / 10,
       physical: Math.round(totalDamages.physical.max * 10) / 10,
-      elemental: Math.round(totalDamages.elemental.max * 10) / 10
+      elemental: Math.round(totalDamages.elemental.max * 10) / 10,
     },
     expectedDamage: {
       total: Math.round((totalDamages.physical.expected + totalDamages.elemental.expected) * 10) / 10,
       physical: Math.round(totalDamages.physical.expected * 10) / 10,
-      elemental: Math.round(totalDamages.elemental.expected * 10) / 10
+      elemental: Math.round(totalDamages.elemental.expected * 10) / 10,
     },
     dps: calculateDPS(totalDamages.physical.expected + totalDamages.elemental.expected, params.selectedMotions),
     motionDamages

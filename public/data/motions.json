@@ -4,77 +4,78 @@
         "name": "前方攻撃", 
         "value": 32,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 1.5
     },
     {
         "weaponType": "huntingHorn",
         "name": "左ぶん回し",
         "value": 33,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 1.5
     },
     {
         "weaponType": "huntingHorn",
         "name": "右ぶん回し",
         "value": 33,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 1.5
     },
     {
         "weaponType": "huntingHorn",
         "name": "連音攻撃1段目",
         "value": 15,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 1
     },
     { 
         "weaponType": "huntingHorn",
         "name": "連音攻撃2段目", 
         "value": 25,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 1.1
     },
     { 
         "weaponType": "huntingHorn",
         "name": "後方攻撃", 
         "value": 46,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 1.9
     },
     { 
         "weaponType": "huntingHorn",
         "name": "叩きつけ1段目", 
         "value": 14,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 1
     },
     { 
         "weaponType": "huntingHorn",
         "name": "叩きつけ2段目", 
         "value": 42,
         "damageType": "impact",
-        "duration": 1
+        "motionTime": 1.1
     },
     { 
         "weaponType": "huntingHorn",
         "name": "叩きつけ・追撃", 
         "value": 65,
         "damageType": "impact",
-        "duration": 1
+        "motionTime": 2.1
     },
     { 
         "weaponType": "huntingHorn",
         "name": "柄攻撃", 
         "value": 10,
         "damageType": "slash",
-        "duration": 0.2
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 1.1
     },
     { 
         "weaponType": "huntingHorn",
         "name": "演奏", 
         "value": 29,
         "damageType": "impact",
-        "duration": 1
+        "motionTime": 2.5
     },
     {
         "weaponType":"huntingHorn",
@@ -82,58 +83,63 @@
         "value": 27,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreEffectiveness": true,
         "ignoreSharpness": true,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType": "huntingHorn",
         "name": "奏撃1_タイミングOK",
         "value": 35,
         "damageType": "impact",
-        "duration": 0.5
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 2.6
     },
     {
         "weaponType": "huntingHorn",
         "name": "奏撃1_タイミングNG",
         "value": 29,
         "damageType": "impact",
-        "duration": 0.5
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 2.6
     },
     {
         "weaponType": "huntingHorn",
         "name": "奏撃2_タイミングOK",
         "value": 45,
         "damageType": "impact",
-        "duration": 0.5
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 2.6
     },
     {
         "weaponType": "huntingHorn",
         "name": "奏撃2_タイミングNG",
         "value": 31,
         "damageType": "impact",
-        "duration": 0.5
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 2.6
     },
     {
         "weaponType": "huntingHorn",
         "name": "重ね掛け1段目",
         "value": 20,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 0
     },
     {
         "weaponType": "huntingHorn",
         "name": "重ね掛け2段目_タイミングOK",
         "value": 50,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 2.2
     },
     {
         "weaponType": "huntingHorn",
         "name": "重ね掛け2段目_タイミングNG",
         "value": 35,
         "damageType": "impact",
-        "duration": 0.5
+        "motionTime": 2.2
     },
     {
         "weaponType":"huntingHorn",
@@ -141,9 +147,10 @@
         "value": 10,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreEffectiveness": true,
         "ignoreSharpness": true,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -151,8 +158,10 @@
         "value": 0,
         "damageType": "impact",
         "cannotCrit": true,
-        "duration":0,
-        "fixedDamage": 10
+        "cannotTriggerWhiteflame": true,
+        "motionTime":0,
+        "fixedPhysicalDamage": 10,
+        "fixedElementalDamage": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -160,9 +169,10 @@
         "value": 50,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "mutiplyElement":0,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -170,9 +180,10 @@
         "value": 70,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "mutiplyElement":0,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -180,36 +191,40 @@
         "value": 100,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "mutiplyElement":0,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
         "name": "響周波【斬】",
         "value": 50,
         "damageType": "slash",
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "mutiplyElement":0,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
         "name": "響周波【斬】_2重",
         "value": 70,
         "damageType": "slash",
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "mutiplyElement":0,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
         "name": "響周波【斬】_3重",
         "value": 100,
         "damageType": "slash",
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "mutiplyElement":0,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -217,9 +232,10 @@
         "value": 45,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "elementValueOverride": 600,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -227,9 +243,10 @@
         "value": 65,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "elementValueOverride": 1000,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -237,9 +254,10 @@
         "value": 85,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "elementValueOverride": 1400,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -247,9 +265,10 @@
         "value": 45,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "elementValueOverride": 500,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -257,9 +276,10 @@
         "value": 65,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "elementValueOverride": 1000,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -267,9 +287,10 @@
         "value": 85,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "elementValueOverride": 1500,
-        "duration":0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -277,10 +298,11 @@
         "value": 30,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreEffectiveness": true,
         "ignoreSharpness": true,
         "multiplyElement": 0.3,
-        "duration": 1
+        "motionTime": 2.4
     },
     {
         "weaponType":"huntingHorn",
@@ -288,10 +310,11 @@
         "value": 5,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreEffectiveness": true,
         "ignoreSharpness": true,
         "multiplyElement": 0.3,
-        "duration": 0
+        "motionTime": 0
     },
     {
         "weaponType":"huntingHorn",
@@ -299,17 +322,19 @@
         "value": 12,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreEffectiveness": true,
         "ignoreSharpness": true,
         "multiplyElement": 0.3,
-        "duration": 0
+        "motionTime": 0
     },
     { 
         "weaponType": "huntingHorn",
         "name": "集中音撃【残響】突き", 
         "value": 20,
         "damageType": "impact",
-        "duration": 1
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 1.2
     },
     { 
         "weaponType": "huntingHorn",
@@ -317,9 +342,10 @@
         "value": 10,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreEffectiveness": true,
         "ignoreSharpness": true,
-        "duration": 1
+        "motionTime": 0.8
     },
     {
         "weaponType": "huntingHorn",
@@ -327,37 +353,42 @@
         "value": 50,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreEffectiveness": true,
         "ignoreSharpness": true,
-        "duration": 1
+        "motionTime": 1.2
     },
     {
         "weaponType": "huntingHorn",
         "name": "相殺の調べ",
         "value": 75,
         "damageType": "impact",
-        "duration": 1
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 2.9
     },
     {
         "weaponType": "huntingHorn",
         "name": "響鳴の調べ1段目",
         "value": 20,
         "damageType": "impact",
-        "duration": 0.2
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 1.4
     },
     {
         "weaponType": "huntingHorn",
         "name": "響鳴の調べ2段目",
         "value": 22,
         "damageType": "impact",
-        "duration": 0.2
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 1.4
     },
     {
         "weaponType": "huntingHorn",
         "name": "響鳴の調べ3段目",
         "value": 20,
         "damageType": "impact",
-        "duration": 0.2
+        "cannotTriggerWhiteflame": true,
+        "motionTime": 1.4
     },
     {
         "weaponType": "huntingHorn",
@@ -365,9 +396,10 @@
         "value": 15,
         "damageType": "impact",
         "cannotCrit": true,
+        "cannotTriggerWhiteflame": true,
         "ignoreSharpness": true,
         "ignoreEffectiveness": true,
         "multiplyElement": 0.5,
-        "duration": 0
+        "motionTime": 0
     }
 ]

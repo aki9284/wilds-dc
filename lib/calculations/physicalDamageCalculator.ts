@@ -9,8 +9,8 @@ import { SHARPNESS_DATA } from "@/models/constants/sharpness";
 
 // 物理ダメージ
 export function calculatePhysicalDamage(params: SingleHitParams): number {
-    if (params.motion.fixedDamage !== undefined) {
-        return params.motion.fixedDamage;
+    if (params.motion.fixedPhysicalDamage !== undefined) {
+        return params.motion.fixedPhysicalDamage;
     }
 
     const attack = calculatePhysicalAttack(params);

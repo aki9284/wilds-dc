@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Effect, SingleHitParams } from "./damageCalculator";
-import { SelectedSkill, SKILL_DATA, SkillKey } from '@/models/constants/skill';
+import { AddDamageParams, SelectedSkill, SKILL_DATA, SkillKey } from '@/models/constants/skill';
 import { BUFF_DATA, BuffKey } from '@/models/constants/buff';
 import { CONDITION_LABELS } from '@/models/constants/conditionLabels';
 import { EFFECT_ORDER_CRITICAL } from '@/models/constants/effectOrder';
@@ -8,7 +8,7 @@ import { getCachedMonsterData } from '@/utils/dataFetch';
 
 export interface PossibleParamPattern {
     params: SingleHitParams, 
-    possibility: number
+    possibility: number,
 }
 
 export function enumeratePossibleParamPatterns(params: SingleHitParams): PossibleParamPattern[] {
@@ -89,7 +89,7 @@ export function enumeratePossibleParamPatterns(params: SingleHitParams): Possibl
 // 特定の順番にactive判定しないとおかしくなるものがあればeffectsがその順番で並んでいる前提とする
 // 特にcriticalはorderで制御されており、criticalのeffectに差しかかかったタイミングでcritかそうでないかに分岐させてよいものとする
 //
-// effects: 会心率に影響するスキル・バフのリスト
+// effects: スキル・バフのリスト
 // index: 現在処理中のスキル・バフのインデックス
 // currentCombination: 現在の組み合わせ
 // combinations: 出力用、effectsの中でactiveになっているもののリストとその組み合わせの発生確率のペア配列
@@ -214,6 +214,33 @@ function calcEffectPossibility(requirements: string[], currentCombination: Effec
     if (requirements.includes('skillBurstActive')) {
         // 連撃を武器ごとに分ける必要があるためskillKeyがburstHHなどになっているが、他武器対応するならここに条件追加が必要か
         if (currentCombination.some(effect => effect.type === 'skill' && (effect.data as SelectedSkill).skillKey === 'burstHH')) {
+            return 1.0;
+        } else {
+            return 0.0;
+        }
+    }
+    // 属性攻撃強化
+    // 汎用の属性攻撃強化は利便性のためにこれを選べば武器属性に対応した属性攻撃強化として扱われることにしているが、
+    // 特殊な攻撃で別属性が使われる場合に無効化したいため上書き属性が武器属性と異なる場合は無効
+    if (requirements.includes('elementTypeIsWeapon')) {
+        const weaponElementType = params.weaponStats.elementType;
+        const motionElementType = params.motion.elementTypeOverride;
+        if (motionElementType && motionElementType !== weaponElementType) {
+            return 0.0;
+        } else {
+            return 1.0;
+        }
+    }
+
+    // 火属性攻撃強化
+    // 火属性武器or火属性上書モーションで、汎用の属性攻撃強化と重複して選んでいない場合のみ発動。
+    // 灼熱化で武器属性側の属性強化と火属性強化を両方入れた場合に対応するため、火属性強化だけ別途設定できるようにしているが
+    // 火属性武器で火属性強化と汎用の属性攻撃強化を両方選ばれたときに2重に計算されると困るため。
+    if (requirements.includes('elementTypeIsFire')) {
+        const isNormalElementAttackEnabled = currentCombination.some(effect => effect.type === 'skill' && (effect.data as SelectedSkill).skillKey === 'elementAttack');
+
+        const elementType = params.motion.elementTypeOverride ?? params.weaponStats.elementType;
+        if (elementType === 'fire' && !isNormalElementAttackEnabled) {
             return 1.0;
         } else {
             return 0.0;
