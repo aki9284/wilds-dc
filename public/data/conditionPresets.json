@@ -11,7 +11,8 @@
         "skillCounterstrikeEnabled": 100,
         "skillMaximumMightEnabled": 100,
         "frenzyRecovered": 100,
-        "coalescenceEnabled": 100
+        "coalescenceEnabled": 100,
+        "skillLordsSoulEnabled": 100
       }
     },
     {
@@ -26,7 +27,8 @@
         "skillCounterstrikeEnabled": 50,
         "skillMaximumMightEnabled": 50,
         "frenzyRecovered": 50,
-        "coalescenceEnabled": 50
+        "coalescenceEnabled": 50,
+        "skillLordsSoulEnabled": 50
       }
     }
   ]

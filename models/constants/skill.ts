@@ -244,7 +244,15 @@ export const SKILL_DATA: { [key: string]: Skill } = {
       { level: 2, effects: { additionalHit: { fixedDamage: 80, elementType: "fire", elementValue: 800 } } },
     ],
     order: 800
-  }
+  },
+  lordsSoul: {
+    label: "根性【果敢】",
+    levels: [
+      { level: 1, effects: { multiplyAttack: 1.05 } },
+    ],
+    requirements: ["skillLordsSoulEnabled"],
+    order: 304
+  }    
 } as const;
 
 export type SkillKey = keyof typeof SKILL_DATA & string;

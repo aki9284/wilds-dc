@@ -34,5 +34,9 @@ export const CONDITION_LABELS = {
     coalescenceEnabled: {
         label: '災禍転福発動割合',
         type: 'possibility',
+    },
+    skillLordsSoulEnabled: {
+        label: '根性【果敢】攻撃力UP状態割合',
+        type: 'possibility',
     }
 } as const;
