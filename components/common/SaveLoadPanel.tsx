@@ -1,5 +1,6 @@
 'use client'
 
+import { validateAndMigrateData } from '@/lib/savedDataMigrator';
 import { useState, useEffect } from 'react'
 
 interface SaveLoadPanelProps {
@@ -23,7 +24,7 @@ interface PresetItem {
     data: any;
 }
 
-const CURRENT_DATA_VERSION = '1.0.0';
+const CURRENT_DATA_VERSION = '1.1.0';
 
 const loadPresetData = async (filePath: string): Promise<SavedItem[]> => {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
@@ -39,18 +40,7 @@ const loadPresetData = async (filePath: string): Promise<SavedItem[]> => {
   }));
 }
 
-function validateAndMigrateData(items: SavedItem[]): SavedItem[] {
-  return items.filter(item => {
-  if (!item.version) return false;
 
-  switch (item.version) {
-      case '1.0.0':
-          return true;
-      default:
-          return false;
-      }
-  });
-}
 
 export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: SaveLoadPanelProps) {
   const [saveName, setSaveName] = useState('');
@@ -65,7 +55,7 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
       const loadSavedItems = () => {
           const saved = localStorage.getItem(storageKey);
           const items = saved ? JSON.parse(saved) : [];
-          setSavedItems(validateAndMigrateData(items));
+          setSavedItems(validateAndMigrateData(items, storageKey));
       };
 
       const loadPresets = async () => {
@@ -122,6 +112,7 @@ export function SaveLoadPanel({ storageKey, presetFilePath, onSave, onLoad }: Sa
         const newItems = [...savedItems];
         newItems[index] = {
             ...newItems[index],
+            version: CURRENT_DATA_VERSION,
             data: data,
         };
         localStorage.setItem(storageKey, JSON.stringify(newItems));

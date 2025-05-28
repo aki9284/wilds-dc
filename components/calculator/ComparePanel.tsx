@@ -7,12 +7,13 @@ import { calculateDamage, CalculationResults } from '@/lib/calculations/damageCa
 import { getCachedMotionData } from '@/utils/dataFetch'
 import { ComparisonRow, comparisonRowsAtom } from '@/models/atoms/comparePanelAtom' // Import the new atom
 import { SavedItem } from '../common/SaveLoadPanel'
+import { validateAndMigrateData } from '@/lib/savedDataMigrator'
 
-// SaveLoadPanelと同じロジックを使用 (変更なし)
+// SaveLoadPanelと同じ この部分ごと共通化できる方がよいかも
 const loadSavedItems = (storageKey: string) => {
     const saved = localStorage.getItem(storageKey)
     if (!saved) return []
-    return JSON.parse(saved)
+    return validateAndMigrateData(JSON.parse(saved), storageKey);
 }
 
 const loadPresetData = async (filePath: string) => {
